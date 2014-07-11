@@ -1,0 +1,478 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F6D3A55F1970A244008FDE1B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A55E1970A244008FDE1B /* Foundation.framework */; };
+		F6D3A5611970A244008FDE1B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5601970A244008FDE1B /* CoreGraphics.framework */; };
+		F6D3A5631970A244008FDE1B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5621970A244008FDE1B /* UIKit.framework */; };
+		F6D3A5651970A244008FDE1B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5641970A244008FDE1B /* CoreData.framework */; };
+		F6D3A56B1970A244008FDE1B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5691970A244008FDE1B /* InfoPlist.strings */; };
+		F6D3A56D1970A244008FDE1B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A56C1970A244008FDE1B /* main.m */; };
+		F6D3A5711970A244008FDE1B /* PTBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5701970A244008FDE1B /* PTBAppDelegate.m */; };
+		F6D3A5741970A244008FDE1B /* GraniouProjectManagement.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5721970A244008FDE1B /* GraniouProjectManagement.xcdatamodeld */; };
+		F6D3A5761970A244008FDE1B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5751970A244008FDE1B /* Images.xcassets */; };
+		F6D3A57D1970A244008FDE1B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A57C1970A244008FDE1B /* XCTest.framework */; };
+		F6D3A57E1970A244008FDE1B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A55E1970A244008FDE1B /* Foundation.framework */; };
+		F6D3A57F1970A244008FDE1B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5621970A244008FDE1B /* UIKit.framework */; };
+		F6D3A5801970A244008FDE1B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5641970A244008FDE1B /* CoreData.framework */; };
+		F6D3A5881970A244008FDE1B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5861970A244008FDE1B /* InfoPlist.strings */; };
+		F6D3A58A1970A244008FDE1B /* GraniouProjectManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5891970A244008FDE1B /* GraniouProjectManagementTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F6D3A5811970A244008FDE1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F6D3A5531970A244008FDE1B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F6D3A55A1970A244008FDE1B;
+			remoteInfo = GraniouProjectManagement;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F6D3A55B1970A244008FDE1B /* GraniouProjectManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraniouProjectManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6D3A55E1970A244008FDE1B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F6D3A5601970A244008FDE1B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F6D3A5621970A244008FDE1B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F6D3A5641970A244008FDE1B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F6D3A5681970A244008FDE1B /* GraniouProjectManagement-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GraniouProjectManagement-Info.plist"; sourceTree = "<group>"; };
+		F6D3A56A1970A244008FDE1B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F6D3A56C1970A244008FDE1B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F6D3A56E1970A244008FDE1B /* GraniouProjectManagement-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GraniouProjectManagement-Prefix.pch"; sourceTree = "<group>"; };
+		F6D3A56F1970A244008FDE1B /* PTBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTBAppDelegate.h; sourceTree = "<group>"; };
+		F6D3A5701970A244008FDE1B /* PTBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTBAppDelegate.m; sourceTree = "<group>"; };
+		F6D3A5731970A244008FDE1B /* GraniouProjectManagement.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GraniouProjectManagement.xcdatamodel; sourceTree = "<group>"; };
+		F6D3A5751970A244008FDE1B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F6D3A57B1970A244008FDE1B /* GraniouProjectManagementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraniouProjectManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6D3A57C1970A244008FDE1B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F6D3A5851970A244008FDE1B /* GraniouProjectManagementTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GraniouProjectManagementTests-Info.plist"; sourceTree = "<group>"; };
+		F6D3A5871970A244008FDE1B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F6D3A5891970A244008FDE1B /* GraniouProjectManagementTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraniouProjectManagementTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F6D3A5581970A244008FDE1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6D3A5611970A244008FDE1B /* CoreGraphics.framework in Frameworks */,
+				F6D3A5651970A244008FDE1B /* CoreData.framework in Frameworks */,
+				F6D3A5631970A244008FDE1B /* UIKit.framework in Frameworks */,
+				F6D3A55F1970A244008FDE1B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6D3A5781970A244008FDE1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6D3A57D1970A244008FDE1B /* XCTest.framework in Frameworks */,
+				F6D3A5801970A244008FDE1B /* CoreData.framework in Frameworks */,
+				F6D3A57F1970A244008FDE1B /* UIKit.framework in Frameworks */,
+				F6D3A57E1970A244008FDE1B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F6D3A5521970A244008FDE1B = {
+			isa = PBXGroup;
+			children = (
+				F6D3A5661970A244008FDE1B /* GraniouProjectManagement */,
+				F6D3A5831970A244008FDE1B /* GraniouProjectManagementTests */,
+				F6D3A55D1970A244008FDE1B /* Frameworks */,
+				F6D3A55C1970A244008FDE1B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F6D3A55C1970A244008FDE1B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3A55B1970A244008FDE1B /* GraniouProjectManagement.app */,
+				F6D3A57B1970A244008FDE1B /* GraniouProjectManagementTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F6D3A55D1970A244008FDE1B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3A55E1970A244008FDE1B /* Foundation.framework */,
+				F6D3A5601970A244008FDE1B /* CoreGraphics.framework */,
+				F6D3A5621970A244008FDE1B /* UIKit.framework */,
+				F6D3A5641970A244008FDE1B /* CoreData.framework */,
+				F6D3A57C1970A244008FDE1B /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F6D3A5661970A244008FDE1B /* GraniouProjectManagement */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3A56F1970A244008FDE1B /* PTBAppDelegate.h */,
+				F6D3A5701970A244008FDE1B /* PTBAppDelegate.m */,
+				F6D3A5751970A244008FDE1B /* Images.xcassets */,
+				F6D3A5721970A244008FDE1B /* GraniouProjectManagement.xcdatamodeld */,
+				F6D3A5671970A244008FDE1B /* Supporting Files */,
+			);
+			path = GraniouProjectManagement;
+			sourceTree = "<group>";
+		};
+		F6D3A5671970A244008FDE1B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3A5681970A244008FDE1B /* GraniouProjectManagement-Info.plist */,
+				F6D3A5691970A244008FDE1B /* InfoPlist.strings */,
+				F6D3A56C1970A244008FDE1B /* main.m */,
+				F6D3A56E1970A244008FDE1B /* GraniouProjectManagement-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F6D3A5831970A244008FDE1B /* GraniouProjectManagementTests */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3A5891970A244008FDE1B /* GraniouProjectManagementTests.m */,
+				F6D3A5841970A244008FDE1B /* Supporting Files */,
+			);
+			path = GraniouProjectManagementTests;
+			sourceTree = "<group>";
+		};
+		F6D3A5841970A244008FDE1B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3A5851970A244008FDE1B /* GraniouProjectManagementTests-Info.plist */,
+				F6D3A5861970A244008FDE1B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F6D3A55A1970A244008FDE1B /* GraniouProjectManagement */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6D3A58D1970A244008FDE1B /* Build configuration list for PBXNativeTarget "GraniouProjectManagement" */;
+			buildPhases = (
+				F6D3A5571970A244008FDE1B /* Sources */,
+				F6D3A5581970A244008FDE1B /* Frameworks */,
+				F6D3A5591970A244008FDE1B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GraniouProjectManagement;
+			productName = GraniouProjectManagement;
+			productReference = F6D3A55B1970A244008FDE1B /* GraniouProjectManagement.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F6D3A57A1970A244008FDE1B /* GraniouProjectManagementTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6D3A5901970A244008FDE1B /* Build configuration list for PBXNativeTarget "GraniouProjectManagementTests" */;
+			buildPhases = (
+				F6D3A5771970A244008FDE1B /* Sources */,
+				F6D3A5781970A244008FDE1B /* Frameworks */,
+				F6D3A5791970A244008FDE1B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F6D3A5821970A244008FDE1B /* PBXTargetDependency */,
+			);
+			name = GraniouProjectManagementTests;
+			productName = GraniouProjectManagementTests;
+			productReference = F6D3A57B1970A244008FDE1B /* GraniouProjectManagementTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F6D3A5531970A244008FDE1B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PTB;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Graniou;
+				TargetAttributes = {
+					F6D3A57A1970A244008FDE1B = {
+						TestTargetID = F6D3A55A1970A244008FDE1B;
+					};
+				};
+			};
+			buildConfigurationList = F6D3A5561970A244008FDE1B /* Build configuration list for PBXProject "GraniouProjectManagement" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F6D3A5521970A244008FDE1B;
+			productRefGroup = F6D3A55C1970A244008FDE1B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F6D3A55A1970A244008FDE1B /* GraniouProjectManagement */,
+				F6D3A57A1970A244008FDE1B /* GraniouProjectManagementTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F6D3A5591970A244008FDE1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6D3A56B1970A244008FDE1B /* InfoPlist.strings in Resources */,
+				F6D3A5761970A244008FDE1B /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6D3A5791970A244008FDE1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6D3A5881970A244008FDE1B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F6D3A5571970A244008FDE1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6D3A56D1970A244008FDE1B /* main.m in Sources */,
+				F6D3A5711970A244008FDE1B /* PTBAppDelegate.m in Sources */,
+				F6D3A5741970A244008FDE1B /* GraniouProjectManagement.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6D3A5771970A244008FDE1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6D3A58A1970A244008FDE1B /* GraniouProjectManagementTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F6D3A5821970A244008FDE1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F6D3A55A1970A244008FDE1B /* GraniouProjectManagement */;
+			targetProxy = F6D3A5811970A244008FDE1B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F6D3A5691970A244008FDE1B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F6D3A56A1970A244008FDE1B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F6D3A5861970A244008FDE1B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F6D3A5871970A244008FDE1B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F6D3A58B1970A244008FDE1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F6D3A58C1970A244008FDE1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F6D3A58E1970A244008FDE1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GraniouProjectManagement/GraniouProjectManagement-Prefix.pch";
+				INFOPLIST_FILE = "GraniouProjectManagement/GraniouProjectManagement-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F6D3A58F1970A244008FDE1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GraniouProjectManagement/GraniouProjectManagement-Prefix.pch";
+				INFOPLIST_FILE = "GraniouProjectManagement/GraniouProjectManagement-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F6D3A5911970A244008FDE1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GraniouProjectManagement.app/GraniouProjectManagement";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GraniouProjectManagement/GraniouProjectManagement-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "GraniouProjectManagementTests/GraniouProjectManagementTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		F6D3A5921970A244008FDE1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GraniouProjectManagement.app/GraniouProjectManagement";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GraniouProjectManagement/GraniouProjectManagement-Prefix.pch";
+				INFOPLIST_FILE = "GraniouProjectManagementTests/GraniouProjectManagementTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F6D3A5561970A244008FDE1B /* Build configuration list for PBXProject "GraniouProjectManagement" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6D3A58B1970A244008FDE1B /* Debug */,
+				F6D3A58C1970A244008FDE1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F6D3A58D1970A244008FDE1B /* Build configuration list for PBXNativeTarget "GraniouProjectManagement" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6D3A58E1970A244008FDE1B /* Debug */,
+				F6D3A58F1970A244008FDE1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F6D3A5901970A244008FDE1B /* Build configuration list for PBXNativeTarget "GraniouProjectManagementTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6D3A5911970A244008FDE1B /* Debug */,
+				F6D3A5921970A244008FDE1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F6D3A5721970A244008FDE1B /* GraniouProjectManagement.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F6D3A5731970A244008FDE1B /* GraniouProjectManagement.xcdatamodel */,
+			);
+			currentVersion = F6D3A5731970A244008FDE1B /* GraniouProjectManagement.xcdatamodel */;
+			path = GraniouProjectManagement.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F6D3A5531970A244008FDE1B /* Project object */;
+}

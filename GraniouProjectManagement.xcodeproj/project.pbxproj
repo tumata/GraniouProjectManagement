@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D89B62105573488CB640CF3C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1827E63AF64A5C9B7892E5 /* libPods.a */; };
 		F6D3A55F1970A244008FDE1B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A55E1970A244008FDE1B /* Foundation.framework */; };
 		F6D3A5611970A244008FDE1B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5601970A244008FDE1B /* CoreGraphics.framework */; };
 		F6D3A5631970A244008FDE1B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5621970A244008FDE1B /* UIKit.framework */; };
@@ -22,6 +23,15 @@
 		F6D3A5801970A244008FDE1B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5641970A244008FDE1B /* CoreData.framework */; };
 		F6D3A5881970A244008FDE1B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5861970A244008FDE1B /* InfoPlist.strings */; };
 		F6D3A58A1970A244008FDE1B /* GraniouProjectManagementTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5891970A244008FDE1B /* GraniouProjectManagementTests.m */; };
+		F6D3A59C1970B57D008FDE1B /* PTBAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5941970B57D008FDE1B /* PTBAccountVC.m */; };
+		F6D3A59D1970B57D008FDE1B /* PTBAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5951970B57D008FDE1B /* PTBAccountVC.xib */; };
+		F6D3A59E1970B57D008FDE1B /* PTBLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5971970B57D008FDE1B /* PTBLoginVC.m */; };
+		F6D3A59F1970B57D008FDE1B /* PTBLoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5981970B57D008FDE1B /* PTBLoginVC.xib */; };
+		F6D3A5A01970B57D008FDE1B /* PTBProfileSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A59A1970B57D008FDE1B /* PTBProfileSectionVC.m */; };
+		F6D3A5A11970B57D008FDE1B /* PTBProfileSectionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A59B1970B57D008FDE1B /* PTBProfileSectionVC.xib */; };
+		F6D3A5A51970B612008FDE1B /* PTBAppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5A41970B612008FDE1B /* PTBAppModel.m */; };
+		F6D3A5A9197450AC008FDE1B /* MCDefaultErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5A7197450AB008FDE1B /* MCDefaultErrorViewController.xib */; };
+		F6D3A5AA197450AC008FDE1B /* MCDefaultMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5A8197450AC008FDE1B /* MCDefaultMainViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13A8D27112334B76BA002B31 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		AB1827E63AF64A5C9B7892E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6D3A55B1970A244008FDE1B /* GraniouProjectManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraniouProjectManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6D3A55E1970A244008FDE1B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F6D3A5601970A244008FDE1B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +65,20 @@
 		F6D3A5851970A244008FDE1B /* GraniouProjectManagementTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GraniouProjectManagementTests-Info.plist"; sourceTree = "<group>"; };
 		F6D3A5871970A244008FDE1B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F6D3A5891970A244008FDE1B /* GraniouProjectManagementTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraniouProjectManagementTests.m; sourceTree = "<group>"; };
+		F6D3A5931970B57D008FDE1B /* PTBAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBAccountVC.h; path = ViewControllers/PTBAccountVC.h; sourceTree = "<group>"; };
+		F6D3A5941970B57D008FDE1B /* PTBAccountVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBAccountVC.m; path = ViewControllers/PTBAccountVC.m; sourceTree = "<group>"; };
+		F6D3A5951970B57D008FDE1B /* PTBAccountVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBAccountVC.xib; path = ViewControllers/PTBAccountVC.xib; sourceTree = "<group>"; };
+		F6D3A5961970B57D008FDE1B /* PTBLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBLoginVC.h; path = ViewControllers/PTBLoginVC.h; sourceTree = "<group>"; };
+		F6D3A5971970B57D008FDE1B /* PTBLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBLoginVC.m; path = ViewControllers/PTBLoginVC.m; sourceTree = "<group>"; };
+		F6D3A5981970B57D008FDE1B /* PTBLoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBLoginVC.xib; path = ViewControllers/PTBLoginVC.xib; sourceTree = "<group>"; };
+		F6D3A5991970B57D008FDE1B /* PTBProfileSectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBProfileSectionVC.h; path = ViewControllers/PTBProfileSectionVC.h; sourceTree = "<group>"; };
+		F6D3A59A1970B57D008FDE1B /* PTBProfileSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBProfileSectionVC.m; path = ViewControllers/PTBProfileSectionVC.m; sourceTree = "<group>"; };
+		F6D3A59B1970B57D008FDE1B /* PTBProfileSectionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBProfileSectionVC.xib; path = ViewControllers/PTBProfileSectionVC.xib; sourceTree = "<group>"; };
+		F6D3A5A31970B612008FDE1B /* PTBAppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTBAppModel.h; sourceTree = "<group>"; };
+		F6D3A5A41970B612008FDE1B /* PTBAppModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTBAppModel.m; sourceTree = "<group>"; };
+		F6D3A5A6197446BB008FDE1B /* NewProjectDevProvisioningProfile.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewProjectDevProvisioningProfile.mobileprovision; sourceTree = "<group>"; };
+		F6D3A5A7197450AB008FDE1B /* MCDefaultErrorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCDefaultErrorViewController.xib; sourceTree = "<group>"; };
+		F6D3A5A8197450AC008FDE1B /* MCDefaultMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCDefaultMainViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +90,7 @@
 				F6D3A5651970A244008FDE1B /* CoreData.framework in Frameworks */,
 				F6D3A5631970A244008FDE1B /* UIKit.framework in Frameworks */,
 				F6D3A55F1970A244008FDE1B /* Foundation.framework in Frameworks */,
+				D89B62105573488CB640CF3C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,10 +111,12 @@
 		F6D3A5521970A244008FDE1B = {
 			isa = PBXGroup;
 			children = (
+				F6D3A5A6197446BB008FDE1B /* NewProjectDevProvisioningProfile.mobileprovision */,
 				F6D3A5661970A244008FDE1B /* GraniouProjectManagement */,
 				F6D3A5831970A244008FDE1B /* GraniouProjectManagementTests */,
 				F6D3A55D1970A244008FDE1B /* Frameworks */,
 				F6D3A55C1970A244008FDE1B /* Products */,
+				13A8D27112334B76BA002B31 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,6 +137,7 @@
 				F6D3A5621970A244008FDE1B /* UIKit.framework */,
 				F6D3A5641970A244008FDE1B /* CoreData.framework */,
 				F6D3A57C1970A244008FDE1B /* XCTest.framework */,
+				AB1827E63AF64A5C9B7892E5 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -120,6 +150,9 @@
 				F6D3A5751970A244008FDE1B /* Images.xcassets */,
 				F6D3A5721970A244008FDE1B /* GraniouProjectManagement.xcdatamodeld */,
 				F6D3A5671970A244008FDE1B /* Supporting Files */,
+				F6D3A5A21970B597008FDE1B /* VC */,
+				F6D3A5A31970B612008FDE1B /* PTBAppModel.h */,
+				F6D3A5A41970B612008FDE1B /* PTBAppModel.m */,
 			);
 			path = GraniouProjectManagement;
 			sourceTree = "<group>";
@@ -153,6 +186,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F6D3A5A21970B597008FDE1B /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3A5A7197450AB008FDE1B /* MCDefaultErrorViewController.xib */,
+				F6D3A5A8197450AC008FDE1B /* MCDefaultMainViewController.xib */,
+				F6D3A5991970B57D008FDE1B /* PTBProfileSectionVC.h */,
+				F6D3A59A1970B57D008FDE1B /* PTBProfileSectionVC.m */,
+				F6D3A59B1970B57D008FDE1B /* PTBProfileSectionVC.xib */,
+				F6D3A5931970B57D008FDE1B /* PTBAccountVC.h */,
+				F6D3A5941970B57D008FDE1B /* PTBAccountVC.m */,
+				F6D3A5951970B57D008FDE1B /* PTBAccountVC.xib */,
+				F6D3A5961970B57D008FDE1B /* PTBLoginVC.h */,
+				F6D3A5971970B57D008FDE1B /* PTBLoginVC.m */,
+				F6D3A5981970B57D008FDE1B /* PTBLoginVC.xib */,
+			);
+			name = VC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -160,9 +211,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F6D3A58D1970A244008FDE1B /* Build configuration list for PBXNativeTarget "GraniouProjectManagement" */;
 			buildPhases = (
+				6D4B2A22A66B44DE99132E01 /* Check Pods Manifest.lock */,
 				F6D3A5571970A244008FDE1B /* Sources */,
 				F6D3A5581970A244008FDE1B /* Frameworks */,
 				F6D3A5591970A244008FDE1B /* Resources */,
+				91F84D6D4D8743649232E53E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -201,6 +254,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Graniou;
 				TargetAttributes = {
+					F6D3A55A1970A244008FDE1B = {
+						DevelopmentTeam = FX5DHFP49L;
+					};
 					F6D3A57A1970A244008FDE1B = {
 						TestTargetID = F6D3A55A1970A244008FDE1B;
 					};
@@ -229,8 +285,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6D3A5AA197450AC008FDE1B /* MCDefaultMainViewController.xib in Resources */,
 				F6D3A56B1970A244008FDE1B /* InfoPlist.strings in Resources */,
+				F6D3A5A11970B57D008FDE1B /* PTBProfileSectionVC.xib in Resources */,
+				F6D3A59D1970B57D008FDE1B /* PTBAccountVC.xib in Resources */,
 				F6D3A5761970A244008FDE1B /* Images.xcassets in Resources */,
+				F6D3A5A9197450AC008FDE1B /* MCDefaultErrorViewController.xib in Resources */,
+				F6D3A59F1970B57D008FDE1B /* PTBLoginVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,12 +305,49 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6D4B2A22A66B44DE99132E01 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		91F84D6D4D8743649232E53E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F6D3A5571970A244008FDE1B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6D3A5A51970B612008FDE1B /* PTBAppModel.m in Sources */,
 				F6D3A56D1970A244008FDE1B /* main.m in Sources */,
+				F6D3A59E1970B57D008FDE1B /* PTBLoginVC.m in Sources */,
+				F6D3A59C1970B57D008FDE1B /* PTBAccountVC.m in Sources */,
+				F6D3A5A01970B57D008FDE1B /* PTBProfileSectionVC.m in Sources */,
 				F6D3A5711970A244008FDE1B /* PTBAppDelegate.m in Sources */,
 				F6D3A5741970A244008FDE1B /* GraniouProjectManagement.xcdatamodeld in Sources */,
 			);
@@ -367,26 +465,38 @@
 		};
 		F6D3A58E1970A244008FDE1B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13A8D27112334B76BA002B31 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GraniouProjectManagement/GraniouProjectManagement-Prefix.pch";
 				INFOPLIST_FILE = "GraniouProjectManagement/GraniouProjectManagement-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		F6D3A58F1970A244008FDE1B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13A8D27112334B76BA002B31 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GraniouProjectManagement/GraniouProjectManagement-Prefix.pch";
 				INFOPLIST_FILE = "GraniouProjectManagement/GraniouProjectManagement-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -450,6 +560,7 @@
 				F6D3A58F1970A244008FDE1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F6D3A5901970A244008FDE1B /* Build configuration list for PBXNativeTarget "GraniouProjectManagementTests" */ = {
 			isa = XCConfigurationList;
@@ -458,6 +569,7 @@
 				F6D3A5921970A244008FDE1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -7,6 +7,8 @@
 //
 
 #import "PTBAppDelegate.h"
+#import "ManticoreViewFactory.h"
+#import "PTBAppModel.h"
 
 @implementation PTBAppDelegate
 
@@ -14,12 +16,46 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+
++ (UIWindow*)mainWindow{
+    PTBAppDelegate* delegate = [[UIApplication sharedApplication] delegate];
+    return delegate.window;
+}
+
++ (UIViewController*)mainVC{
+    PTBAppDelegate* delegate = [[UIApplication sharedApplication] delegate];
+    return delegate.mainVC;
+}
+
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    // Register activities
+    
+    [self registerVCs];
+    
+    // Run the factory methods
+    
+    _mainVC = [[MCViewFactory sharedFactory] createViewController:VIEW_BUILTIN_MAIN];               // creates startup page
+    [self.window setRootViewController:_mainVC];
+    [_mainVC.view setFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
+    
+    //configure stack size (most apps will be unlimited)
+    [MCViewModel sharedModel].stackSize = STACK_SIZE_UNLIMITED;
+    
+    // Show the main view controller
+    
+    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_LOGIN];      //Understand section/view
+    [intent setAnimationStyle:UIViewAnimationOptionTransitionFlipFromLeft];
+    [[MCViewModel sharedModel] setCurrentSection:intent];
+
+    
     return YES;
 }
 
@@ -145,5 +181,20 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+#pragma mark - Registering the View controllers
+
+-(void) registerVCs {
+    MCViewFactory *factory = [MCViewFactory sharedFactory];
+    [factory registerView:SECTION_PROFILE];
+    [factory registerView:VIEW_LOGIN];
+    [factory registerView:VIEW_ACCOUNT];
+
+    
+    // the following two lines are optional. Built in activities will show instead.
+    //[factory registerView:VIEW_BUILTIN_MAIN];  // comment this line out if you don't create MCMainViewController.xib and subclass MCMainViewController
+    //[factory registerView:VIEW_BUILTIN_ERROR]; // comment this line out if you don't create MCErrorViewController.xib and subclass MCErrorViewController
+}
+
 
 @end

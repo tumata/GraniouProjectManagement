@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ManticoreViewFactory.h"
 
 #define SECTION_PROFILE        @"PTBProfileSectionVC"
 #define VIEW_LOGIN             @"PTBLoginVC"
@@ -16,5 +17,10 @@
 @interface PTBAppModel : NSObject
 
 + (PTBAppModel*)sharedModel;
+
+
+
+-(void)loginOrWelcome: (MCIntent*)passThroughIntent;
+
 
 @end

@@ -10,6 +10,10 @@
 #import "ManticoreViewFactory.h"
 #import "PTBAppModel.h"
 
+#import "Chantier.h"
+#import "Tache.h"
+#import "LeveeReserve.h"
+
 @implementation PTBAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -55,6 +59,7 @@
     [intent setAnimationStyle:UIViewAnimationOptionTransitionFlipFromLeft];
     [[MCViewModel sharedModel] setCurrentSection:intent];
 
+    //[self tutorial];
     
     return YES;
 }
@@ -194,6 +199,46 @@
     // the following two lines are optional. Built in activities will show instead.
     //[factory registerView:VIEW_BUILTIN_MAIN];  // comment this line out if you don't create MCMainViewController.xib and subclass MCMainViewController
     //[factory registerView:VIEW_BUILTIN_ERROR]; // comment this line out if you don't create MCErrorViewController.xib and subclass MCErrorViewController
+}
+
+#define CHANTIER    @"Chantier"
+#define TACHE       @"Tache"
+#define LR          @"LeveeReserve"
+
+-(void) tutorial {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    Chantier *chantier = [NSEntityDescription
+                                      insertNewObjectForEntityForName:CHANTIER
+                                      inManagedObjectContext:context];
+    chantier.identifiant = [NSNumber numberWithInt:1];
+    chantier.adresse = @"Testville";
+    chantier.codesite = @"Testland";
+    
+    Tache *tache = [NSEntityDescription
+                                            insertNewObjectForEntityForName:TACHE
+                                            inManagedObjectContext:context];
+    tache.nom = @"tache 1";
+    tache.chantier = chantier;
+    
+    [chantier addTachesObject:tache];
+    
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    // Test listing all FailedBankInfos from the store
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:CHANTIER
+                                              inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    for (Chantier *chantier in fetchedObjects) {
+        NSLog(@"Adresse: %@", chantier.adresse);
+        Tache *tache = [chantier.taches anyObject];
+        NSLog(@"Zip: %@", tache.nom);
+    }
+
 }
 
 

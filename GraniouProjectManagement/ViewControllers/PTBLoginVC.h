@@ -10,4 +10,6 @@
 
 @interface PTBLoginVC : MCViewController
 
+- (IBAction)tryConnection:(id)sender;
+
 @end

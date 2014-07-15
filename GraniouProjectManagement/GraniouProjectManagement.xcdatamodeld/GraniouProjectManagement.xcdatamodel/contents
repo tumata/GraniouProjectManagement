@@ -1,4 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Chantier" representedClassName="Chantier" syncable="YES">
+        <attribute name="adresse" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="amenageur" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="brin" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="codesite" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifiant" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="ladate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ligne" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="partenaire" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phase" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pk" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recetteur" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="leveesReserve" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="LeveeReserve" syncable="YES"/>
+        <relationship name="taches" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Tache" inverseName="chantier" inverseEntity="Tache" syncable="YES"/>
+    </entity>
+    <entity name="LeveeReserve" representedClassName="LeveeReserve" parentEntity="Tache" syncable="YES">
+        <attribute name="urlInfoPhoto" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Tache" representedClassName="Tache" syncable="YES">
+        <attribute name="commentaire" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifiant" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="infos" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="nom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="urlPhoto" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="chantier" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chantier" inverseName="taches" inverseEntity="Chantier" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Chantier" positionX="-47" positionY="26" width="128" height="253"/>
+        <element name="LeveeReserve" positionX="234" positionY="35" width="128" height="58"/>
+        <element name="Tache" positionX="234" positionY="146" width="128" height="148"/>
+    </elements>
 </model>

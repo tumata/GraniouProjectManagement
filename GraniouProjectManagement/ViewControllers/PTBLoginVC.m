@@ -10,6 +10,10 @@
 
 @interface PTBLoginVC ()
 
+@property (weak, nonatomic) IBOutlet UITextField *identifiant;
+@property (weak, nonatomic) IBOutlet UITextField *mdp;
+@property (weak, nonatomic) IBOutlet UIButton    *buttonLogin;
+
 @end
 
 @implementation PTBLoginVC
@@ -33,6 +37,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)tryConnection:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    [button setEnabled:false];
+    
+    
+    NSLog(@"ok");
 }
 
 @end

@@ -29,5 +29,9 @@
 }
 
 
+-(void)loginOrWelcome:(MCIntent *)passThroughIntent {
+    
+}
+
 
 @end

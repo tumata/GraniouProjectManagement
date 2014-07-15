@@ -32,6 +32,11 @@
 		F6D3A5A51970B612008FDE1B /* PTBAppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5A41970B612008FDE1B /* PTBAppModel.m */; };
 		F6D3A5A9197450AC008FDE1B /* MCDefaultErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5A7197450AB008FDE1B /* MCDefaultErrorViewController.xib */; };
 		F6D3A5AA197450AC008FDE1B /* MCDefaultMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5A8197450AC008FDE1B /* MCDefaultMainViewController.xib */; };
+		F6D3A5C919749284008FDE1B /* LeveeReserve.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5C819749284008FDE1B /* LeveeReserve.m */; };
+		F6D3A5CC19749285008FDE1B /* Chantier.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5CB19749285008FDE1B /* Chantier.m */; };
+		F6D3A5D219749CBC008FDE1B /* Tache.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5D119749CBC008FDE1B /* Tache.m */; };
+		F6D3A5D51974AEF0008FDE1B /* LogoGraniou.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5D31974AEF0008FDE1B /* LogoGraniou.png */; };
+		F6D3A5D61974AEF0008FDE1B /* fond-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5D41974AEF0008FDE1B /* fond-1.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +84,14 @@
 		F6D3A5A6197446BB008FDE1B /* NewProjectDevProvisioningProfile.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewProjectDevProvisioningProfile.mobileprovision; sourceTree = "<group>"; };
 		F6D3A5A7197450AB008FDE1B /* MCDefaultErrorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCDefaultErrorViewController.xib; sourceTree = "<group>"; };
 		F6D3A5A8197450AC008FDE1B /* MCDefaultMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCDefaultMainViewController.xib; sourceTree = "<group>"; };
+		F6D3A5C719749284008FDE1B /* LeveeReserve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveeReserve.h; sourceTree = "<group>"; };
+		F6D3A5C819749284008FDE1B /* LeveeReserve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveeReserve.m; sourceTree = "<group>"; };
+		F6D3A5CA19749285008FDE1B /* Chantier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chantier.h; sourceTree = "<group>"; };
+		F6D3A5CB19749285008FDE1B /* Chantier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chantier.m; sourceTree = "<group>"; };
+		F6D3A5D019749CBC008FDE1B /* Tache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tache.h; sourceTree = "<group>"; };
+		F6D3A5D119749CBC008FDE1B /* Tache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tache.m; sourceTree = "<group>"; };
+		F6D3A5D31974AEF0008FDE1B /* LogoGraniou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoGraniou.png; sourceTree = "<group>"; };
+		F6D3A5D41974AEF0008FDE1B /* fond-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fond-1.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,12 +160,14 @@
 			children = (
 				F6D3A56F1970A244008FDE1B /* PTBAppDelegate.h */,
 				F6D3A5701970A244008FDE1B /* PTBAppDelegate.m */,
-				F6D3A5751970A244008FDE1B /* Images.xcassets */,
-				F6D3A5721970A244008FDE1B /* GraniouProjectManagement.xcdatamodeld */,
-				F6D3A5671970A244008FDE1B /* Supporting Files */,
-				F6D3A5A21970B597008FDE1B /* VC */,
 				F6D3A5A31970B612008FDE1B /* PTBAppModel.h */,
 				F6D3A5A41970B612008FDE1B /* PTBAppModel.m */,
+				F6D3A5751970A244008FDE1B /* Images.xcassets */,
+				F6D3A5721970A244008FDE1B /* GraniouProjectManagement.xcdatamodeld */,
+				F6D3A5B419748E6F008FDE1B /* Model */,
+				F6D3A5A21970B597008FDE1B /* VC */,
+				F6D3A5671970A244008FDE1B /* Supporting Files */,
+				F6D3A5D71974AEF4008FDE1B /* Resources */,
 			);
 			path = GraniouProjectManagement;
 			sourceTree = "<group>";
@@ -202,6 +217,28 @@
 				F6D3A5981970B57D008FDE1B /* PTBLoginVC.xib */,
 			);
 			name = VC;
+			sourceTree = "<group>";
+		};
+		F6D3A5B419748E6F008FDE1B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3A5D019749CBC008FDE1B /* Tache.h */,
+				F6D3A5D119749CBC008FDE1B /* Tache.m */,
+				F6D3A5CA19749285008FDE1B /* Chantier.h */,
+				F6D3A5CB19749285008FDE1B /* Chantier.m */,
+				F6D3A5C719749284008FDE1B /* LeveeReserve.h */,
+				F6D3A5C819749284008FDE1B /* LeveeReserve.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		F6D3A5D71974AEF4008FDE1B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3A5D31974AEF0008FDE1B /* LogoGraniou.png */,
+				F6D3A5D41974AEF0008FDE1B /* fond-1.jpg */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +322,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6D3A5D51974AEF0008FDE1B /* LogoGraniou.png in Resources */,
+				F6D3A5D61974AEF0008FDE1B /* fond-1.jpg in Resources */,
 				F6D3A5AA197450AC008FDE1B /* MCDefaultMainViewController.xib in Resources */,
 				F6D3A56B1970A244008FDE1B /* InfoPlist.strings in Resources */,
 				F6D3A5A11970B57D008FDE1B /* PTBProfileSectionVC.xib in Resources */,
@@ -346,10 +385,13 @@
 				F6D3A5A51970B612008FDE1B /* PTBAppModel.m in Sources */,
 				F6D3A56D1970A244008FDE1B /* main.m in Sources */,
 				F6D3A59E1970B57D008FDE1B /* PTBLoginVC.m in Sources */,
+				F6D3A5CC19749285008FDE1B /* Chantier.m in Sources */,
 				F6D3A59C1970B57D008FDE1B /* PTBAccountVC.m in Sources */,
 				F6D3A5A01970B57D008FDE1B /* PTBProfileSectionVC.m in Sources */,
 				F6D3A5711970A244008FDE1B /* PTBAppDelegate.m in Sources */,
 				F6D3A5741970A244008FDE1B /* GraniouProjectManagement.xcdatamodeld in Sources */,
+				F6D3A5C919749284008FDE1B /* LeveeReserve.m in Sources */,
+				F6D3A5D219749CBC008FDE1B /* Tache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

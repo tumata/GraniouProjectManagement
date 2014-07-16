@@ -8,7 +8,7 @@
 
 #import "MCViewController.h"
 
-@interface PTBLoginVC : MCViewController
+@interface PTBLoginVC : MCViewController <UITextFieldDelegate>
 
 - (IBAction)tryConnection:(id)sender;
 

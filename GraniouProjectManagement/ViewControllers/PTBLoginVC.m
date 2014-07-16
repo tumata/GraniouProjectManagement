@@ -9,6 +9,7 @@
 #import "PTBLoginVC.h"
 #import "PTBAppModel.h"
 #import "AFJSONRequestOperation.h"
+#import "PTBAuthUser.h"
 
 
 @interface PTBLoginVC ()
@@ -17,9 +18,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *mdp;
 @property (weak, nonatomic) IBOutlet UIButton    *buttonLogin;
 
-//@property (weak, nonatomic)
+@property (weak, nonatomic) IBOutlet UIImageView *logoGraniou;
+
+@property (weak, nonatomic) UITextField *currentFieldSelected;
 
 @end
+
 
 @implementation PTBLoginVC
 
@@ -27,7 +31,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -35,8 +39,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    _identifiant.delegate = self;
+    _mdp.delegate = self;
+    _buttonLogin.enabled = false;
+    
+    NSLog(@"Is logged in : %i", [PTBAuthUser isLoggedIn]);
+    
 }
+
+-(void)onResume:(MCIntent *)intent {
+    // Ne plus recevoir les notifications de keyBoard
+    [self registerForKeyboardNotifications];
+    [super onResume:intent];
+}
+
+-(void)onPause:(MCIntent *)intent {
+    // Remettre en place les notifications de keyBoard
+   [self unRegisterForKeyboardNotifications];
+    [super onPause:intent];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -44,27 +67,101 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Connection
+
 - (IBAction)tryConnection:(id)sender {
-    UIButton *button = (UIButton *)sender;
-    [button setEnabled:false];
-    
-    
-    //[self getUsersJson];
-    
-    
-    
-    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_LOADING];
-    [intent setAnimationStyle:ANIMATION_PUSH];
-    [[MCViewModel sharedModel] setCurrentSection:intent];
+    if (_identifiant.text.length && _mdp.text.length) {
+        // Empeche input momentanement
+        [sender setEnabled:false];
+        
+        // Creation d'une instamce AuthUser pour tenter l'authentification
+        PTBAuthUser *authUser = [[PTBAuthUser alloc] init];
+        [authUser tryLoginUser:self.identifiant.text password:self.mdp.text withCallback:^(BOOL success, NSError *error) {
+            if (success) {
+                
+                // On descend la vue et le keyboard
+                [_currentFieldSelected resignFirstResponder];
+                [self viewGoDown];
+                
+                MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_LOADING];
+                [intent setAnimationStyle:ANIMATION_PUSH];
+                [[MCViewModel sharedModel] setCurrentSection:intent];
+            }
+            else {
+                // On redonne la possibilite de cliquer
+                [sender setEnabled:true];
+            }
+        }];
+    }
 }
 
 
+#pragma mark - KeyBoard notifications and slide
+
+//-------------------------------------------------------
+// Notification lorsque debut d'edit du textField
+//
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    _currentFieldSelected = textField;
+}
 
 
-- (void)getUsersJson {
-    NSString *string = [NSString stringWithFormat:@"%@%@", BaseURLString, GetUsersURLString];
-    NSURL *url = [NSURL URLWithString:string];
+//-------------------------------------------------------
+//   Notification lorsque fin d'edit du textField
+//
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    _currentFieldSelected = nil;
+}
+
+
+//-------------------------------------------------------
+//  Notifications lorsque le clavier apparait / disparait
+//
+- (void)registerForKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+}
+
+- (void)unRegisterForKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+}
+
+- (void)keyboardWillShow:(NSNotification*)aNotification {
+    [self viewGoUp];
+    [_buttonLogin setEnabled:true];
+}
+
+#pragma mark - Translations de la vue principale
+
+- (void)viewGoUp {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+    // Vue globale
+    CGPoint center = self.view.center;
+    center.y -= 150;
+    self.view.center = CGPointMake(center.x, center.y);
     
+    // Logo Graniou
+    _logoGraniou.center = CGPointMake(_logoGraniou.center.x,
+                                      _logoGraniou.center.y +100);
+    
+    [UIView commitAnimations];
+}
+
+- (void)viewGoDown {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+    
+    // Vue globale
+    CGPoint center = self.view.center;
+    center.y += 150;
+    self.view.center = CGPointMake(center.x, center.y);
+    
+    // Logo Graniou
+    _logoGraniou.center = CGPointMake(_logoGraniou.center.x,
+                                      _logoGraniou.center.y -100);
+    [UIView commitAnimations];
 }
 
 @end

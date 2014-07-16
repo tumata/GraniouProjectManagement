@@ -10,12 +10,12 @@
 
 @interface PTBAuthUser : NSObject
 
-@property (nonatomic, strong) NSString *login;
-@property (nonatomic, strong) NSString *password;
-@property (nonatomic, strong) NSString *droitAcces;
-@property (nonatomic, strong) NSString *idChantier;
+typedef void (^PTBCompletionBlock)(BOOL succes, NSError *error);
 
 
-+ (PTBAuthUser*)sharedModel;
++ (bool)isLoggedIn;
++ (NSString *)getIDChantier;
+
+- (void)tryLoginUser:(NSString *)username password:(NSString *)pass withCallback:(PTBCompletionBlock)callback;
 
 @end

@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="buttonLogin" destination="Doa-rt-6QE" id="u5z-Cc-Iib"/>
                 <outlet property="identifiant" destination="k1q-qJ-y9x" id="dqB-le-VxR"/>
+                <outlet property="logoGraniou" destination="FZo-hd-ifb" id="THv-hK-cMk"/>
                 <outlet property="mdp" destination="khj-na-ZaA" id="l3m-vc-r99"/>
                 <outlet property="view" destination="1" id="ZtB-cm-zgQ"/>
             </connections>
@@ -46,6 +47,9 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="qNV-zw-WdX"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -70,7 +74,10 @@
                                         <constraint firstAttribute="width" constant="220" id="mGz-90-Kod"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="PVm-1x-uu3"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

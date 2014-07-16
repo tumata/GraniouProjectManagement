@@ -190,10 +190,19 @@
 #pragma mark - Registering the View controllers
 
 -(void) registerVCs {
+    
     MCViewFactory *factory = [MCViewFactory sharedFactory];
     [factory registerView:SECTION_PROFILE];
+    [factory registerView:SECTION_MONTEUR];
     [factory registerView:VIEW_LOGIN];
-    [factory registerView:VIEW_ACCOUNT];
+    [factory registerView:VIEW_LOADING];
+    [factory registerView:VIEW_TOPMENU];
+    [factory registerView:VIEW_CHANTIERMENU];
+    [factory registerView:VIEW_TACHESTABLE];
+    [factory registerView:VIEW_TAKEPICTURE];
+    [factory registerView:VIEW_WRITECOMMENT];
+    [factory registerView:VIEW_DOCUMENTSTABLE];
+    [factory registerView:VIEW_SHOWPDF];
 
     
     // the following two lines are optional. Built in activities will show instead.

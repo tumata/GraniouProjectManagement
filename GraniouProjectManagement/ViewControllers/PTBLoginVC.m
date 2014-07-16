@@ -7,12 +7,17 @@
 //
 
 #import "PTBLoginVC.h"
+#import "PTBAppModel.h"
+#import "AFJSONRequestOperation.h"
+
 
 @interface PTBLoginVC ()
 
 @property (weak, nonatomic) IBOutlet UITextField *identifiant;
 @property (weak, nonatomic) IBOutlet UITextField *mdp;
 @property (weak, nonatomic) IBOutlet UIButton    *buttonLogin;
+
+//@property (weak, nonatomic)
 
 @end
 
@@ -44,7 +49,22 @@
     [button setEnabled:false];
     
     
-    NSLog(@"ok");
+    //[self getUsersJson];
+    
+    
+    
+    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_LOADING];
+    [intent setAnimationStyle:ANIMATION_PUSH];
+    [[MCViewModel sharedModel] setCurrentSection:intent];
+}
+
+
+
+
+- (void)getUsersJson {
+    NSString *string = [NSString stringWithFormat:@"%@%@", BaseURLString, GetUsersURLString];
+    NSURL *url = [NSURL URLWithString:string];
+    
 }
 
 @end

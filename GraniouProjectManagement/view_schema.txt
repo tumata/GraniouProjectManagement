@@ -1,3 +1,13 @@
 Profile:
    Login
    Account
+   Loading
+   
+Monteur:
+   TopMenu
+   ChantierMenu
+   TachesTable
+   TakePicture
+   WriteComment
+   DocumentsTable
+   ShowPdf

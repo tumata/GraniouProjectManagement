@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PTBLoginVC">
             <connections>
+                <outlet property="buttonLogin" destination="Doa-rt-6QE" id="u5z-Cc-Iib"/>
                 <outlet property="identifiant" destination="k1q-qJ-y9x" id="dqB-le-VxR"/>
                 <outlet property="mdp" destination="khj-na-ZaA" id="l3m-vc-r99"/>
                 <outlet property="view" destination="1" id="ZtB-cm-zgQ"/>
@@ -138,7 +139,6 @@
                 <constraint firstItem="xqw-e5-kzF" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="uWN-cF-pZR"/>
                 <constraint firstAttribute="bottom" secondItem="eBu-xT-nRK" secondAttribute="bottom" id="z54-kZ-riZ"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>

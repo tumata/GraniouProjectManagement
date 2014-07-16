@@ -9,9 +9,22 @@
 #import <Foundation/Foundation.h>
 #import "ManticoreViewFactory.h"
 
+#define BaseURLString @"http://graniou-rail-project.fr/WebService/"
+
+#define GetUsersURLString @"json_users.php"
+
 #define SECTION_PROFILE        @"PTBProfileSectionVC"
+#define SECTION_MONTEUR        @"PTBMonteurSectionVC"
 #define VIEW_LOGIN             @"PTBLoginVC"
 #define VIEW_ACCOUNT           @"PTBAccountVC"
+#define VIEW_LOADING           @"PTBLoadingVC"
+#define VIEW_TOPMENU           @"PTBTopMenuVC"
+#define VIEW_CHANTIERMENU      @"PTBChantierMenuVC"  // 5
+#define VIEW_TACHESTABLE       @"PTBTachesTableVC"
+#define VIEW_TAKEPICTURE       @"PTBTakePictureVC"
+#define VIEW_WRITECOMMENT      @"PTBWriteCommentVC"
+#define VIEW_DOCUMENTSTABLE    @"PTBDocumentsTableVC"
+#define VIEW_SHOWPDF           @"PTBShowPdfVC"  // 10
 
 
 @interface PTBAppModel : NSObject

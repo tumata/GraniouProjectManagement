@@ -37,6 +37,25 @@
 		F6D3A5D219749CBC008FDE1B /* Tache.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5D119749CBC008FDE1B /* Tache.m */; };
 		F6D3A5D51974AEF0008FDE1B /* LogoGraniou.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5D31974AEF0008FDE1B /* LogoGraniou.png */; };
 		F6D3A5D61974AEF0008FDE1B /* fond-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5D41974AEF0008FDE1B /* fond-1.jpg */; };
+		F6D3A5FE1975D08A008FDE1B /* PTBChantierMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5DC1975D08A008FDE1B /* PTBChantierMenuVC.m */; };
+		F6D3A5FF1975D08A008FDE1B /* PTBChantierMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5DD1975D08A008FDE1B /* PTBChantierMenuVC.xib */; };
+		F6D3A6001975D08A008FDE1B /* PTBDocumentsTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5DF1975D08A008FDE1B /* PTBDocumentsTableVC.m */; };
+		F6D3A6011975D08A008FDE1B /* PTBDocumentsTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5E01975D08A008FDE1B /* PTBDocumentsTableVC.xib */; };
+		F6D3A6021975D08A008FDE1B /* PTBLoadingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5E21975D08A008FDE1B /* PTBLoadingVC.m */; };
+		F6D3A6031975D08A008FDE1B /* PTBLoadingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5E31975D08A008FDE1B /* PTBLoadingVC.xib */; };
+		F6D3A6061975D08A008FDE1B /* PTBMonteurSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5E81975D08A008FDE1B /* PTBMonteurSectionVC.m */; };
+		F6D3A6071975D08A008FDE1B /* PTBMonteurSectionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5E91975D08A008FDE1B /* PTBMonteurSectionVC.xib */; };
+		F6D3A60A1975D08A008FDE1B /* PTBShowPdfVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5EE1975D08A008FDE1B /* PTBShowPdfVC.m */; };
+		F6D3A60B1975D08A008FDE1B /* PTBShowPdfVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5EF1975D08A008FDE1B /* PTBShowPdfVC.xib */; };
+		F6D3A60C1975D08A008FDE1B /* PTBTachesTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5F11975D08A008FDE1B /* PTBTachesTableVC.m */; };
+		F6D3A60D1975D08A008FDE1B /* PTBTachesTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5F21975D08A008FDE1B /* PTBTachesTableVC.xib */; };
+		F6D3A60E1975D08A008FDE1B /* PTBTakePictureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5F41975D08A008FDE1B /* PTBTakePictureVC.m */; };
+		F6D3A60F1975D08A008FDE1B /* PTBTakePictureVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5F51975D08A008FDE1B /* PTBTakePictureVC.xib */; };
+		F6D3A6101975D08A008FDE1B /* PTBTopMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5F71975D08A008FDE1B /* PTBTopMenuVC.m */; };
+		F6D3A6111975D08A008FDE1B /* PTBTopMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5F81975D08A008FDE1B /* PTBTopMenuVC.xib */; };
+		F6D3A6121975D08A008FDE1B /* PTBWriteCommentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5FA1975D08A008FDE1B /* PTBWriteCommentVC.m */; };
+		F6D3A6131975D08A008FDE1B /* PTBWriteCommentVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5FB1975D08A008FDE1B /* PTBWriteCommentVC.xib */; };
+		F6D3A6191975D8C6008FDE1B /* PTBAuthUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A6181975D8C6008FDE1B /* PTBAuthUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +111,35 @@
 		F6D3A5D119749CBC008FDE1B /* Tache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tache.m; sourceTree = "<group>"; };
 		F6D3A5D31974AEF0008FDE1B /* LogoGraniou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoGraniou.png; sourceTree = "<group>"; };
 		F6D3A5D41974AEF0008FDE1B /* fond-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fond-1.jpg"; sourceTree = "<group>"; };
+		F6D3A5DB1975D08A008FDE1B /* PTBChantierMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBChantierMenuVC.h; path = ViewControllers/PTBChantierMenuVC.h; sourceTree = "<group>"; };
+		F6D3A5DC1975D08A008FDE1B /* PTBChantierMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBChantierMenuVC.m; path = ViewControllers/PTBChantierMenuVC.m; sourceTree = "<group>"; };
+		F6D3A5DD1975D08A008FDE1B /* PTBChantierMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBChantierMenuVC.xib; path = ViewControllers/PTBChantierMenuVC.xib; sourceTree = "<group>"; };
+		F6D3A5DE1975D08A008FDE1B /* PTBDocumentsTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBDocumentsTableVC.h; path = ViewControllers/PTBDocumentsTableVC.h; sourceTree = "<group>"; };
+		F6D3A5DF1975D08A008FDE1B /* PTBDocumentsTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBDocumentsTableVC.m; path = ViewControllers/PTBDocumentsTableVC.m; sourceTree = "<group>"; };
+		F6D3A5E01975D08A008FDE1B /* PTBDocumentsTableVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBDocumentsTableVC.xib; path = ViewControllers/PTBDocumentsTableVC.xib; sourceTree = "<group>"; };
+		F6D3A5E11975D08A008FDE1B /* PTBLoadingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBLoadingVC.h; path = ViewControllers/PTBLoadingVC.h; sourceTree = "<group>"; };
+		F6D3A5E21975D08A008FDE1B /* PTBLoadingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBLoadingVC.m; path = ViewControllers/PTBLoadingVC.m; sourceTree = "<group>"; };
+		F6D3A5E31975D08A008FDE1B /* PTBLoadingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBLoadingVC.xib; path = ViewControllers/PTBLoadingVC.xib; sourceTree = "<group>"; };
+		F6D3A5E71975D08A008FDE1B /* PTBMonteurSectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBMonteurSectionVC.h; path = ViewControllers/PTBMonteurSectionVC.h; sourceTree = "<group>"; };
+		F6D3A5E81975D08A008FDE1B /* PTBMonteurSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBMonteurSectionVC.m; path = ViewControllers/PTBMonteurSectionVC.m; sourceTree = "<group>"; };
+		F6D3A5E91975D08A008FDE1B /* PTBMonteurSectionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBMonteurSectionVC.xib; path = ViewControllers/PTBMonteurSectionVC.xib; sourceTree = "<group>"; };
+		F6D3A5ED1975D08A008FDE1B /* PTBShowPdfVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBShowPdfVC.h; path = ViewControllers/PTBShowPdfVC.h; sourceTree = "<group>"; };
+		F6D3A5EE1975D08A008FDE1B /* PTBShowPdfVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBShowPdfVC.m; path = ViewControllers/PTBShowPdfVC.m; sourceTree = "<group>"; };
+		F6D3A5EF1975D08A008FDE1B /* PTBShowPdfVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBShowPdfVC.xib; path = ViewControllers/PTBShowPdfVC.xib; sourceTree = "<group>"; };
+		F6D3A5F01975D08A008FDE1B /* PTBTachesTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBTachesTableVC.h; path = ViewControllers/PTBTachesTableVC.h; sourceTree = "<group>"; };
+		F6D3A5F11975D08A008FDE1B /* PTBTachesTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBTachesTableVC.m; path = ViewControllers/PTBTachesTableVC.m; sourceTree = "<group>"; };
+		F6D3A5F21975D08A008FDE1B /* PTBTachesTableVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBTachesTableVC.xib; path = ViewControllers/PTBTachesTableVC.xib; sourceTree = "<group>"; };
+		F6D3A5F31975D08A008FDE1B /* PTBTakePictureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBTakePictureVC.h; path = ViewControllers/PTBTakePictureVC.h; sourceTree = "<group>"; };
+		F6D3A5F41975D08A008FDE1B /* PTBTakePictureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBTakePictureVC.m; path = ViewControllers/PTBTakePictureVC.m; sourceTree = "<group>"; };
+		F6D3A5F51975D08A008FDE1B /* PTBTakePictureVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBTakePictureVC.xib; path = ViewControllers/PTBTakePictureVC.xib; sourceTree = "<group>"; };
+		F6D3A5F61975D08A008FDE1B /* PTBTopMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBTopMenuVC.h; path = ViewControllers/PTBTopMenuVC.h; sourceTree = "<group>"; };
+		F6D3A5F71975D08A008FDE1B /* PTBTopMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBTopMenuVC.m; path = ViewControllers/PTBTopMenuVC.m; sourceTree = "<group>"; };
+		F6D3A5F81975D08A008FDE1B /* PTBTopMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBTopMenuVC.xib; path = ViewControllers/PTBTopMenuVC.xib; sourceTree = "<group>"; };
+		F6D3A5F91975D08A008FDE1B /* PTBWriteCommentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBWriteCommentVC.h; path = ViewControllers/PTBWriteCommentVC.h; sourceTree = "<group>"; };
+		F6D3A5FA1975D08A008FDE1B /* PTBWriteCommentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBWriteCommentVC.m; path = ViewControllers/PTBWriteCommentVC.m; sourceTree = "<group>"; };
+		F6D3A5FB1975D08A008FDE1B /* PTBWriteCommentVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBWriteCommentVC.xib; path = ViewControllers/PTBWriteCommentVC.xib; sourceTree = "<group>"; };
+		F6D3A6171975D8C6008FDE1B /* PTBAuthUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTBAuthUser.h; sourceTree = "<group>"; };
+		F6D3A6181975D8C6008FDE1B /* PTBAuthUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTBAuthUser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +212,7 @@
 				F6D3A5A41970B612008FDE1B /* PTBAppModel.m */,
 				F6D3A5751970A244008FDE1B /* Images.xcassets */,
 				F6D3A5721970A244008FDE1B /* GraniouProjectManagement.xcdatamodeld */,
+				F6D3A6161975D894008FDE1B /* Objects */,
 				F6D3A5B419748E6F008FDE1B /* Model */,
 				F6D3A5A21970B597008FDE1B /* VC */,
 				F6D3A5671970A244008FDE1B /* Supporting Files */,
@@ -206,15 +255,8 @@
 			children = (
 				F6D3A5A7197450AB008FDE1B /* MCDefaultErrorViewController.xib */,
 				F6D3A5A8197450AC008FDE1B /* MCDefaultMainViewController.xib */,
-				F6D3A5991970B57D008FDE1B /* PTBProfileSectionVC.h */,
-				F6D3A59A1970B57D008FDE1B /* PTBProfileSectionVC.m */,
-				F6D3A59B1970B57D008FDE1B /* PTBProfileSectionVC.xib */,
-				F6D3A5931970B57D008FDE1B /* PTBAccountVC.h */,
-				F6D3A5941970B57D008FDE1B /* PTBAccountVC.m */,
-				F6D3A5951970B57D008FDE1B /* PTBAccountVC.xib */,
-				F6D3A5961970B57D008FDE1B /* PTBLoginVC.h */,
-				F6D3A5971970B57D008FDE1B /* PTBLoginVC.m */,
-				F6D3A5981970B57D008FDE1B /* PTBLoginVC.xib */,
+				F6D3A6141975D0EE008FDE1B /* Section1 - Profile */,
+				F6D3A6151975D172008FDE1B /* Section2 - Monteur */,
 			);
 			name = VC;
 			sourceTree = "<group>";
@@ -239,6 +281,65 @@
 				F6D3A5D41974AEF0008FDE1B /* fond-1.jpg */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		F6D3A6141975D0EE008FDE1B /* Section1 - Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3A5991970B57D008FDE1B /* PTBProfileSectionVC.h */,
+				F6D3A59A1970B57D008FDE1B /* PTBProfileSectionVC.m */,
+				F6D3A59B1970B57D008FDE1B /* PTBProfileSectionVC.xib */,
+				F6D3A5961970B57D008FDE1B /* PTBLoginVC.h */,
+				F6D3A5971970B57D008FDE1B /* PTBLoginVC.m */,
+				F6D3A5981970B57D008FDE1B /* PTBLoginVC.xib */,
+				F6D3A5E11975D08A008FDE1B /* PTBLoadingVC.h */,
+				F6D3A5E21975D08A008FDE1B /* PTBLoadingVC.m */,
+				F6D3A5E31975D08A008FDE1B /* PTBLoadingVC.xib */,
+				F6D3A5931970B57D008FDE1B /* PTBAccountVC.h */,
+				F6D3A5941970B57D008FDE1B /* PTBAccountVC.m */,
+				F6D3A5951970B57D008FDE1B /* PTBAccountVC.xib */,
+			);
+			name = "Section1 - Profile";
+			sourceTree = "<group>";
+		};
+		F6D3A6151975D172008FDE1B /* Section2 - Monteur */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3A5DB1975D08A008FDE1B /* PTBChantierMenuVC.h */,
+				F6D3A5DC1975D08A008FDE1B /* PTBChantierMenuVC.m */,
+				F6D3A5DD1975D08A008FDE1B /* PTBChantierMenuVC.xib */,
+				F6D3A5DE1975D08A008FDE1B /* PTBDocumentsTableVC.h */,
+				F6D3A5DF1975D08A008FDE1B /* PTBDocumentsTableVC.m */,
+				F6D3A5E01975D08A008FDE1B /* PTBDocumentsTableVC.xib */,
+				F6D3A5E71975D08A008FDE1B /* PTBMonteurSectionVC.h */,
+				F6D3A5E81975D08A008FDE1B /* PTBMonteurSectionVC.m */,
+				F6D3A5E91975D08A008FDE1B /* PTBMonteurSectionVC.xib */,
+				F6D3A5ED1975D08A008FDE1B /* PTBShowPdfVC.h */,
+				F6D3A5EE1975D08A008FDE1B /* PTBShowPdfVC.m */,
+				F6D3A5EF1975D08A008FDE1B /* PTBShowPdfVC.xib */,
+				F6D3A5F01975D08A008FDE1B /* PTBTachesTableVC.h */,
+				F6D3A5F11975D08A008FDE1B /* PTBTachesTableVC.m */,
+				F6D3A5F21975D08A008FDE1B /* PTBTachesTableVC.xib */,
+				F6D3A5F31975D08A008FDE1B /* PTBTakePictureVC.h */,
+				F6D3A5F41975D08A008FDE1B /* PTBTakePictureVC.m */,
+				F6D3A5F51975D08A008FDE1B /* PTBTakePictureVC.xib */,
+				F6D3A5F61975D08A008FDE1B /* PTBTopMenuVC.h */,
+				F6D3A5F71975D08A008FDE1B /* PTBTopMenuVC.m */,
+				F6D3A5F81975D08A008FDE1B /* PTBTopMenuVC.xib */,
+				F6D3A5F91975D08A008FDE1B /* PTBWriteCommentVC.h */,
+				F6D3A5FA1975D08A008FDE1B /* PTBWriteCommentVC.m */,
+				F6D3A5FB1975D08A008FDE1B /* PTBWriteCommentVC.xib */,
+			);
+			name = "Section2 - Monteur";
+			sourceTree = "<group>";
+		};
+		F6D3A6161975D894008FDE1B /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3A6171975D8C6008FDE1B /* PTBAuthUser.h */,
+				F6D3A6181975D8C6008FDE1B /* PTBAuthUser.m */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,12 +424,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6D3A5D51974AEF0008FDE1B /* LogoGraniou.png in Resources */,
+				F6D3A60F1975D08A008FDE1B /* PTBTakePictureVC.xib in Resources */,
+				F6D3A60B1975D08A008FDE1B /* PTBShowPdfVC.xib in Resources */,
+				F6D3A6111975D08A008FDE1B /* PTBTopMenuVC.xib in Resources */,
 				F6D3A5D61974AEF0008FDE1B /* fond-1.jpg in Resources */,
+				F6D3A5FF1975D08A008FDE1B /* PTBChantierMenuVC.xib in Resources */,
 				F6D3A5AA197450AC008FDE1B /* MCDefaultMainViewController.xib in Resources */,
+				F6D3A6011975D08A008FDE1B /* PTBDocumentsTableVC.xib in Resources */,
 				F6D3A56B1970A244008FDE1B /* InfoPlist.strings in Resources */,
 				F6D3A5A11970B57D008FDE1B /* PTBProfileSectionVC.xib in Resources */,
 				F6D3A59D1970B57D008FDE1B /* PTBAccountVC.xib in Resources */,
 				F6D3A5761970A244008FDE1B /* Images.xcassets in Resources */,
+				F6D3A6031975D08A008FDE1B /* PTBLoadingVC.xib in Resources */,
+				F6D3A6071975D08A008FDE1B /* PTBMonteurSectionVC.xib in Resources */,
+				F6D3A60D1975D08A008FDE1B /* PTBTachesTableVC.xib in Resources */,
+				F6D3A6131975D08A008FDE1B /* PTBWriteCommentVC.xib in Resources */,
 				F6D3A5A9197450AC008FDE1B /* MCDefaultErrorViewController.xib in Resources */,
 				F6D3A59F1970B57D008FDE1B /* PTBLoginVC.xib in Resources */,
 			);
@@ -384,14 +494,24 @@
 			files = (
 				F6D3A5A51970B612008FDE1B /* PTBAppModel.m in Sources */,
 				F6D3A56D1970A244008FDE1B /* main.m in Sources */,
+				F6D3A6021975D08A008FDE1B /* PTBLoadingVC.m in Sources */,
 				F6D3A59E1970B57D008FDE1B /* PTBLoginVC.m in Sources */,
+				F6D3A60E1975D08A008FDE1B /* PTBTakePictureVC.m in Sources */,
+				F6D3A60C1975D08A008FDE1B /* PTBTachesTableVC.m in Sources */,
+				F6D3A6121975D08A008FDE1B /* PTBWriteCommentVC.m in Sources */,
+				F6D3A6001975D08A008FDE1B /* PTBDocumentsTableVC.m in Sources */,
+				F6D3A5FE1975D08A008FDE1B /* PTBChantierMenuVC.m in Sources */,
 				F6D3A5CC19749285008FDE1B /* Chantier.m in Sources */,
 				F6D3A59C1970B57D008FDE1B /* PTBAccountVC.m in Sources */,
 				F6D3A5A01970B57D008FDE1B /* PTBProfileSectionVC.m in Sources */,
 				F6D3A5711970A244008FDE1B /* PTBAppDelegate.m in Sources */,
+				F6D3A60A1975D08A008FDE1B /* PTBShowPdfVC.m in Sources */,
 				F6D3A5741970A244008FDE1B /* GraniouProjectManagement.xcdatamodeld in Sources */,
+				F6D3A6191975D8C6008FDE1B /* PTBAuthUser.m in Sources */,
 				F6D3A5C919749284008FDE1B /* LeveeReserve.m in Sources */,
+				F6D3A6061975D08A008FDE1B /* PTBMonteurSectionVC.m in Sources */,
 				F6D3A5D219749CBC008FDE1B /* Tache.m in Sources */,
+				F6D3A6101975D08A008FDE1B /* PTBTopMenuVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

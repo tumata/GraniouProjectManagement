@@ -48,18 +48,26 @@
                             <rect key="frame" x="0.0" y="250" width="320" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVp-My-46h" userLabel="Valider">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVp-My-46h" userLabel="Valider">
                                     <rect key="frame" x="170" y="0.0" width="150" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="150" id="7Ru-eW-op4"/>
+                                        <constraint firstAttribute="height" constant="33" id="rmR-5A-hg6"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <state key="normal" title="Valider">
                                         <color key="titleColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wM0-AJ-dej" userLabel="Annuler">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wM0-AJ-dej" userLabel="Annuler">
                                     <rect key="frame" x="0.0" y="0.0" width="150" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="33" id="BkX-JX-GD4"/>
+                                        <constraint firstAttribute="width" constant="150" id="jCs-fH-7M2"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <state key="normal" title="Annuler">
                                         <color key="titleColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -69,7 +77,11 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="uVp-My-46h" firstAttribute="top" secondItem="Ywx-Ec-i7B" secondAttribute="top" id="2KL-6r-tdi"/>
+                                <constraint firstItem="wM0-AJ-dej" firstAttribute="top" secondItem="Ywx-Ec-i7B" secondAttribute="top" id="EgL-jK-Tyg"/>
+                                <constraint firstItem="wM0-AJ-dej" firstAttribute="leading" secondItem="Ywx-Ec-i7B" secondAttribute="leading" id="bpA-EZ-945"/>
                                 <constraint firstAttribute="height" constant="33" id="clz-l3-pgZ"/>
+                                <constraint firstAttribute="trailing" secondItem="uVp-My-46h" secondAttribute="trailing" id="ufh-Ie-q1E"/>
                             </constraints>
                         </view>
                     </subviews>

@@ -45,7 +45,7 @@
     _identifiant.delegate = self;
     _mdp.delegate = self;
     _buttonLogin.enabled = false;
-    _erreurView.hidden = true;
+    _erreurView.alpha = 0.0;
     
     NSLog(@"Is logged in : %i", [PTBAuthUser isLoggedIn]);
     
@@ -105,15 +105,27 @@
 #pragma mark - errorView Animations
 
 - (void)displayErrorViewAnimated {
-    [_erreurView setAlpha:0.0];
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.5];
-    _erreurView.hidden = false;
-    [_erreurView setAlpha:1.0];
-    [UIView commitAnimations];
-    
-    [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(updateActivityIndicator:) userInfo:nil repeats:NO];
+    [UIView animateWithDuration:1.0
+                     animations:^{
+                         _erreurView.alpha = 1.0;
+                     }completion:^(BOOL finished){
+                         [UIView animateWithDuration:2.0
+                                           animations:^{
+                                               _erreurView.alpha = 0.0;
+                                           }];
+                     }];
 }
+
+//- (void)displayErrorViewAnimated {
+//    [_erreurView setAlpha:0.0];
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:0.5];
+//    _erreurView.hidden = false;
+//    [_erreurView setAlpha:1.0];
+//    [UIView commitAnimations];
+//    
+//    [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(updateActivityIndicator:) userInfo:nil repeats:NO];
+//}
 
 - (void) updateActivityIndicator:(NSTimer *)incomingTimer {
     _erreurView.hidden = true;

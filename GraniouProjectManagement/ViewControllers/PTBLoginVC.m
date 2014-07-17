@@ -18,7 +18,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *mdp;
 @property (weak, nonatomic) IBOutlet UIButton    *buttonLogin;
 
+@property (weak, nonatomic) IBOutlet UIView *erreurView;
 @property (weak, nonatomic) IBOutlet UIImageView *logoGraniou;
+
 
 @property (weak, nonatomic) UITextField *currentFieldSelected;
 
@@ -43,6 +45,7 @@
     _identifiant.delegate = self;
     _mdp.delegate = self;
     _buttonLogin.enabled = false;
+    _erreurView.hidden = true;
     
     NSLog(@"Is logged in : %i", [PTBAuthUser isLoggedIn]);
     
@@ -90,9 +93,28 @@
             else {
                 // On redonne la possibilite de cliquer
                 [sender setEnabled:true];
+                // Annonce erreur de saisie
+                [self displayErrorViewAnimated];
             }
         }];
     }
+}
+
+#pragma mark - errorView Animations
+
+- (void)displayErrorViewAnimated {
+    [_erreurView setAlpha:0.0];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    _erreurView.hidden = false;
+    [_erreurView setAlpha:1.0];
+    [UIView commitAnimations];
+    
+    [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(updateActivityIndicator:) userInfo:nil repeats:NO];
+}
+
+- (void) updateActivityIndicator:(NSTimer *)incomingTimer {
+    _erreurView.hidden = true;
 }
 
 

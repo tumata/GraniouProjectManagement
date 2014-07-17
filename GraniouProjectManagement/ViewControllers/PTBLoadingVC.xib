@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PTBLoadingVC">
             <connections>
-                <outlet property="loadProgress" destination="XgT-dt-bD5" id="V6x-my-pUX"/>
+                <outlet property="loadingProgress" destination="XgT-dt-bD5" id="dlA-bC-e3o"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>

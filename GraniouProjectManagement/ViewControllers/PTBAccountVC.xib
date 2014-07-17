@@ -18,7 +18,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kLk-R9-yEa" userLabel="Deco-Go">
@@ -81,11 +81,11 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" verticalCompressionResistancePriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="L1J-Gv-PfH" userLabel="infos">
-                    <rect key="frame" x="0.0" y="100" width="320" height="424"/>
+                    <rect key="frame" x="0.0" y="100" width="320" height="336"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zZx-sa-r98">
-                            <rect key="frame" x="0.0" y="79" width="320" height="266"/>
+                            <rect key="frame" x="0.0" y="35" width="320" height="266"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9y6-M7-NFM" userLabel="Nom">
@@ -238,7 +238,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfs-kR-wbn" userLabel="synchro">
-                    <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                    <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l69-vs-rRY">
@@ -269,7 +269,7 @@
                 <constraint firstItem="mfs-kR-wbn" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="qa1-yK-IyU"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
 </document>

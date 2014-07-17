@@ -39,7 +39,7 @@
                             <rect key="frame" x="50" y="66" width="220" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="IDENTIFIANT" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k1q-qJ-y9x">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="IDENTIFIANT" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k1q-qJ-y9x">
                                     <rect key="frame" x="0.0" y="0.0" width="220" height="37"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <constraints>
@@ -47,7 +47,7 @@
                                         <constraint firstAttribute="height" constant="37" id="wBg-O8-6PZ"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                     <connections>
                                         <outlet property="delegate" destination="-1" id="qNV-zw-WdX"/>
                                     </connections>
@@ -75,7 +75,7 @@
                                         <constraint firstAttribute="width" constant="220" id="mGz-90-Kod"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                                     <connections>
                                         <outlet property="delegate" destination="-1" id="PVm-1x-uu3"/>
                                     </connections>

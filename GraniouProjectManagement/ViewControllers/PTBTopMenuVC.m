@@ -7,8 +7,14 @@
 //
 
 #import "PTBTopMenuVC.h"
+#import "PTBNavigationView.h"
+#import "PTBAppModel.h"
 
-@interface PTBTopMenuVC ()
+@interface PTBTopMenuVC () <PTBNavigationViewDelegate>
+
+@property (weak, nonatomic) IBOutlet PTBNavigationView *navigationView;
+
+- (IBAction)pressBouton:(id)sender;
 
 @end
 
@@ -26,7 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    _navigationView.delegate = self;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,4 +42,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - NavigationVC delegate methods
+
+- (void)navigationViewDidPressLeftButton {
+    NSLog(@"Bouton retour appuye");
+}
+
+- (void)navigationViewDidPressRightButton {
+    NSLog(@"ok");
+}
+
+- (IBAction)pressBouton:(id)sender {
+    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_MONTEUR andViewName:VIEW_WRITECOMMENT];
+    
+    
+    [intent setAnimationStyle:UIViewAnimationOptionTransitionFlipFromLeft];
+    [[MCViewModel sharedModel] setCurrentSection:intent];
+    
+}
 @end

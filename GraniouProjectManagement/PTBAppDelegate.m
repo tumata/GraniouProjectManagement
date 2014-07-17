@@ -55,7 +55,12 @@
     
     // Show the main view controller
     
-    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_LOGIN];      //Understand section/view
+    //MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_LOGIN];      //Understand section/view
+
+    
+    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_MONTEUR andViewName:VIEW_TOPMENU];
+    
+    
     [intent setAnimationStyle:UIViewAnimationOptionTransitionFlipFromLeft];
     [[MCViewModel sharedModel] setCurrentSection:intent];
 
@@ -195,11 +200,15 @@
     [factory registerView:SECTION_PROFILE];
     [factory registerView:SECTION_MONTEUR];
     [factory registerView:VIEW_LOGIN];
+    [factory registerView:VIEW_ACCOUNT];
     [factory registerView:VIEW_LOADING];
     [factory registerView:VIEW_TOPMENU];
-    [factory registerView:VIEW_CHANTIERMENU];
+    [factory registerView:VIEW_CHANTIERMENU]; // 5
     [factory registerView:VIEW_TACHESTABLE];
-    [factory registerView:VIEW_TAKEPICTURE];
+    [factory registerView:VIEW_TACHE];
+    [factory registerView:VIEW_LEVEESRESERVETABLE];
+    [factory registerView:VIEW_LEVEERESERVE];
+    [factory registerView:VIEW_TAKEPICTURE]; // 10
     [factory registerView:VIEW_WRITECOMMENT];
     [factory registerView:VIEW_DOCUMENTSTABLE];
     [factory registerView:VIEW_SHOWPDF];

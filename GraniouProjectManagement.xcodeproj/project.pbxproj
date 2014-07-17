@@ -63,6 +63,7 @@
 		F6D3A627197752F6008FDE1B /* PTBLeveesReserveTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A623197752F6008FDE1B /* PTBLeveesReserveTableVC.m */; };
 		F6D3A628197752F6008FDE1B /* PTBLeveesReserveTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A624197752F6008FDE1B /* PTBLeveesReserveTableVC.xib */; };
 		F6D3A62B19775627008FDE1B /* PTBNavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A62A19775627008FDE1B /* PTBNavigationView.xib */; };
+		F6D3A62E197844B3008FDE1B /* PTBNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A62D197844B3008FDE1B /* PTBNavigationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,8 @@
 		F6D3A623197752F6008FDE1B /* PTBLeveesReserveTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBLeveesReserveTableVC.m; path = ViewControllers/PTBLeveesReserveTableVC.m; sourceTree = "<group>"; };
 		F6D3A624197752F6008FDE1B /* PTBLeveesReserveTableVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBLeveesReserveTableVC.xib; path = ViewControllers/PTBLeveesReserveTableVC.xib; sourceTree = "<group>"; };
 		F6D3A62A19775627008FDE1B /* PTBNavigationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTBNavigationView.xib; sourceTree = "<group>"; };
+		F6D3A62C197844B3008FDE1B /* PTBNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTBNavigationView.h; sourceTree = "<group>"; };
+		F6D3A62D197844B3008FDE1B /* PTBNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTBNavigationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,6 +376,8 @@
 			isa = PBXGroup;
 			children = (
 				F6D3A62A19775627008FDE1B /* PTBNavigationView.xib */,
+				F6D3A62C197844B3008FDE1B /* PTBNavigationView.h */,
+				F6D3A62D197844B3008FDE1B /* PTBNavigationView.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -554,6 +559,7 @@
 				F6D3A61D197752B0008FDE1B /* PTBTacheVC.m in Sources */,
 				F6D3A5D219749CBC008FDE1B /* Tache.m in Sources */,
 				F6D3A6101975D08A008FDE1B /* PTBTopMenuVC.m in Sources */,
+				F6D3A62E197844B3008FDE1B /* PTBNavigationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

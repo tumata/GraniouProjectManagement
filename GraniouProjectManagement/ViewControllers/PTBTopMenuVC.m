@@ -73,11 +73,17 @@
 //    _writeCommentVC = writeCommentVC;
 //    [self presentViewController:self.writeCommentVC animated:YES completion:nil];
     
+
+//    PTBTakePictureVC *takePictureVC = [[PTBTakePictureVC alloc] init];
+//    takePictureVC.delegate = self;
+//    _takePictureVC = takePictureVC;
+//    [self presentViewController:_takePictureVC animated:YES completion:nil];
     
-    PTBTakePictureVC *takePictureVC = [[PTBTakePictureVC alloc] init];
-    takePictureVC.delegate = self;
-    _takePictureVC = takePictureVC;
-    [self presentViewController:_takePictureVC animated:YES completion:nil];
+    
+    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_MONTEUR andViewName:VIEW_TACHE];
+
+    [intent setAnimationStyle:UIViewAnimationOptionTransitionFlipFromLeft];
+    [[MCViewModel sharedModel] setCurrentSection:intent];
     
 }
 

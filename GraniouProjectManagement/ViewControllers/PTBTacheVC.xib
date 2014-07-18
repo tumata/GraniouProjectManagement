@@ -76,7 +76,7 @@
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fua-Xr-K8d" userLabel="Add/change image">
-                            <rect key="frame" x="0.0" y="688" width="320" height="30"/>
+                            <rect key="frame" x="0.0" y="270" width="320" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Ajouter une photo">
@@ -85,10 +85,10 @@
                             </state>
                         </button>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pLq-r5-5MT" userLabel="ScrollViewImage">
-                            <rect key="frame" x="0.0" y="285" width="320" height="400"/>
+                            <rect key="frame" x="0.0" y="305" width="320" height="400"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoGraniou.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hy6-4K-SVL">
+                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoGraniou.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hy6-4K-SVL" userLabel="Image View">
                                     <rect key="frame" x="0.0" y="0.0" width="640" height="439"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
@@ -96,10 +96,8 @@
                             <constraints>
                                 <constraint firstItem="Hy6-4K-SVL" firstAttribute="leading" secondItem="pLq-r5-5MT" secondAttribute="leading" priority="245" id="Jes-q9-krS"/>
                                 <constraint firstAttribute="height" priority="250" constant="400" id="KjT-4e-prc"/>
-                                <constraint firstAttribute="bottom" secondItem="Hy6-4K-SVL" secondAttribute="bottom" priority="250" id="MiE-BE-mCA"/>
                                 <constraint firstAttribute="trailing" secondItem="Hy6-4K-SVL" secondAttribute="trailing" priority="250" id="WBR-Tz-5Ll"/>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" id="bS9-dt-NCP"/>
-                                <constraint firstAttribute="width" priority="200" constant="320" id="hyf-Kb-Xpq"/>
+                                <constraint firstAttribute="bottom" secondItem="Hy6-4K-SVL" secondAttribute="bottom" priority="500" id="kIO-lw-8YH"/>
                                 <constraint firstItem="Hy6-4K-SVL" firstAttribute="top" secondItem="pLq-r5-5MT" secondAttribute="top" priority="250" id="t7R-cw-7Qd"/>
                             </constraints>
                         </scrollView>
@@ -107,29 +105,26 @@
                     <constraints>
                         <constraint firstItem="wF2-FK-3vl" firstAttribute="top" secondItem="Pzs-vw-pas" secondAttribute="top" constant="20" id="0TA-M7-w8N"/>
                         <constraint firstAttribute="trailing" secondItem="d73-rt-qHg" secondAttribute="trailing" constant="20" id="6HF-Q6-WNG"/>
+                        <constraint firstItem="Fua-Xr-K8d" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" id="6v8-vA-HGv"/>
+                        <constraint firstItem="pLq-r5-5MT" firstAttribute="top" secondItem="Fua-Xr-K8d" secondAttribute="bottom" constant="5" id="8ZR-H4-uxX"/>
                         <constraint firstAttribute="centerX" secondItem="Xyi-8C-Ts9" secondAttribute="centerX" id="9ft-PX-VtJ"/>
                         <constraint firstAttribute="centerX" secondItem="wF2-FK-3vl" secondAttribute="centerX" id="CtJ-08-Inq"/>
-                        <constraint firstAttribute="trailing" secondItem="pLq-r5-5MT" secondAttribute="trailing" id="ERp-sb-rtU"/>
-                        <constraint firstItem="Fua-Xr-K8d" firstAttribute="top" secondItem="pLq-r5-5MT" secondAttribute="bottom" constant="3" id="GcN-aF-zaw"/>
+                        <constraint firstAttribute="trailing" secondItem="pLq-r5-5MT" secondAttribute="trailing" priority="750" id="ERp-sb-rtU"/>
                         <constraint firstItem="reH-bh-y86" firstAttribute="top" secondItem="wF2-FK-3vl" secondAttribute="bottom" constant="24" id="HUW-ij-ZPn"/>
                         <constraint firstAttribute="centerX" secondItem="reH-bh-y86" secondAttribute="centerX" id="Mac-FF-cDg"/>
+                        <constraint firstAttribute="trailing" secondItem="Fua-Xr-K8d" secondAttribute="trailing" id="NGc-d6-snD"/>
+                        <constraint firstItem="Fua-Xr-K8d" firstAttribute="top" secondItem="4ec-eP-FjY" secondAttribute="bottom" constant="15" id="NNs-hg-04x"/>
                         <constraint firstAttribute="trailing" secondItem="4ec-eP-FjY" secondAttribute="trailing" constant="20" id="P33-yl-1lx"/>
-                        <constraint firstItem="pLq-r5-5MT" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" id="T5K-3x-U7y"/>
-                        <constraint firstAttribute="trailing" secondItem="pLq-r5-5MT" secondAttribute="trailing" id="Vr1-Kw-zkz"/>
+                        <constraint firstItem="pLq-r5-5MT" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" priority="750" id="T5K-3x-U7y"/>
                         <constraint firstItem="reH-bh-y86" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" constant="20" id="aIW-qf-kaB"/>
-                        <constraint firstAttribute="bottom" secondItem="Fua-Xr-K8d" secondAttribute="bottom" constant="20" id="an7-E0-Zgu"/>
-                        <constraint firstItem="pLq-r5-5MT" firstAttribute="top" secondItem="4ec-eP-FjY" secondAttribute="bottom" constant="30" id="cGG-x5-wUk"/>
-                        <constraint firstItem="Fua-Xr-K8d" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" id="dEE-An-w6c"/>
-                        <constraint firstAttribute="centerX" secondItem="pLq-r5-5MT" secondAttribute="centerX" id="mmR-n0-hSh"/>
+                        <constraint firstAttribute="bottom" secondItem="pLq-r5-5MT" secondAttribute="bottom" constant="10" id="gQl-sT-ZiT"/>
                         <constraint firstItem="Xyi-8C-Ts9" firstAttribute="top" secondItem="reH-bh-y86" secondAttribute="bottom" constant="41" id="oG6-zk-QfI"/>
                         <constraint firstItem="4ec-eP-FjY" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" constant="20" id="oGZ-sg-EBp"/>
                         <constraint firstItem="4ec-eP-FjY" firstAttribute="top" secondItem="d73-rt-qHg" secondAttribute="bottom" id="os1-Z5-x9m"/>
                         <constraint firstItem="d73-rt-qHg" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" constant="20" id="ozb-9a-IdQ"/>
                         <constraint firstItem="d73-rt-qHg" firstAttribute="top" secondItem="Xyi-8C-Ts9" secondAttribute="bottom" constant="24" id="pOT-H7-Acx"/>
-                        <constraint firstAttribute="trailing" secondItem="Fua-Xr-K8d" secondAttribute="trailing" id="ss5-x5-p5c"/>
                         <constraint firstAttribute="trailing" secondItem="reH-bh-y86" secondAttribute="trailing" constant="20" id="uwJ-Zz-fFA"/>
                         <constraint firstAttribute="centerX" secondItem="d73-rt-qHg" secondAttribute="centerX" id="z1X-68-vxS"/>
-                        <constraint firstAttribute="centerX" secondItem="Fua-Xr-K8d" secondAttribute="centerX" id="zAi-wI-KaN"/>
                     </constraints>
                 </scrollView>
             </subviews>

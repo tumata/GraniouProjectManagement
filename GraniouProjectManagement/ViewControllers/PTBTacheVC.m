@@ -45,7 +45,6 @@
     [self setGoodSizeForTextView:_textViewDescription];
     [self setGoodSizeForTextView:_textViewCommentaire];
     
-    _imageViewCommentaire.image = nil;
 }
 
 - (void)didReceiveMemoryWarning

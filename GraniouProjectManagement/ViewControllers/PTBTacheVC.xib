@@ -6,7 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PTBTacheVC">
             <connections>
+                <outlet property="imageViewCommentaire" destination="Hy6-4K-SVL" id="5Qd-gs-dq2"/>
                 <outlet property="labelTitre" destination="wF2-FK-3vl" id="0Z3-So-ecX"/>
+                <outlet property="scrollViewImageCommentaire" destination="pLq-r5-5MT" id="oDg-1N-l2o"/>
                 <outlet property="textViewCommentaire" destination="d73-rt-qHg" id="HqH-bM-lkk"/>
                 <outlet property="textViewDescription" destination="reH-bh-y86" id="wpg-UW-9qP"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -14,7 +16,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="745"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="878"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbb-yO-lFh" customClass="PTBNavigationView">
@@ -26,7 +28,7 @@
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pzs-vw-pas">
-                    <rect key="frame" x="0.0" y="64" width="320" height="681"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="814"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titre tache" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wF2-FK-3vl" userLabel="Titre">
@@ -72,15 +74,8 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="LogoGraniou.png" translatesAutoresizingMaskIntoConstraints="NO" id="rYP-qa-NMq" userLabel="imageCommentaire">
-                            <rect key="frame" x="0.0" y="411" width="320" height="220"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="height" priority="250" constant="220" id="5sP-kd-4lY"/>
-                            </constraints>
-                        </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fua-Xr-K8d" userLabel="Add/change image">
-                            <rect key="frame" x="0.0" y="634" width="320" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fua-Xr-K8d" userLabel="Add/change image">
+                            <rect key="frame" x="0.0" y="720" width="320" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Ajouter une photo">
@@ -88,23 +83,40 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pLq-r5-5MT">
+                            <rect key="frame" x="0.0" y="417" width="320" height="300"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoGraniou.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hy6-4K-SVL">
+                                    <rect key="frame" x="0.0" y="0.0" width="640" height="439"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="Hy6-4K-SVL" firstAttribute="leading" secondItem="pLq-r5-5MT" secondAttribute="leading" priority="250" id="Jes-q9-krS"/>
+                                <constraint firstAttribute="bottom" secondItem="Hy6-4K-SVL" secondAttribute="bottom" priority="250" id="MiE-BE-mCA"/>
+                                <constraint firstAttribute="trailing" secondItem="Hy6-4K-SVL" secondAttribute="trailing" priority="250" id="WBR-Tz-5Ll"/>
+                                <constraint firstAttribute="height" constant="300" id="lUA-QL-tdf"/>
+                                <constraint firstItem="Hy6-4K-SVL" firstAttribute="top" secondItem="pLq-r5-5MT" secondAttribute="top" priority="250" id="t7R-cw-7Qd"/>
+                            </constraints>
+                        </scrollView>
                     </subviews>
                     <constraints>
                         <constraint firstItem="wF2-FK-3vl" firstAttribute="top" secondItem="Pzs-vw-pas" secondAttribute="top" constant="20" id="0TA-M7-w8N"/>
-                        <constraint firstAttribute="centerX" secondItem="rYP-qa-NMq" secondAttribute="centerX" id="1GD-iy-Oby"/>
-                        <constraint firstItem="rYP-qa-NMq" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" id="1ns-vf-cp2"/>
-                        <constraint firstAttribute="trailing" secondItem="rYP-qa-NMq" secondAttribute="trailing" id="3vD-bQ-6xh"/>
-                        <constraint firstItem="rYP-qa-NMq" firstAttribute="top" secondItem="4ec-eP-FjY" secondAttribute="bottom" constant="24" id="4EG-lU-niI"/>
                         <constraint firstAttribute="trailing" secondItem="d73-rt-qHg" secondAttribute="trailing" constant="20" id="6HF-Q6-WNG"/>
                         <constraint firstAttribute="centerX" secondItem="Xyi-8C-Ts9" secondAttribute="centerX" id="9ft-PX-VtJ"/>
                         <constraint firstAttribute="centerX" secondItem="wF2-FK-3vl" secondAttribute="centerX" id="CtJ-08-Inq"/>
+                        <constraint firstAttribute="trailing" secondItem="pLq-r5-5MT" secondAttribute="trailing" id="ERp-sb-rtU"/>
+                        <constraint firstItem="Fua-Xr-K8d" firstAttribute="top" secondItem="pLq-r5-5MT" secondAttribute="bottom" constant="3" id="GcN-aF-zaw"/>
                         <constraint firstItem="reH-bh-y86" firstAttribute="top" secondItem="wF2-FK-3vl" secondAttribute="bottom" constant="24" id="HUW-ij-ZPn"/>
                         <constraint firstAttribute="centerX" secondItem="reH-bh-y86" secondAttribute="centerX" id="Mac-FF-cDg"/>
                         <constraint firstAttribute="trailing" secondItem="4ec-eP-FjY" secondAttribute="trailing" constant="20" id="P33-yl-1lx"/>
+                        <constraint firstItem="pLq-r5-5MT" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" id="T5K-3x-U7y"/>
                         <constraint firstItem="reH-bh-y86" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" constant="20" id="aIW-qf-kaB"/>
-                        <constraint firstAttribute="bottom" secondItem="Fua-Xr-K8d" secondAttribute="bottom" constant="10" id="bi8-zs-CwS"/>
+                        <constraint firstAttribute="bottom" secondItem="Fua-Xr-K8d" secondAttribute="bottom" constant="20" id="bi8-zs-CwS"/>
+                        <constraint firstItem="pLq-r5-5MT" firstAttribute="top" secondItem="4ec-eP-FjY" secondAttribute="bottom" constant="30" id="cGG-x5-wUk"/>
                         <constraint firstItem="Fua-Xr-K8d" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" id="dEE-An-w6c"/>
-                        <constraint firstItem="Fua-Xr-K8d" firstAttribute="top" secondItem="rYP-qa-NMq" secondAttribute="bottom" constant="5" id="jmU-AN-3WH"/>
+                        <constraint firstAttribute="centerX" secondItem="pLq-r5-5MT" secondAttribute="centerX" id="mmR-n0-hSh"/>
                         <constraint firstItem="Xyi-8C-Ts9" firstAttribute="top" secondItem="reH-bh-y86" secondAttribute="bottom" constant="41" id="oG6-zk-QfI"/>
                         <constraint firstItem="4ec-eP-FjY" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" constant="20" id="oGZ-sg-EBp"/>
                         <constraint firstItem="4ec-eP-FjY" firstAttribute="top" secondItem="d73-rt-qHg" secondAttribute="bottom" id="os1-Z5-x9m"/>

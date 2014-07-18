@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelTitre;
 @property (weak, nonatomic) IBOutlet UITextView *textViewDescription;
 @property (weak, nonatomic) IBOutlet UITextView *textViewCommentaire;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollViewImageCommentaire;
+@property (weak, nonatomic) IBOutlet UIImageView *imageViewCommentaire;
 
 @end
 

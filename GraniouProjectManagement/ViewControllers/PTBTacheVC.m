@@ -8,6 +8,7 @@
 
 #define MAX_HEIGHT 2000
 
+
 #import "PTBTacheVC.h"
 
 @interface PTBTacheVC ()
@@ -16,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *textViewCommentaire;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewImageCommentaire;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewCommentaire;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollHeightConstraint;
 
 @end
 
@@ -34,19 +37,39 @@
 {
     [super viewDidLoad];
     
+    
     NSString *foo = @"Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
     [_textViewDescription setText:foo];
-    [_textViewCommentaire setText:foo];
-    
+//    [_textViewCommentaire setText:foo];
+//    
     [self setGoodSizeForTextView:_textViewDescription];
     [self setGoodSizeForTextView:_textViewCommentaire];
     
+    _imageViewCommentaire.image = nil;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setSource:(id)source {
+    _source = source;
+    [self updateView];
+}
+
+- (void)updateView {
+    id titre = [_source valueForKey:@"nom"];
+    id description = [_source valueForKey:@"infos"];
+    id commentaire = [_source valueForKey:@"commentaire"];
+    id urlPhoto = [_source valueForKey:@"urlPhoto"];
+    
+    _labelTitre.text = [titre description];
+    _textViewDescription.text = [description description];
+    _textViewCommentaire.text = [commentaire description];
+    _imageViewCommentaire.image = [self getPhotoForUrl:urlPhoto];
+    
 }
 
 - (void)setGoodSizeForTextView:(UITextView *)view {
@@ -57,8 +80,12 @@
     
     [view setBounds:CGRectMake(0, 0, view.bounds.size.width, size.height + 10)];
     //test
-    //[view setBackgroundColor:[UIColor redColor]];
+    [view setBackgroundColor:[UIColor redColor]];
 
+}
+
+- (UIImage *)getPhotoForUrl:(id)url {
+    return nil;
 }
 
 @end

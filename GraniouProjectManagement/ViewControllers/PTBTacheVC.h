@@ -10,4 +10,6 @@
 
 @interface PTBTacheVC : MCViewController
 
+@property (strong, nonatomic) id source;
+
 @end

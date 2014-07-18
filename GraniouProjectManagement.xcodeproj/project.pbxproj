@@ -64,8 +64,9 @@
 		F6D3A628197752F6008FDE1B /* PTBLeveesReserveTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A624197752F6008FDE1B /* PTBLeveesReserveTableVC.xib */; };
 		F6D3A62B19775627008FDE1B /* PTBNavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A62A19775627008FDE1B /* PTBNavigationView.xib */; };
 		F6D3A62E197844B3008FDE1B /* PTBNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A62D197844B3008FDE1B /* PTBNavigationView.m */; };
-		F6D3A6301978A18E008FDE1B /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A62F1978A18E008FDE1B /* camera.png */; };
-		F6D3A6321978A1A1008FDE1B /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A6311978A1A1008FDE1B /* menu.png */; };
+		F6D3A63E19798E4C008FDE1B /* remove.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A63D19798E4C008FDE1B /* remove.png */; };
+		F6D3A64119798EFA008FDE1B /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A63F19798EFA008FDE1B /* camera.png */; };
+		F6D3A64219798EFA008FDE1B /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A64019798EFA008FDE1B /* menu.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,8 +163,9 @@
 		F6D3A62A19775627008FDE1B /* PTBNavigationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTBNavigationView.xib; sourceTree = "<group>"; };
 		F6D3A62C197844B3008FDE1B /* PTBNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTBNavigationView.h; sourceTree = "<group>"; };
 		F6D3A62D197844B3008FDE1B /* PTBNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTBNavigationView.m; sourceTree = "<group>"; };
-		F6D3A62F1978A18E008FDE1B /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
-		F6D3A6311978A1A1008FDE1B /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		F6D3A63D19798E4C008FDE1B /* remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove.png; sourceTree = "<group>"; };
+		F6D3A63F19798EFA008FDE1B /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		F6D3A64019798EFA008FDE1B /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,8 +304,7 @@
 		F6D3A5D71974AEF4008FDE1B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F6D3A6311978A1A1008FDE1B /* menu.png */,
-				F6D3A62F1978A18E008FDE1B /* camera.png */,
+				F6D3A64319798F02008FDE1B /* Icons */,
 				F6D3A5D31974AEF0008FDE1B /* LogoGraniou.png */,
 				F6D3A5D41974AEF0008FDE1B /* fond-1.jpg */,
 			);
@@ -386,6 +387,16 @@
 				F6D3A62D197844B3008FDE1B /* PTBNavigationView.m */,
 			);
 			name = CustomViews;
+			sourceTree = "<group>";
+		};
+		F6D3A64319798F02008FDE1B /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3A63F19798EFA008FDE1B /* camera.png */,
+				F6D3A64019798EFA008FDE1B /* menu.png */,
+				F6D3A63D19798E4C008FDE1B /* remove.png */,
+			);
+			name = Icons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -475,23 +486,24 @@
 				F6D3A60B1975D08A008FDE1B /* PTBShowPdfVC.xib in Resources */,
 				F6D3A6111975D08A008FDE1B /* PTBTopMenuVC.xib in Resources */,
 				F6D3A5D61974AEF0008FDE1B /* fond-1.jpg in Resources */,
-				F6D3A6301978A18E008FDE1B /* camera.png in Resources */,
 				F6D3A5FF1975D08A008FDE1B /* PTBChantierMenuVC.xib in Resources */,
 				F6D3A5AA197450AC008FDE1B /* MCDefaultMainViewController.xib in Resources */,
 				F6D3A6011975D08A008FDE1B /* PTBDocumentsTableVC.xib in Resources */,
 				F6D3A628197752F6008FDE1B /* PTBLeveesReserveTableVC.xib in Resources */,
 				F6D3A56B1970A244008FDE1B /* InfoPlist.strings in Resources */,
-				F6D3A6321978A1A1008FDE1B /* menu.png in Resources */,
 				F6D3A62B19775627008FDE1B /* PTBNavigationView.xib in Resources */,
 				F6D3A5A11970B57D008FDE1B /* PTBProfileSectionVC.xib in Resources */,
 				F6D3A59D1970B57D008FDE1B /* PTBAccountVC.xib in Resources */,
 				F6D3A5761970A244008FDE1B /* Images.xcassets in Resources */,
 				F6D3A6031975D08A008FDE1B /* PTBLoadingVC.xib in Resources */,
 				F6D3A626197752F6008FDE1B /* PTBLeveeReserveVC.xib in Resources */,
+				F6D3A63E19798E4C008FDE1B /* remove.png in Resources */,
 				F6D3A6071975D08A008FDE1B /* PTBMonteurSectionVC.xib in Resources */,
 				F6D3A60D1975D08A008FDE1B /* PTBTachesTableVC.xib in Resources */,
 				F6D3A6131975D08A008FDE1B /* PTBWriteCommentVC.xib in Resources */,
+				F6D3A64219798EFA008FDE1B /* menu.png in Resources */,
 				F6D3A5A9197450AC008FDE1B /* MCDefaultErrorViewController.xib in Resources */,
+				F6D3A64119798EFA008FDE1B /* camera.png in Resources */,
 				F6D3A59F1970B57D008FDE1B /* PTBLoginVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

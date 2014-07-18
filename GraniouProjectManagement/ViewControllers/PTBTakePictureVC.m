@@ -8,8 +8,9 @@
 
 #import "PTBTakePictureVC.h"
 
-@interface PTBTakePictureVC ()
+@interface PTBTakePictureVC () <UINavigationControllerDelegate ,UIImagePickerControllerDelegate>
 
+@property (nonatomic) UIImagePickerController *imagePickerController;
 
 @property (weak, nonatomic) IBOutlet UIView *viewBeforePicture;
 @property (weak, nonatomic) IBOutlet UIView *viewAfterPicture;
@@ -44,10 +45,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
-    // On ne montre pas la vue apres-photo
-    [_viewAfterPicture setUserInteractionEnabled:false];
     
     // Test si l'appareil a un appareil photo
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
@@ -67,18 +64,69 @@
 #pragma mark - Actions
 
 - (IBAction)actionPhotoLibrary:(id)sender {
+    [self showImagePickerForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
 }
 
 - (IBAction)actionPhotoCamera:(id)sender {
+    [self showImagePickerForSourceType:UIImagePickerControllerSourceTypeCamera];
 }
 
 - (IBAction)actionValider:(id)sender {
+    NSAssert(_image, @"PTBTakePicture could press validate without image");
     [self.delegate exitSavingPicture:_image];
 }
 
 - (IBAction)actionCancel:(id)sender {
     _image = nil;
     [self.delegate exitCancellingPicture];
+}
+
+#pragma mark - PickerController methods
+
+- (void)showImagePickerForSourceType:(UIImagePickerControllerSourceType)sourceType
+{
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    imagePickerController.sourceType = sourceType;
+    imagePickerController.delegate = self;
+    
+    if (sourceType == UIImagePickerControllerSourceTypeCamera)
+    {
+        // The user wants to use the camera interface.
+        imagePickerController.showsCameraControls = YES;
+    }
+    _imagePickerController = imagePickerController;
+    
+    [self presentViewController:self.imagePickerController animated:YES completion:nil];
+}
+
+// This method is called when an image has been chosen from the library or taken from the camera.
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    self.image = image;
+    
+    // On enleve le viewController prise de photo
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    // Operations
+    [self imageFromPickerSetNowFinishAndUpdate];
+}
+
+// Picker has canceled
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+// Once image is in memory, show it etc.
+- (void)imageFromPickerSetNowFinishAndUpdate
+{
+    // Affichage de l'image prise dans imageView
+    [_imageView setImage: self.image];
+    
+    [_viewBeforePicture setHidden:true];
+    
+    _imagePickerController = nil;
 }
 
 

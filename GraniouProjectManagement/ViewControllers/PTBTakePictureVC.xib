@@ -138,6 +138,16 @@
                                 <constraint firstItem="I0A-rW-brc" firstAttribute="top" secondItem="oGJ-Fz-b7e" secondAttribute="top" id="mjS-E6-A7c"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HCn-sw-xPv">
+                            <rect key="frame" x="0.0" y="20" width="70" height="70"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="remove.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="actionCancel:" destination="-1" eventType="touchUpInside" id="9V2-Xp-xOc"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -166,5 +176,6 @@
     <resources>
         <image name="camera.png" width="50" height="50"/>
         <image name="menu.png" width="50" height="50"/>
+        <image name="remove.png" width="50" height="50"/>
     </resources>
 </document>

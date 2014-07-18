@@ -6,7 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PTBWriteCommentVC">
             <connections>
-                <outlet property="buttonView" destination="Ywx-Ec-i7B" id="dwr-GF-LoY"/>
                 <outlet property="scrollView" destination="ech-iH-1N3" id="UUi-tX-dsX"/>
                 <outlet property="textView" destination="lBT-W8-RfL" id="2ZU-hY-bVT"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -60,6 +59,9 @@
                                         <color key="titleColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="actionValider:" destination="-1" eventType="touchUpInside" id="gPS-Ib-yI6"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wM0-AJ-dej" userLabel="Annuler">
                                     <rect key="frame" x="0.0" y="0.0" width="150" height="33"/>
@@ -73,6 +75,9 @@
                                         <color key="titleColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="actionCancel:" destination="-1" eventType="touchUpInside" id="aMX-pG-G9c"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

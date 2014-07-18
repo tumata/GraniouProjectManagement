@@ -6,8 +6,19 @@
 //  Copyright (c) 2014 GraniouProjectManagement. All rights reserved.
 //
 
-#import "MCViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface PTBTakePictureVC : MCViewController
+@protocol PTBTakePictureVCDelegate <NSObject>
+
+@required
+- (void)exitSavingPicture:(UIImage *)image;
+- (void)exitCancellingPicture;
+
+@end
+
+
+@interface PTBTakePictureVC : UIViewController
+
+@property (nonatomic, weak) id<PTBTakePictureVCDelegate>delegate;
 
 @end

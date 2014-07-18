@@ -10,8 +10,11 @@
 
 @interface PTBWriteCommentVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIView *buttonView;
+
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+
+- (IBAction)actionValider:(id)sender;
+- (IBAction)actionCancel:(id)sender;
 
 @end
 
@@ -42,6 +45,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)update {
+    id value = [_source valueForKey:self.commentaire];
+    self.textView.text = [value description];
+}
+
+- (void)setSource:(id)source {
+    _source = source;
+    [self update];
+}
+
+
+#pragma mark - Keyboard related stuff
 
 // Call this method somewhere in your view controller setup code.
 - (void)registerForKeyboardNotifications
@@ -74,5 +89,13 @@
     _scrollView.scrollIndicatorInsets = contentInsets;
 }
 
+#pragma mark - Actions
 
+- (IBAction)actionValider:(id)sender {
+    [self.delegate exitSavingComment:_textView.text];
+}
+
+- (IBAction)actionCancel:(id)sender {
+    [self.delegate exitCancelling];
+}
 @end

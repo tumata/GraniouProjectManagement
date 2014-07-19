@@ -8,7 +8,6 @@
             <connections>
                 <outlet property="imageViewCommentaire" destination="Hy6-4K-SVL" id="5Qd-gs-dq2"/>
                 <outlet property="labelTitre" destination="wF2-FK-3vl" id="0Z3-So-ecX"/>
-                <outlet property="scrollHeightConstraint" destination="KjT-4e-prc" id="Mib-By-KZd"/>
                 <outlet property="scrollViewImageCommentaire" destination="pLq-r5-5MT" id="oDg-1N-l2o"/>
                 <outlet property="textViewCommentaire" destination="d73-rt-qHg" id="HqH-bM-lkk"/>
                 <outlet property="textViewDescription" destination="reH-bh-y86" id="wpg-UW-9qP"/>
@@ -74,6 +73,9 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="actionCommentaire:" destination="-1" eventType="touchUpInside" id="mLK-7C-4n3"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fua-Xr-K8d" userLabel="Add/change image">
                             <rect key="frame" x="0.0" y="270" width="320" height="30"/>
@@ -83,6 +85,9 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="actionPhoto:" destination="-1" eventType="touchUpInside" id="kV6-H5-yfO"/>
+                            </connections>
                         </button>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pLq-r5-5MT" userLabel="ScrollViewImage">
                             <rect key="frame" x="0.0" y="305" width="320" height="400"/>

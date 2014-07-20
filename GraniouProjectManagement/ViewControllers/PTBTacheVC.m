@@ -20,6 +20,8 @@
 @property (strong, nonatomic) PTBTakePictureVC *takePictureVC;
 
 @property (weak, nonatomic) IBOutlet UILabel *labelTitre;
+@property (weak, nonatomic) IBOutlet UIButton *buttonCommentaire;
+@property (weak, nonatomic) IBOutlet UIButton *buttonImage;
 @property (weak, nonatomic) IBOutlet UITextView *textViewDescription;
 @property (weak, nonatomic) IBOutlet UITextView *textViewCommentaire;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewImageCommentaire;
@@ -66,6 +68,31 @@
     _imageViewCommentaire.image = nil;
     
     [_scrollViewImageCommentaire setBounds:CGRectMake(0, 0, 320, 0)];
+}
+
+-(void)onResume:(MCIntent *)intent {
+    
+    [self reloadData];
+    [super onResume:intent];
+}
+
+-(void)onPause:(MCIntent *)intent {
+    _imageViewCommentaire = nil;
+    
+    [super onPause:intent];
+}
+
+-(void)reloadData {
+    if (_textViewCommentaire.text.length) {
+        _buttonCommentaire.titleLabel.text = @"Modifier le commentaire";
+    }
+    else _buttonCommentaire.titleLabel.text = @"Ajouter un commentaire";
+    
+    if (_imageViewCommentaire.image) {
+        _buttonImage.titleLabel.text = @"Modifier la photo";
+    }
+    else _buttonImage.titleLabel.text = @"Ajouter une photo";
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -135,6 +162,8 @@
 -(void)exitSavingComment:(NSString *)comment {
     _textViewCommentaire.text = comment;
     
+    [self reloadData];
+    
     [self dismissViewControllerAnimated:YES completion:^{
         _writeCommentVC = nil;
     }];
@@ -150,6 +179,8 @@
 
 -(void)exitSavingPicture:(UIImage *)image {
     _imageViewCommentaire.image = image;
+    
+    [self reloadData];
     
     [self dismissViewControllerAnimated:YES completion:^{
         _takePictureVC = nil;

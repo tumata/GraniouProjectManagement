@@ -9,8 +9,8 @@
 #import "PTBWriteCommentVC.h"
 
 @interface PTBWriteCommentVC ()
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
 - (IBAction)actionValider:(id)sender;
@@ -45,14 +45,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)update {
-    id value = [_source valueForKey:self.commentaire];
-    self.textView.text = [value description];
-}
-
-- (void)setSource:(id)source {
-    _source = source;
-    [self update];
+- (void)setCommentaire:(NSString *)commentaire {
+    _commentaire = commentaire;
+    self.textView.text = _commentaire;
 }
 
 
@@ -92,10 +87,12 @@
 #pragma mark - Actions
 
 - (IBAction)actionValider:(id)sender {
+    _commentaire = nil;
     [self.delegate exitSavingComment:_textView.text];
 }
 
 - (IBAction)actionCancel:(id)sender {
+    _commentaire = nil;
     [self.delegate exitCancelling];
 }
 @end

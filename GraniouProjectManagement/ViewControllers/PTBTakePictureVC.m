@@ -123,7 +123,7 @@
 {
     // Affichage de l'image prise dans imageView
     [_imageView setImage: self.image];
-    
+    // Remove la vue avant prise de photo
     [_viewBeforePicture setHidden:true];
     
     _imagePickerController = nil;

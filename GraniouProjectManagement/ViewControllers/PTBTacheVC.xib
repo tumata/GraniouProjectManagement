@@ -6,6 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PTBTacheVC">
             <connections>
+                <outlet property="buttonCommentaire" destination="4ec-eP-FjY" id="ZdX-tf-eMY"/>
+                <outlet property="buttonImage" destination="Fua-Xr-K8d" id="8X0-uW-s17"/>
                 <outlet property="imageViewCommentaire" destination="Hy6-4K-SVL" id="5Qd-gs-dq2"/>
                 <outlet property="labelTitre" destination="wF2-FK-3vl" id="0Z3-So-ecX"/>
                 <outlet property="scrollViewImageCommentaire" destination="pLq-r5-5MT" id="oDg-1N-l2o"/>
@@ -90,7 +92,7 @@
                             </connections>
                         </button>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pLq-r5-5MT" userLabel="ScrollViewImage">
-                            <rect key="frame" x="0.0" y="305" width="320" height="400"/>
+                            <rect key="frame" x="0.0" y="300" width="320" height="390"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoGraniou.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hy6-4K-SVL" userLabel="Image View">
@@ -100,7 +102,7 @@
                             </subviews>
                             <constraints>
                                 <constraint firstItem="Hy6-4K-SVL" firstAttribute="leading" secondItem="pLq-r5-5MT" secondAttribute="leading" priority="245" id="Jes-q9-krS"/>
-                                <constraint firstAttribute="height" priority="250" constant="400" id="KjT-4e-prc"/>
+                                <constraint firstAttribute="height" priority="250" constant="390" id="KjT-4e-prc"/>
                                 <constraint firstAttribute="trailing" secondItem="Hy6-4K-SVL" secondAttribute="trailing" priority="250" id="WBR-Tz-5Ll"/>
                                 <constraint firstAttribute="bottom" secondItem="Hy6-4K-SVL" secondAttribute="bottom" priority="500" id="kIO-lw-8YH"/>
                                 <constraint firstItem="Hy6-4K-SVL" firstAttribute="top" secondItem="pLq-r5-5MT" secondAttribute="top" priority="250" id="t7R-cw-7Qd"/>
@@ -111,7 +113,7 @@
                         <constraint firstItem="wF2-FK-3vl" firstAttribute="top" secondItem="Pzs-vw-pas" secondAttribute="top" constant="20" id="0TA-M7-w8N"/>
                         <constraint firstAttribute="trailing" secondItem="d73-rt-qHg" secondAttribute="trailing" constant="20" id="6HF-Q6-WNG"/>
                         <constraint firstItem="Fua-Xr-K8d" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" id="6v8-vA-HGv"/>
-                        <constraint firstItem="pLq-r5-5MT" firstAttribute="top" secondItem="Fua-Xr-K8d" secondAttribute="bottom" constant="5" id="8ZR-H4-uxX"/>
+                        <constraint firstItem="pLq-r5-5MT" firstAttribute="top" secondItem="Fua-Xr-K8d" secondAttribute="bottom" id="8ZR-H4-uxX"/>
                         <constraint firstAttribute="centerX" secondItem="Xyi-8C-Ts9" secondAttribute="centerX" id="9ft-PX-VtJ"/>
                         <constraint firstAttribute="centerX" secondItem="wF2-FK-3vl" secondAttribute="centerX" id="CtJ-08-Inq"/>
                         <constraint firstAttribute="trailing" secondItem="pLq-r5-5MT" secondAttribute="trailing" priority="750" id="ERp-sb-rtU"/>
@@ -122,7 +124,7 @@
                         <constraint firstAttribute="trailing" secondItem="4ec-eP-FjY" secondAttribute="trailing" constant="20" id="P33-yl-1lx"/>
                         <constraint firstItem="pLq-r5-5MT" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" priority="750" id="T5K-3x-U7y"/>
                         <constraint firstItem="reH-bh-y86" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" constant="20" id="aIW-qf-kaB"/>
-                        <constraint firstAttribute="bottom" secondItem="pLq-r5-5MT" secondAttribute="bottom" constant="10" id="gQl-sT-ZiT"/>
+                        <constraint firstAttribute="bottom" secondItem="pLq-r5-5MT" secondAttribute="bottom" id="gQl-sT-ZiT"/>
                         <constraint firstItem="Xyi-8C-Ts9" firstAttribute="top" secondItem="reH-bh-y86" secondAttribute="bottom" constant="41" id="oG6-zk-QfI"/>
                         <constraint firstItem="4ec-eP-FjY" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" constant="20" id="oGZ-sg-EBp"/>
                         <constraint firstItem="4ec-eP-FjY" firstAttribute="top" secondItem="d73-rt-qHg" secondAttribute="bottom" id="os1-Z5-x9m"/>

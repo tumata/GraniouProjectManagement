@@ -20,37 +20,38 @@
 @interface PTBWriteCommentVC : UIViewController
 
 @property (nonatomic, weak) id<PTBWriteCommentDelegate>delegate;
-
-@property (nonatomic, strong) id source;
 @property (nonatomic, copy) NSString *commentaire;
 
 @end
 
 
+/*
+ ---------------------------------------------
+---------->  Pour lancer la fenetre :
+ ---------------------------------------------
 
-// Pour lancer la fenetre :
-
-//PTBWriteCommentVC *writeCommentVC = [[PTBWriteCommentVC alloc] init];
-//writeCommentVC.delegate = self;
-//_writeCommentVC = writeCommentVC;
-//[self presentViewController:self.writeCommentVC animated:YES completion:nil];
+PTBWriteCommentVC *writeCommentVC = [[PTBWriteCommentVC alloc] init];
+writeCommentVC.delegate = self;
+_writeCommentVC = writeCommentVC;
+[self presentViewController:self.writeCommentVC animated:YES completion:nil];
 
 
+----------------------------------------------
+---------->  Delegate a implanter :
+ ---------------------------------------------
 
+#pragma mark - WriteCommentDelegate methods
 
+-(void)exitSavingComment:(NSString *)comment {
+    [self dismissViewControllerAnimated:YES completion:^{
+        _writeCommentVC = nil;
+    }];
+}
 
-//  Delegate a implanter :
-
-//#pragma mark - WriteCommentDelegate methods
-//
-//-(void)exitSavingComment:(NSString *)comment {
-//    [self dismissViewControllerAnimated:YES completion:^{
-//        _writeCommentVC = nil;
-//    }];
-//}
-//
-//-(void)exitCancelling {
-//    [self dismissViewControllerAnimated:YES completion:^{
-//        _writeCommentVC = nil;
-//    }];
-//}
+-(void)exitCancelling {
+    [self dismissViewControllerAnimated:YES completion:^{
+        _writeCommentVC = nil;
+    }];
+}
+ 
+ */

@@ -8,7 +8,7 @@
             <connections>
                 <outlet property="buttonCommentaire" destination="4ec-eP-FjY" id="ZdX-tf-eMY"/>
                 <outlet property="buttonImage" destination="Fua-Xr-K8d" id="8X0-uW-s17"/>
-                <outlet property="heightConstraint" destination="1ZB-0U-j4e" id="bfB-Tx-vx0"/>
+                <outlet property="heightConstraintCommentaire" destination="1ZB-0U-j4e" id="rvi-Ox-fXE"/>
                 <outlet property="labelTitre" destination="wF2-FK-3vl" id="0Z3-So-ecX"/>
                 <outlet property="scrollViewImageCommentaire" destination="pLq-r5-5MT" id="oDg-1N-l2o"/>
                 <outlet property="textViewCommentaire" destination="d73-rt-qHg" id="HqH-bM-lkk"/>
@@ -79,6 +79,13 @@
                                 <action selector="actionCommentaire:" destination="-1" eventType="touchUpInside" id="mLK-7C-4n3"/>
                             </connections>
                         </button>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pLq-r5-5MT" userLabel="ScrollViewImage">
+                            <rect key="frame" x="0.0" y="270" width="320" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" priority="250" id="1ZB-0U-j4e"/>
+                            </constraints>
+                        </scrollView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fua-Xr-K8d" userLabel="Add/change image">
                             <rect key="frame" x="0.0" y="270" width="320" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -91,31 +98,23 @@
                                 <action selector="actionPhoto:" destination="-1" eventType="touchUpInside" id="kV6-H5-yfO"/>
                             </connections>
                         </button>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pLq-r5-5MT" userLabel="ScrollViewImage">
-                            <rect key="frame" x="0.0" y="300" width="320" height="0.0"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <constraints>
-                                <constraint firstAttribute="height" priority="250" id="1ZB-0U-j4e"/>
-                            </constraints>
-                        </scrollView>
                     </subviews>
                     <constraints>
                         <constraint firstItem="wF2-FK-3vl" firstAttribute="top" secondItem="Pzs-vw-pas" secondAttribute="top" constant="20" id="0TA-M7-w8N"/>
                         <constraint firstAttribute="trailing" secondItem="d73-rt-qHg" secondAttribute="trailing" constant="20" id="6HF-Q6-WNG"/>
                         <constraint firstItem="Fua-Xr-K8d" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" id="6v8-vA-HGv"/>
-                        <constraint firstItem="pLq-r5-5MT" firstAttribute="top" secondItem="Fua-Xr-K8d" secondAttribute="bottom" id="8ZR-H4-uxX"/>
                         <constraint firstAttribute="centerX" secondItem="Xyi-8C-Ts9" secondAttribute="centerX" id="9ft-PX-VtJ"/>
                         <constraint firstAttribute="centerX" secondItem="wF2-FK-3vl" secondAttribute="centerX" id="CtJ-08-Inq"/>
                         <constraint firstAttribute="trailing" secondItem="pLq-r5-5MT" secondAttribute="trailing" id="ERp-sb-rtU"/>
                         <constraint firstItem="reH-bh-y86" firstAttribute="top" secondItem="wF2-FK-3vl" secondAttribute="bottom" constant="24" id="HUW-ij-ZPn"/>
+                        <constraint firstItem="Fua-Xr-K8d" firstAttribute="top" secondItem="pLq-r5-5MT" secondAttribute="bottom" id="KvI-R0-Qm0"/>
                         <constraint firstAttribute="centerX" secondItem="reH-bh-y86" secondAttribute="centerX" id="Mac-FF-cDg"/>
                         <constraint firstAttribute="trailing" secondItem="Fua-Xr-K8d" secondAttribute="trailing" id="NGc-d6-snD"/>
-                        <constraint firstItem="Fua-Xr-K8d" firstAttribute="top" secondItem="4ec-eP-FjY" secondAttribute="bottom" constant="15" id="NNs-hg-04x"/>
+                        <constraint firstItem="pLq-r5-5MT" firstAttribute="top" secondItem="4ec-eP-FjY" secondAttribute="bottom" constant="15" id="Ors-fn-B7d"/>
                         <constraint firstAttribute="trailing" secondItem="4ec-eP-FjY" secondAttribute="trailing" constant="20" id="P33-yl-1lx"/>
                         <constraint firstItem="pLq-r5-5MT" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" id="T5K-3x-U7y"/>
                         <constraint firstAttribute="centerX" secondItem="pLq-r5-5MT" secondAttribute="centerX" id="X69-jG-Iet"/>
                         <constraint firstItem="reH-bh-y86" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" constant="20" id="aIW-qf-kaB"/>
-                        <constraint firstAttribute="bottom" secondItem="pLq-r5-5MT" secondAttribute="bottom" id="gQl-sT-ZiT"/>
                         <constraint firstItem="Xyi-8C-Ts9" firstAttribute="top" secondItem="reH-bh-y86" secondAttribute="bottom" constant="41" id="oG6-zk-QfI"/>
                         <constraint firstItem="4ec-eP-FjY" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" constant="20" id="oGZ-sg-EBp"/>
                         <constraint firstItem="4ec-eP-FjY" firstAttribute="top" secondItem="d73-rt-qHg" secondAttribute="bottom" id="os1-Z5-x9m"/>
@@ -123,6 +122,7 @@
                         <constraint firstItem="d73-rt-qHg" firstAttribute="top" secondItem="Xyi-8C-Ts9" secondAttribute="bottom" constant="24" id="pOT-H7-Acx"/>
                         <constraint firstAttribute="trailing" secondItem="reH-bh-y86" secondAttribute="trailing" constant="20" id="uwJ-Zz-fFA"/>
                         <constraint firstAttribute="centerX" secondItem="d73-rt-qHg" secondAttribute="centerX" id="z1X-68-vxS"/>
+                        <constraint firstAttribute="bottom" secondItem="Fua-Xr-K8d" secondAttribute="bottom" id="zc3-EE-lgn"/>
                     </constraints>
                 </scrollView>
             </subviews>

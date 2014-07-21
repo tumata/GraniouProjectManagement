@@ -27,8 +27,9 @@
 @property (weak, nonatomic) IBOutlet UITextView *textViewCommentaire;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewImageCommentaire;
 
-@property (strong, nonatomic) UIImageView *imageViewCommentaire;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint;
+@property (strong, nonatomic) UIImage *imageCommentaire;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraintCommentaire;
 
 @end
 
@@ -62,39 +63,12 @@
 {
     [super viewDidLoad];
     
-//    NSString *foo = @"Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
-//    [_textViewDescription setText:foo];
-//    [_textViewCommentaire setText:foo];
+    // -----------------
+    // Generated for the tests
+    //
+    NSString *foo = @"Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+    [_textViewDescription setText:foo];
     [self setGoodSizeForTextView:_textViewDescription];
-//    [self setGoodSizeForTextView:_textViewCommentaire];
-    
-    
-    [self createAndSetImageInView:[UIImage imageNamed:@"LogoGraniou.png"]];
-}
-
--(void)onResume:(MCIntent *)intent {
-    
-    [self reloadData];
-    [super onResume:intent];
-}
-
--(void)onPause:(MCIntent *)intent {
-    _imageViewCommentaire = nil;
-    
-    [super onPause:intent];
-}
-
--(void)reloadData {
-    if (_textViewCommentaire.text.length) {
-        _buttonCommentaire.titleLabel.text = @"Modifier le commentaire";
-    }
-    else _buttonCommentaire.titleLabel.text = @"Ajouter un commentaire";
-    
-    if (_imageViewCommentaire.image) {
-        _buttonImage.titleLabel.text = @"Modifier la photo";
-    }
-    else _buttonImage.titleLabel.text = @"Ajouter une photo";
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,12 +77,24 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setSource:(id)source {
-    _source = source;
-    [self updateView];
+
+-(void)onResume:(MCIntent *)intent {
+    
+    [self reloadView];
+    [super onResume:intent];
 }
 
-- (void)updateView {
+-(void)onPause:(MCIntent *)intent {
+    // todo  : remove all subviews
+    [super onPause:intent];
+}
+
+- (void)setSource:(id)source {
+    _source = source;
+    [self setDataFromSource];
+}
+
+- (void)setDataFromSource {
     id titre = [_source valueForKey:@"nom"];
     id description = [_source valueForKey:@"infos"];
     id commentaire = [_source valueForKey:@"commentaire"];
@@ -120,27 +106,21 @@
     
     [self setGoodSizeForTextView:_textViewDescription];
     [self setGoodSizeForTextView:_textViewCommentaire];
-    
-    _imageViewCommentaire.image = [self getPhotoForUrl:urlPhoto];
-    
 }
 
-- (void)setGoodSizeForTextView:(UITextView *)view {
-    [view setFont:[UIFont systemFontOfSize:15]];
-    CGSize size = [view.text sizeWithFont:[UIFont systemFontOfSize:15]
-                  constrainedToSize:CGSizeMake(view.bounds.size.width, MAX_HEIGHT)
-                      lineBreakMode:UILineBreakModeWordWrap];
+-(void)reloadView {
+    [self createAndSetImage:_imageCommentaire andScrollView:_scrollViewImageCommentaire constraint:_heightConstraintCommentaire];
     
-    [view setBounds:CGRectMake(0, 0, view.bounds.size.width, size.height + 10)];
-    //test
-    //[view setBackgroundColor:[UIColor redColor]];
-
+    if (_textViewCommentaire.text.length) {
+        _buttonCommentaire.titleLabel.text = @"Modifier le commentaire";
+    }
+    else _buttonCommentaire.titleLabel.text = @"Ajouter un commentaire";
+    
+    if (_imageCommentaire) {
+        _buttonImage.titleLabel.text = @"Modifier la photo";
+    }
+    else _buttonImage.titleLabel.text = @"Ajouter une photo";
 }
-
-- (UIImage *)getPhotoForUrl:(id)url {
-    return nil;
-}
-
 
 
 #pragma mark - Actions
@@ -164,7 +144,7 @@
 -(void)exitSavingComment:(NSString *)comment {
     _textViewCommentaire.text = comment;
     
-    [self reloadData];
+    [self reloadView];
     
     [self dismissViewControllerAnimated:YES completion:^{
         _writeCommentVC = nil;
@@ -180,10 +160,9 @@
 #pragma mark - TakePicturesDelegate methods
 
 -(void)exitSavingPicture:(UIImage *)image {
-   // _imageViewCommentaire.image = image;
-    [self createAndSetImageInView:image];
-    
-    [self reloadData];
+    _imageCommentaire = nil;
+    _imageCommentaire = image;
+    [self reloadView];
     
     [self dismissViewControllerAnimated:YES completion:^{
         _takePictureVC = nil;
@@ -197,24 +176,38 @@
 }
 
 #pragma mark - ImageView functions
--(void)createAndSetImageInView:(UIImage *)image {
-    if (image) {
-        image = [image resizedImageWithMaximumSize:CGSizeMake(1000, 600)];
-        
-        _imageViewCommentaire.image = nil;
-        _imageViewCommentaire = nil;
-        _imageViewCommentaire = [[UIImageView alloc] initWithImage:image];
+-(void)createAndSetImage:(UIImage *)theImage andScrollView:(UIScrollView *)scrollView constraint:(NSLayoutConstraint *)constraint{
     
-        if (![_imageViewCommentaire isDescendantOfView:_scrollViewImageCommentaire]) {
-            [_scrollViewImageCommentaire addSubview:_imageViewCommentaire];
-        }
+    if (theImage) {
+        UIImage *image = [theImage resizedImageWithMaximumSize:CGSizeMake(1000, 600)];
         
-        [_scrollViewImageCommentaire setContentSize:_imageViewCommentaire.image.size];
+        [scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
-        if (_scrollViewImageCommentaire.contentSize.height > 390) {
-            [_heightConstraint setConstant:390];
-        } else _heightConstraint.constant = _scrollViewImageCommentaire.contentSize.height;
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        [scrollView addSubview:imageView];
+        
+        [scrollView setContentSize:imageView.image.size];
+        
+        if (scrollView.contentSize.height > 390) {
+            [constraint setConstant:390];
+        } else constraint.constant = scrollView.contentSize.height;
     }
+}
+
+
+#pragma mark - Utils
+
+- (void)setGoodSizeForTextView:(UITextView *)view {
+    [view setFont:[UIFont systemFontOfSize:15]];
+    CGSize size = [view.text sizeWithFont:[UIFont systemFontOfSize:15]
+                        constrainedToSize:CGSizeMake(view.bounds.size.width, MAX_HEIGHT)
+                            lineBreakMode:UILineBreakModeWordWrap];
+    
+    [view setBounds:CGRectMake(0, 0, view.bounds.size.width, size.height + 10)];
+}
+
+- (UIImage *)getPhotoForUrl:(id)url {
+    return nil;
 }
 
 

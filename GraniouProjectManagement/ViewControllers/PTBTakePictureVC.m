@@ -7,6 +7,7 @@
 //
 
 #import "PTBTakePictureVC.h"
+#import "UIImage+ResizeMagick.h"
 
 @interface PTBTakePictureVC () <UINavigationControllerDelegate ,UIImagePickerControllerDelegate>
 
@@ -15,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIView *viewBeforePicture;
 @property (weak, nonatomic) IBOutlet UIView *viewAfterPicture;
 
-@property (weak, nonatomic) UIImage *image;
+@property (strong, nonatomic) UIImage *image;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 
@@ -104,7 +105,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
-    self.image = image;
+    _image = image;
     
     // On enleve le viewController prise de photo
     [self dismissViewControllerAnimated:YES completion:NULL];
@@ -122,7 +123,7 @@
 - (void)imageFromPickerSetNowFinishAndUpdate
 {
     // Affichage de l'image prise dans imageView
-    [_imageView setImage: self.image];
+    [_imageView setImage: [_image resizedImageByMagick:@"640x780"]];
     // Remove la vue avant prise de photo
     [_viewBeforePicture setHidden:true];
     

@@ -4,3 +4,5 @@ pod 'RestKit',       '~> 0.20.3'
 pod 'Reachability',  '~> 3.0.0'
 pod 'MCViewFactory', :git => 'https://github.com/tonyscherba/manticore-iosviewfactory.git'
 pod 'manticore-iosviewfactory', :git => 'https://github.com/YetiHQ/manticore-iosviewfactory.git'
+
+pod "UIImage-ResizeMagick"

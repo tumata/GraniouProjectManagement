@@ -8,6 +8,7 @@
 
 #define MAX_HEIGHT 2000
 
+#import "UIImage+ResizeMagick.h"
 #import "PTBAppDelegate.h"
 #import "PTBTacheVC.h"
 #import "PTBWriteCommentVC.h"
@@ -25,7 +26,9 @@
 @property (weak, nonatomic) IBOutlet UITextView *textViewDescription;
 @property (weak, nonatomic) IBOutlet UITextView *textViewCommentaire;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewImageCommentaire;
-@property (weak, nonatomic) IBOutlet UIImageView *imageViewCommentaire;
+
+@property (strong, nonatomic) UIImageView *imageViewCommentaire;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraint;
 
 @end
 
@@ -65,9 +68,8 @@
     [self setGoodSizeForTextView:_textViewDescription];
 //    [self setGoodSizeForTextView:_textViewCommentaire];
     
-    _imageViewCommentaire.image = nil;
     
-    [_scrollViewImageCommentaire setBounds:CGRectMake(0, 0, 320, 0)];
+    [self createAndSetImageInView:[UIImage imageNamed:@"LogoGraniou.png"]];
 }
 
 -(void)onResume:(MCIntent *)intent {
@@ -178,7 +180,8 @@
 #pragma mark - TakePicturesDelegate methods
 
 -(void)exitSavingPicture:(UIImage *)image {
-    _imageViewCommentaire.image = image;
+   // _imageViewCommentaire.image = image;
+    [self createAndSetImageInView:image];
     
     [self reloadData];
     
@@ -191,6 +194,27 @@
     [self dismissViewControllerAnimated:YES completion:^{
         _takePictureVC = nil;
     }];
+}
+
+#pragma mark - ImageView functions
+-(void)createAndSetImageInView:(UIImage *)image {
+    if (image) {
+        image = [image resizedImageWithMaximumSize:CGSizeMake(1000, 600)];
+        
+        _imageViewCommentaire.image = nil;
+        _imageViewCommentaire = nil;
+        _imageViewCommentaire = [[UIImageView alloc] initWithImage:image];
+    
+        if (![_imageViewCommentaire isDescendantOfView:_scrollViewImageCommentaire]) {
+            [_scrollViewImageCommentaire addSubview:_imageViewCommentaire];
+        }
+        
+        [_scrollViewImageCommentaire setContentSize:_imageViewCommentaire.image.size];
+        
+        if (_scrollViewImageCommentaire.contentSize.height > 390) {
+            [_heightConstraint setConstant:390];
+        } else _heightConstraint.constant = _scrollViewImageCommentaire.contentSize.height;
+    }
 }
 
 

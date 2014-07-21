@@ -8,7 +8,7 @@
             <connections>
                 <outlet property="buttonCommentaire" destination="4ec-eP-FjY" id="ZdX-tf-eMY"/>
                 <outlet property="buttonImage" destination="Fua-Xr-K8d" id="8X0-uW-s17"/>
-                <outlet property="imageViewCommentaire" destination="Hy6-4K-SVL" id="5Qd-gs-dq2"/>
+                <outlet property="heightConstraint" destination="1ZB-0U-j4e" id="bfB-Tx-vx0"/>
                 <outlet property="labelTitre" destination="wF2-FK-3vl" id="0Z3-So-ecX"/>
                 <outlet property="scrollViewImageCommentaire" destination="pLq-r5-5MT" id="oDg-1N-l2o"/>
                 <outlet property="textViewCommentaire" destination="d73-rt-qHg" id="HqH-bM-lkk"/>
@@ -18,7 +18,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="878"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbb-yO-lFh" customClass="PTBNavigationView">
@@ -30,7 +30,7 @@
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pzs-vw-pas">
-                    <rect key="frame" x="0.0" y="64" width="320" height="814"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="432"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titre tache" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wF2-FK-3vl" userLabel="Titre">
@@ -92,20 +92,10 @@
                             </connections>
                         </button>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pLq-r5-5MT" userLabel="ScrollViewImage">
-                            <rect key="frame" x="0.0" y="300" width="320" height="390"/>
+                            <rect key="frame" x="0.0" y="300" width="320" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoGraniou.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hy6-4K-SVL" userLabel="Image View">
-                                    <rect key="frame" x="0.0" y="0.0" width="640" height="439"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                            </subviews>
                             <constraints>
-                                <constraint firstItem="Hy6-4K-SVL" firstAttribute="leading" secondItem="pLq-r5-5MT" secondAttribute="leading" priority="245" id="Jes-q9-krS"/>
-                                <constraint firstAttribute="height" priority="250" constant="390" id="KjT-4e-prc"/>
-                                <constraint firstAttribute="trailing" secondItem="Hy6-4K-SVL" secondAttribute="trailing" priority="250" id="WBR-Tz-5Ll"/>
-                                <constraint firstAttribute="bottom" secondItem="Hy6-4K-SVL" secondAttribute="bottom" priority="500" id="kIO-lw-8YH"/>
-                                <constraint firstItem="Hy6-4K-SVL" firstAttribute="top" secondItem="pLq-r5-5MT" secondAttribute="top" priority="250" id="t7R-cw-7Qd"/>
+                                <constraint firstAttribute="height" priority="250" id="1ZB-0U-j4e"/>
                             </constraints>
                         </scrollView>
                     </subviews>
@@ -116,13 +106,14 @@
                         <constraint firstItem="pLq-r5-5MT" firstAttribute="top" secondItem="Fua-Xr-K8d" secondAttribute="bottom" id="8ZR-H4-uxX"/>
                         <constraint firstAttribute="centerX" secondItem="Xyi-8C-Ts9" secondAttribute="centerX" id="9ft-PX-VtJ"/>
                         <constraint firstAttribute="centerX" secondItem="wF2-FK-3vl" secondAttribute="centerX" id="CtJ-08-Inq"/>
-                        <constraint firstAttribute="trailing" secondItem="pLq-r5-5MT" secondAttribute="trailing" priority="750" id="ERp-sb-rtU"/>
+                        <constraint firstAttribute="trailing" secondItem="pLq-r5-5MT" secondAttribute="trailing" id="ERp-sb-rtU"/>
                         <constraint firstItem="reH-bh-y86" firstAttribute="top" secondItem="wF2-FK-3vl" secondAttribute="bottom" constant="24" id="HUW-ij-ZPn"/>
                         <constraint firstAttribute="centerX" secondItem="reH-bh-y86" secondAttribute="centerX" id="Mac-FF-cDg"/>
                         <constraint firstAttribute="trailing" secondItem="Fua-Xr-K8d" secondAttribute="trailing" id="NGc-d6-snD"/>
                         <constraint firstItem="Fua-Xr-K8d" firstAttribute="top" secondItem="4ec-eP-FjY" secondAttribute="bottom" constant="15" id="NNs-hg-04x"/>
                         <constraint firstAttribute="trailing" secondItem="4ec-eP-FjY" secondAttribute="trailing" constant="20" id="P33-yl-1lx"/>
-                        <constraint firstItem="pLq-r5-5MT" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" priority="750" id="T5K-3x-U7y"/>
+                        <constraint firstItem="pLq-r5-5MT" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" id="T5K-3x-U7y"/>
+                        <constraint firstAttribute="centerX" secondItem="pLq-r5-5MT" secondAttribute="centerX" id="X69-jG-Iet"/>
                         <constraint firstItem="reH-bh-y86" firstAttribute="leading" secondItem="Pzs-vw-pas" secondAttribute="leading" constant="20" id="aIW-qf-kaB"/>
                         <constraint firstAttribute="bottom" secondItem="pLq-r5-5MT" secondAttribute="bottom" id="gQl-sT-ZiT"/>
                         <constraint firstItem="Xyi-8C-Ts9" firstAttribute="top" secondItem="reH-bh-y86" secondAttribute="bottom" constant="41" id="oG6-zk-QfI"/>
@@ -150,7 +141,4 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
-    <resources>
-        <image name="LogoGraniou.png" width="640" height="439"/>
-    </resources>
 </document>

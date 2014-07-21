@@ -28,3 +28,5 @@ DerivedData
 #
 # Pods/
 
+Pods/manticore-iosviewfactory/
+*.DS_Store

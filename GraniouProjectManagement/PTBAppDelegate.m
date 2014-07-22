@@ -164,6 +164,7 @@
     chantier.nom = @"Le plus beau chantier";
     chantier.adresse = @"Rue de la ruelle";
     chantier.brin = @"120";
+    chantier.identifiant = [NSNumber numberWithInt:1];
     [chantier addTachesObject:tache1];
     [chantier addTachesObject:tache2];
     [chantier addTachesObject:tache3];

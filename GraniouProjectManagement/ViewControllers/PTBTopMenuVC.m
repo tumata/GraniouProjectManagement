@@ -62,6 +62,15 @@
     NSLog(@"ok");
 }
 
+- (IBAction)listeTachesBoutonPressed:(id)sender {
+    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_MONTEUR andViewName:VIEW_TACHESTABLE];
+    [intent setAnimationStyle:UIViewAnimationOptionTransitionCrossDissolve];
+    
+    [[intent savedInstanceState] setObject:@"tache" forKey:@"sourceType"];
+    
+    [[MCViewModel sharedModel] setCurrentSection:intent];
+}
+
 - (IBAction)pressBouton:(id)sender {
     
     Tache *tache = [Tache MR_findFirstByAttribute:@"type" withValue:@"tache"];

@@ -7,8 +7,22 @@
 //
 
 #import "PTBTachesTableVC.h"
+#import "Tache.h"
 
-@interface PTBTachesTableVC ()
+#define kTYPE @"type"
+#define kID @"identifiant"
+#define kNom @"titre"
+#define kInfo @"laDescription"
+#define kCommentaire @"commentaire"
+#define kPhotoCommentaire @"images.imageCommentaire"
+
+@interface PTBTachesTableVC () <PTBNavigationViewDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) NSString *sourceType;
+@property (strong, nonatomic) NSArray *sourceArray;
+
+@property (weak, nonatomic) IBOutlet PTBNavigationView *navigationView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -27,12 +41,98 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    _navigationView.delegate = self;
+    [self reloadDataAndView];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)onResume:(MCIntent *)intent {
+    
+    id type = [[intent savedInstanceState] objectForKey:@"sourceType"];
+    _sourceType = [type description];
+    NSLog(@"%@", _sourceType);
+    
+    
+    
+    [super onResume:intent];
+}
+
+-(void)onPause:(MCIntent *)intent {
+    
+    
+    
+    
+    [super onPause:intent];
+}
+
+
+-(void)reloadDataAndView {
+    _sourceArray = [Tache MR_findByAttribute:kTYPE withValue:_sourceType andOrderBy:kID ascending:NO];
+    [_tableView reloadData];
+}
+
+#pragma mark - NavigationView Delegate Methods
+
+-(void)navigationViewDidPressLeftButton {
+    NSAssert([MCViewModel sharedModel].historyStack.count > 1, @"Pressed back button with historystack at 0");
+    [MCViewModel sharedModel].currentSection = [MCIntent intentWithSectionName:SECTION_LAST andAnimation:ANIMATION_POP];
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [_sourceArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    Tache *tache = [_sourceArray objectAtIndex:indexPath.row];
+    
+    if ([(NSString *)[tache valueForKey:kCommentaire] length] > 0 || [tache valueForKeyPath:kPhotoCommentaire]) {
+        [cell.imageView setImage:[UIImage imageNamed:@"check.png"]];
+    } else {
+        [cell.imageView setImage:[UIImage imageNamed:@"unCheck.png"]];
+    }
+    cell.textLabel.text = [tache valueForKey:kNom];
+    return cell;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Tache *tache = [_sourceArray objectAtIndex:indexPath.row];
+    
+    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_MONTEUR andViewName:VIEW_TACHE];
+    
+    [intent setAnimationStyle:UIViewAnimationOptionTransitionCrossDissolve];
+    
+    [[intent savedInstanceState] setObject:tache forKey:@"source"];
+    [[MCViewModel sharedModel] setCurrentSection:intent];
+
 }
 
 @end

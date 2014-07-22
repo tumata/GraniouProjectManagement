@@ -43,6 +43,8 @@
 		F644B11A197ED1BE00D846BE /* IdentifiantsTaches.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B119197ED1BE00D846BE /* IdentifiantsTaches.m */; };
 		F644B11D197ED1BE00D846BE /* Chantier.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B11C197ED1BE00D846BE /* Chantier.m */; };
 		F644B120197ED1BF00D846BE /* Images.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B11F197ED1BF00D846BE /* Images.m */; };
+		F644B127197F0E8200D846BE /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = F644B125197F0E8200D846BE /* check.png */; };
+		F644B128197F0E8200D846BE /* unCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = F644B126197F0E8200D846BE /* unCheck.png */; };
 		F6D3A55F1970A244008FDE1B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A55E1970A244008FDE1B /* Foundation.framework */; };
 		F6D3A5611970A244008FDE1B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5601970A244008FDE1B /* CoreGraphics.framework */; };
 		F6D3A5631970A244008FDE1B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5621970A244008FDE1B /* UIKit.framework */; };
@@ -174,6 +176,8 @@
 		F644B11C197ED1BE00D846BE /* Chantier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chantier.m; sourceTree = "<group>"; };
 		F644B11E197ED1BF00D846BE /* Images.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Images.h; sourceTree = "<group>"; };
 		F644B11F197ED1BF00D846BE /* Images.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Images.m; sourceTree = "<group>"; };
+		F644B125197F0E8200D846BE /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = check.png; path = Images/check.png; sourceTree = "<group>"; };
+		F644B126197F0E8200D846BE /* unCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unCheck.png; path = Images/unCheck.png; sourceTree = "<group>"; };
 		F6D3A55B1970A244008FDE1B /* GraniouProjectManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraniouProjectManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6D3A55E1970A244008FDE1B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F6D3A5601970A244008FDE1B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -575,6 +579,8 @@
 		F6D3A64319798F02008FDE1B /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				F644B125197F0E8200D846BE /* check.png */,
+				F644B126197F0E8200D846BE /* unCheck.png */,
 				F644B107197DEDC100D846BE /* camera.png */,
 				F644B108197DEDC100D846BE /* menu.png */,
 				F644B109197DEDC100D846BE /* remove.png */,
@@ -671,6 +677,7 @@
 				F6D3A5AA197450AC008FDE1B /* MCDefaultMainViewController.xib in Resources */,
 				F6D3A6011975D08A008FDE1B /* PTBDocumentsTableVC.xib in Resources */,
 				F644B10C197DEDC100D846BE /* remove.png in Resources */,
+				F644B128197F0E8200D846BE /* unCheck.png in Resources */,
 				F6D3A56B1970A244008FDE1B /* InfoPlist.strings in Resources */,
 				F6D3A62B19775627008FDE1B /* PTBNavigationView.xib in Resources */,
 				F6D3A5A11970B57D008FDE1B /* PTBProfileSectionVC.xib in Resources */,
@@ -681,6 +688,7 @@
 				F6D3A6031975D08A008FDE1B /* PTBLoadingVC.xib in Resources */,
 				F644B10F197DEDD200D846BE /* fond-1.jpg in Resources */,
 				F6D3A6071975D08A008FDE1B /* PTBMonteurSectionVC.xib in Resources */,
+				F644B127197F0E8200D846BE /* check.png in Resources */,
 				F6D3A60D1975D08A008FDE1B /* PTBTachesTableVC.xib in Resources */,
 				F644B110197DEDD200D846BE /* LogoGraniou.png in Resources */,
 				F6D3A6131975D08A008FDE1B /* PTBWriteCommentVC.xib in Resources */,

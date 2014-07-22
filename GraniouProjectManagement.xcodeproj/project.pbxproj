@@ -37,6 +37,11 @@
 		F644B100197DCC1B00D846BE /* Tache.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B0FF197DCC1B00D846BE /* Tache.m */; };
 		F644B103197DCC1B00D846BE /* Chantier.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B102197DCC1B00D846BE /* Chantier.m */; };
 		F644B106197DCC1C00D846BE /* Images.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B105197DCC1C00D846BE /* Images.m */; };
+		F644B10A197DEDC100D846BE /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = F644B107197DEDC100D846BE /* camera.png */; };
+		F644B10B197DEDC100D846BE /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = F644B108197DEDC100D846BE /* menu.png */; };
+		F644B10C197DEDC100D846BE /* remove.png in Resources */ = {isa = PBXBuildFile; fileRef = F644B109197DEDC100D846BE /* remove.png */; };
+		F644B10F197DEDD200D846BE /* fond-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F644B10D197DEDD200D846BE /* fond-1.jpg */; };
+		F644B110197DEDD200D846BE /* LogoGraniou.png in Resources */ = {isa = PBXBuildFile; fileRef = F644B10E197DEDD200D846BE /* LogoGraniou.png */; };
 		F6D3A55F1970A244008FDE1B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A55E1970A244008FDE1B /* Foundation.framework */; };
 		F6D3A5611970A244008FDE1B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5601970A244008FDE1B /* CoreGraphics.framework */; };
 		F6D3A5631970A244008FDE1B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5621970A244008FDE1B /* UIKit.framework */; };
@@ -61,8 +66,6 @@
 		F6D3A5A51970B612008FDE1B /* PTBAppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5A41970B612008FDE1B /* PTBAppModel.m */; };
 		F6D3A5A9197450AC008FDE1B /* MCDefaultErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5A7197450AB008FDE1B /* MCDefaultErrorViewController.xib */; };
 		F6D3A5AA197450AC008FDE1B /* MCDefaultMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5A8197450AC008FDE1B /* MCDefaultMainViewController.xib */; };
-		F6D3A5D51974AEF0008FDE1B /* LogoGraniou.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5D31974AEF0008FDE1B /* LogoGraniou.png */; };
-		F6D3A5D61974AEF0008FDE1B /* fond-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5D41974AEF0008FDE1B /* fond-1.jpg */; };
 		F6D3A5FE1975D08A008FDE1B /* PTBChantierMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5DC1975D08A008FDE1B /* PTBChantierMenuVC.m */; };
 		F6D3A5FF1975D08A008FDE1B /* PTBChantierMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A5DD1975D08A008FDE1B /* PTBChantierMenuVC.xib */; };
 		F6D3A6001975D08A008FDE1B /* PTBDocumentsTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A5DF1975D08A008FDE1B /* PTBDocumentsTableVC.m */; };
@@ -84,15 +87,8 @@
 		F6D3A6191975D8C6008FDE1B /* PTBAuthUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A6181975D8C6008FDE1B /* PTBAuthUser.m */; };
 		F6D3A61D197752B0008FDE1B /* PTBTacheVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A61B197752B0008FDE1B /* PTBTacheVC.m */; };
 		F6D3A61E197752B0008FDE1B /* PTBTacheVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A61C197752B0008FDE1B /* PTBTacheVC.xib */; };
-		F6D3A625197752F6008FDE1B /* PTBLeveeReserveVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A620197752F6008FDE1B /* PTBLeveeReserveVC.m */; };
-		F6D3A626197752F6008FDE1B /* PTBLeveeReserveVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A621197752F6008FDE1B /* PTBLeveeReserveVC.xib */; };
-		F6D3A627197752F6008FDE1B /* PTBLeveesReserveTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A623197752F6008FDE1B /* PTBLeveesReserveTableVC.m */; };
-		F6D3A628197752F6008FDE1B /* PTBLeveesReserveTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A624197752F6008FDE1B /* PTBLeveesReserveTableVC.xib */; };
 		F6D3A62B19775627008FDE1B /* PTBNavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A62A19775627008FDE1B /* PTBNavigationView.xib */; };
 		F6D3A62E197844B3008FDE1B /* PTBNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3A62D197844B3008FDE1B /* PTBNavigationView.m */; };
-		F6D3A63E19798E4C008FDE1B /* remove.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A63D19798E4C008FDE1B /* remove.png */; };
-		F6D3A64119798EFA008FDE1B /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A63F19798EFA008FDE1B /* camera.png */; };
-		F6D3A64219798EFA008FDE1B /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = F6D3A64019798EFA008FDE1B /* menu.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +166,11 @@
 		F644B102197DCC1B00D846BE /* Chantier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chantier.m; sourceTree = "<group>"; };
 		F644B104197DCC1C00D846BE /* Images.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Images.h; sourceTree = "<group>"; };
 		F644B105197DCC1C00D846BE /* Images.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Images.m; sourceTree = "<group>"; };
+		F644B107197DEDC100D846BE /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camera.png; path = Images/camera.png; sourceTree = "<group>"; };
+		F644B108197DEDC100D846BE /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = Images/menu.png; sourceTree = "<group>"; };
+		F644B109197DEDC100D846BE /* remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = remove.png; path = Images/remove.png; sourceTree = "<group>"; };
+		F644B10D197DEDD200D846BE /* fond-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "fond-1.jpg"; path = "Images/fond-1.jpg"; sourceTree = "<group>"; };
+		F644B10E197DEDD200D846BE /* LogoGraniou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LogoGraniou.png; path = Images/LogoGraniou.png; sourceTree = "<group>"; };
 		F6D3A55B1970A244008FDE1B /* GraniouProjectManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraniouProjectManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6D3A55E1970A244008FDE1B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F6D3A5601970A244008FDE1B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -202,8 +203,6 @@
 		F6D3A5A6197446BB008FDE1B /* NewProjectDevProvisioningProfile.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewProjectDevProvisioningProfile.mobileprovision; sourceTree = "<group>"; };
 		F6D3A5A7197450AB008FDE1B /* MCDefaultErrorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCDefaultErrorViewController.xib; sourceTree = "<group>"; };
 		F6D3A5A8197450AC008FDE1B /* MCDefaultMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MCDefaultMainViewController.xib; sourceTree = "<group>"; };
-		F6D3A5D31974AEF0008FDE1B /* LogoGraniou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoGraniou.png; sourceTree = "<group>"; };
-		F6D3A5D41974AEF0008FDE1B /* fond-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fond-1.jpg"; sourceTree = "<group>"; };
 		F6D3A5DB1975D08A008FDE1B /* PTBChantierMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBChantierMenuVC.h; path = ViewControllers/PTBChantierMenuVC.h; sourceTree = "<group>"; };
 		F6D3A5DC1975D08A008FDE1B /* PTBChantierMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBChantierMenuVC.m; path = ViewControllers/PTBChantierMenuVC.m; sourceTree = "<group>"; };
 		F6D3A5DD1975D08A008FDE1B /* PTBChantierMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBChantierMenuVC.xib; path = ViewControllers/PTBChantierMenuVC.xib; sourceTree = "<group>"; };
@@ -236,18 +235,9 @@
 		F6D3A61A197752B0008FDE1B /* PTBTacheVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBTacheVC.h; path = ViewControllers/PTBTacheVC.h; sourceTree = "<group>"; };
 		F6D3A61B197752B0008FDE1B /* PTBTacheVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBTacheVC.m; path = ViewControllers/PTBTacheVC.m; sourceTree = "<group>"; };
 		F6D3A61C197752B0008FDE1B /* PTBTacheVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBTacheVC.xib; path = ViewControllers/PTBTacheVC.xib; sourceTree = "<group>"; };
-		F6D3A61F197752F6008FDE1B /* PTBLeveeReserveVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBLeveeReserveVC.h; path = ViewControllers/PTBLeveeReserveVC.h; sourceTree = "<group>"; };
-		F6D3A620197752F6008FDE1B /* PTBLeveeReserveVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBLeveeReserveVC.m; path = ViewControllers/PTBLeveeReserveVC.m; sourceTree = "<group>"; };
-		F6D3A621197752F6008FDE1B /* PTBLeveeReserveVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBLeveeReserveVC.xib; path = ViewControllers/PTBLeveeReserveVC.xib; sourceTree = "<group>"; };
-		F6D3A622197752F6008FDE1B /* PTBLeveesReserveTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTBLeveesReserveTableVC.h; path = ViewControllers/PTBLeveesReserveTableVC.h; sourceTree = "<group>"; };
-		F6D3A623197752F6008FDE1B /* PTBLeveesReserveTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTBLeveesReserveTableVC.m; path = ViewControllers/PTBLeveesReserveTableVC.m; sourceTree = "<group>"; };
-		F6D3A624197752F6008FDE1B /* PTBLeveesReserveTableVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PTBLeveesReserveTableVC.xib; path = ViewControllers/PTBLeveesReserveTableVC.xib; sourceTree = "<group>"; };
 		F6D3A62A19775627008FDE1B /* PTBNavigationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTBNavigationView.xib; sourceTree = "<group>"; };
 		F6D3A62C197844B3008FDE1B /* PTBNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTBNavigationView.h; sourceTree = "<group>"; };
 		F6D3A62D197844B3008FDE1B /* PTBNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTBNavigationView.m; sourceTree = "<group>"; };
-		F6D3A63D19798E4C008FDE1B /* remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remove.png; sourceTree = "<group>"; };
-		F6D3A63F19798EFA008FDE1B /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
-		F6D3A64019798EFA008FDE1B /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -380,6 +370,19 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		F644B111197DEE7500D846BE /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3A5DE1975D08A008FDE1B /* PTBDocumentsTableVC.h */,
+				F6D3A5DF1975D08A008FDE1B /* PTBDocumentsTableVC.m */,
+				F6D3A5E01975D08A008FDE1B /* PTBDocumentsTableVC.xib */,
+				F6D3A5ED1975D08A008FDE1B /* PTBShowPdfVC.h */,
+				F6D3A5EE1975D08A008FDE1B /* PTBShowPdfVC.m */,
+				F6D3A5EF1975D08A008FDE1B /* PTBShowPdfVC.xib */,
+			);
+			name = Documents;
+			sourceTree = "<group>";
+		};
 		F6D3A5521970A244008FDE1B = {
 			isa = PBXGroup;
 			children = (
@@ -491,8 +494,8 @@
 			isa = PBXGroup;
 			children = (
 				F6D3A64319798F02008FDE1B /* Icons */,
-				F6D3A5D31974AEF0008FDE1B /* LogoGraniou.png */,
-				F6D3A5D41974AEF0008FDE1B /* fond-1.jpg */,
+				F644B10D197DEDD200D846BE /* fond-1.jpg */,
+				F644B10E197DEDD200D846BE /* LogoGraniou.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -519,39 +522,28 @@
 		F6D3A6151975D172008FDE1B /* Section2 - Monteur */ = {
 			isa = PBXGroup;
 			children = (
+				F6D3A5E71975D08A008FDE1B /* PTBMonteurSectionVC.h */,
+				F6D3A5E81975D08A008FDE1B /* PTBMonteurSectionVC.m */,
+				F6D3A5E91975D08A008FDE1B /* PTBMonteurSectionVC.xib */,
 				F6D3A5F61975D08A008FDE1B /* PTBTopMenuVC.h */,
 				F6D3A5F71975D08A008FDE1B /* PTBTopMenuVC.m */,
 				F6D3A5F81975D08A008FDE1B /* PTBTopMenuVC.xib */,
 				F6D3A5DB1975D08A008FDE1B /* PTBChantierMenuVC.h */,
 				F6D3A5DC1975D08A008FDE1B /* PTBChantierMenuVC.m */,
 				F6D3A5DD1975D08A008FDE1B /* PTBChantierMenuVC.xib */,
-				F6D3A5DE1975D08A008FDE1B /* PTBDocumentsTableVC.h */,
-				F6D3A5DF1975D08A008FDE1B /* PTBDocumentsTableVC.m */,
-				F6D3A5E01975D08A008FDE1B /* PTBDocumentsTableVC.xib */,
-				F6D3A5E71975D08A008FDE1B /* PTBMonteurSectionVC.h */,
-				F6D3A5E81975D08A008FDE1B /* PTBMonteurSectionVC.m */,
-				F6D3A5E91975D08A008FDE1B /* PTBMonteurSectionVC.xib */,
-				F6D3A5ED1975D08A008FDE1B /* PTBShowPdfVC.h */,
-				F6D3A5EE1975D08A008FDE1B /* PTBShowPdfVC.m */,
-				F6D3A5EF1975D08A008FDE1B /* PTBShowPdfVC.xib */,
 				F6D3A5F01975D08A008FDE1B /* PTBTachesTableVC.h */,
 				F6D3A5F11975D08A008FDE1B /* PTBTachesTableVC.m */,
 				F6D3A5F21975D08A008FDE1B /* PTBTachesTableVC.xib */,
 				F6D3A61A197752B0008FDE1B /* PTBTacheVC.h */,
 				F6D3A61B197752B0008FDE1B /* PTBTacheVC.m */,
 				F6D3A61C197752B0008FDE1B /* PTBTacheVC.xib */,
-				F6D3A61F197752F6008FDE1B /* PTBLeveeReserveVC.h */,
-				F6D3A620197752F6008FDE1B /* PTBLeveeReserveVC.m */,
-				F6D3A621197752F6008FDE1B /* PTBLeveeReserveVC.xib */,
-				F6D3A622197752F6008FDE1B /* PTBLeveesReserveTableVC.h */,
-				F6D3A623197752F6008FDE1B /* PTBLeveesReserveTableVC.m */,
-				F6D3A624197752F6008FDE1B /* PTBLeveesReserveTableVC.xib */,
 				F6D3A5F31975D08A008FDE1B /* PTBTakePictureVC.h */,
 				F6D3A5F41975D08A008FDE1B /* PTBTakePictureVC.m */,
 				F6D3A5F51975D08A008FDE1B /* PTBTakePictureVC.xib */,
 				F6D3A5F91975D08A008FDE1B /* PTBWriteCommentVC.h */,
 				F6D3A5FA1975D08A008FDE1B /* PTBWriteCommentVC.m */,
 				F6D3A5FB1975D08A008FDE1B /* PTBWriteCommentVC.xib */,
+				F644B111197DEE7500D846BE /* Documents */,
 			);
 			name = "Section2 - Monteur";
 			sourceTree = "<group>";
@@ -578,9 +570,9 @@
 		F6D3A64319798F02008FDE1B /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				F6D3A63F19798EFA008FDE1B /* camera.png */,
-				F6D3A64019798EFA008FDE1B /* menu.png */,
-				F6D3A63D19798E4C008FDE1B /* remove.png */,
+				F644B107197DEDC100D846BE /* camera.png */,
+				F644B108197DEDC100D846BE /* menu.png */,
+				F644B109197DEDC100D846BE /* remove.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -666,30 +658,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6D3A5D51974AEF0008FDE1B /* LogoGraniou.png in Resources */,
 				F6D3A60F1975D08A008FDE1B /* PTBTakePictureVC.xib in Resources */,
 				F6D3A61E197752B0008FDE1B /* PTBTacheVC.xib in Resources */,
 				F6D3A60B1975D08A008FDE1B /* PTBShowPdfVC.xib in Resources */,
 				F6D3A6111975D08A008FDE1B /* PTBTopMenuVC.xib in Resources */,
-				F6D3A5D61974AEF0008FDE1B /* fond-1.jpg in Resources */,
 				F6D3A5FF1975D08A008FDE1B /* PTBChantierMenuVC.xib in Resources */,
 				F6D3A5AA197450AC008FDE1B /* MCDefaultMainViewController.xib in Resources */,
 				F6D3A6011975D08A008FDE1B /* PTBDocumentsTableVC.xib in Resources */,
-				F6D3A628197752F6008FDE1B /* PTBLeveesReserveTableVC.xib in Resources */,
+				F644B10C197DEDC100D846BE /* remove.png in Resources */,
 				F6D3A56B1970A244008FDE1B /* InfoPlist.strings in Resources */,
 				F6D3A62B19775627008FDE1B /* PTBNavigationView.xib in Resources */,
 				F6D3A5A11970B57D008FDE1B /* PTBProfileSectionVC.xib in Resources */,
 				F6D3A59D1970B57D008FDE1B /* PTBAccountVC.xib in Resources */,
+				F644B10A197DEDC100D846BE /* camera.png in Resources */,
 				F6D3A5761970A244008FDE1B /* Images.xcassets in Resources */,
+				F644B10B197DEDC100D846BE /* menu.png in Resources */,
 				F6D3A6031975D08A008FDE1B /* PTBLoadingVC.xib in Resources */,
-				F6D3A626197752F6008FDE1B /* PTBLeveeReserveVC.xib in Resources */,
-				F6D3A63E19798E4C008FDE1B /* remove.png in Resources */,
+				F644B10F197DEDD200D846BE /* fond-1.jpg in Resources */,
 				F6D3A6071975D08A008FDE1B /* PTBMonteurSectionVC.xib in Resources */,
 				F6D3A60D1975D08A008FDE1B /* PTBTachesTableVC.xib in Resources */,
+				F644B110197DEDD200D846BE /* LogoGraniou.png in Resources */,
 				F6D3A6131975D08A008FDE1B /* PTBWriteCommentVC.xib in Resources */,
-				F6D3A64219798EFA008FDE1B /* menu.png in Resources */,
 				F6D3A5A9197450AC008FDE1B /* MCDefaultErrorViewController.xib in Resources */,
-				F6D3A64119798EFA008FDE1B /* camera.png in Resources */,
 				F6D3A59F1970B57D008FDE1B /* PTBLoginVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -756,7 +746,6 @@
 				F644B0F4197DBB3600D846BE /* MagicalRecord.m in Sources */,
 				F644B0F1197DBB3600D846BE /* MagicalRecord+Options.m in Sources */,
 				F6D3A60E1975D08A008FDE1B /* PTBTakePictureVC.m in Sources */,
-				F6D3A627197752F6008FDE1B /* PTBLeveesReserveTableVC.m in Sources */,
 				F644B0EC197DBB3600D846BE /* NSPersistentStore+MagicalRecord.m in Sources */,
 				F6D3A60C1975D08A008FDE1B /* PTBTachesTableVC.m in Sources */,
 				F644B106197DCC1C00D846BE /* Images.m in Sources */,
@@ -773,7 +762,6 @@
 				F6D3A5711970A244008FDE1B /* PTBAppDelegate.m in Sources */,
 				F644B0E9197DBB3600D846BE /* NSManagedObjectContext+MagicalSaves.m in Sources */,
 				F6D3A60A1975D08A008FDE1B /* PTBShowPdfVC.m in Sources */,
-				F6D3A625197752F6008FDE1B /* PTBLeveeReserveVC.m in Sources */,
 				F644B0E1197DBB3600D846BE /* NSString+MagicalDataImport.m in Sources */,
 				F644B0EE197DBB3600D846BE /* MagicalRecord+Actions.m in Sources */,
 				F644B0DE197DBB3600D846BE /* NSNumber+MagicalDataImport.m in Sources */,

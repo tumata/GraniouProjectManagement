@@ -8,8 +8,6 @@ Monteur:
    ChantierMenu
    TachesTable
    Tache
-   LeveesReserveTable
-   LeveeReserve
    TakePicture
    WriteComment
    DocumentsTable

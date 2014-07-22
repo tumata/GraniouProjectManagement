@@ -8,7 +8,6 @@
 
 #define MAX_HEIGHT 2000
 
-
 #import "UIImage+ResizeMagick.h"
 #import "PTBAppDelegate.h"
 #import "PTBTacheVC.h"
@@ -29,11 +28,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonImage;
 @property (weak, nonatomic) IBOutlet UITextView *textViewDescription;
 @property (weak, nonatomic) IBOutlet UITextView *textViewCommentaire;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollViewImageDescription;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewImageCommentaire;
 
+@property (strong, nonatomic) UIImage *imageDescription;
 @property (strong, nonatomic) UIImage *imageCommentaire;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraintDescription;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraintCommentaire;
+
 
 @end
 
@@ -43,7 +47,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-               
+        
     }
     return self;
 }
@@ -51,7 +55,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     _navigationView.delegate = self;
     
     // -----------------
@@ -60,6 +63,8 @@
     //NSString *foo = @"Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
     //[_textViewDescription setText:foo];
     //[self setGoodSizeForTextView:_textViewDescription];
+    
+    //_imageDescription = [UIImage imageNamed:@"LogoGraniou.png"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,7 +72,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 -(void)onResume:(MCIntent *)intent {
     
@@ -78,7 +82,7 @@
 }
 
 -(void)onPause:(MCIntent *)intent {
-    // todo  : remove all subviews
+    // todo : remove all subviews
     
     // Save context
     [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
@@ -99,13 +103,17 @@
     _labelTitre.text = [titre description];
     _textViewDescription.text = [description description];
     _textViewCommentaire.text = [commentaire description];
+    
     _imageCommentaire = [_source valueForKeyPath:@"images.imageCommentaire"];
+    // recuperer image description si ldr
     
     [self setGoodSizeForTextView:_textViewDescription];
     [self setGoodSizeForTextView:_textViewCommentaire];
+    
 }
 
 -(void)reloadView {
+    [self createAndSetImage:_imageDescription andScrollView:_scrollViewImageDescription constraint:_heightConstraintDescription];
     [self createAndSetImage:_imageCommentaire andScrollView:_scrollViewImageCommentaire constraint:_heightConstraintCommentaire];
     
     if (_textViewCommentaire.text.length) {
@@ -136,12 +144,11 @@
     [self presentViewController:_takePictureVC animated:YES completion:nil];
 }
 
-#pragma mark - NavigationView delegate
+#pragma mark - NavigationView delegate methods
 
 -(void)navigationViewDidPressLeftButton {
     NSAssert([MCViewModel sharedModel].historyStack.count > 1, @"Pressed back button with historystack at 0");
     [MCViewModel sharedModel].currentSection = [MCIntent intentWithSectionName:SECTION_LAST andAnimation:ANIMATION_POP];
-    
 }
 
 #pragma mark - WriteCommentDelegate methods
@@ -199,7 +206,6 @@
     }
 }
 
-
 #pragma mark - Utils
 
 - (void)setGoodSizeForTextView:(UITextView *)view {
@@ -214,6 +220,7 @@
 - (UIImage *)getPhotoForUrl:(id)url {
     return nil;
 }
+
 
 
 @end

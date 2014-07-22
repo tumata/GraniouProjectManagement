@@ -7,6 +7,7 @@
 //
 
 #import "PTBAccountVC.h"
+#import "Chantier.h"
 
 @interface PTBAccountVC ()
 
@@ -39,7 +40,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+   
+    [self setDataFromCore];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,13 +49,45 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - Actions
 
 - (IBAction)actionLogout:(id)sender {
 }
 
 - (IBAction)actionLogin:(id)sender {
+    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_MONTEUR andViewName:VIEW_TOPMENU];
+    [intent setAnimationStyle:UIViewAnimationOptionTransitionCrossDissolve];
+    [[MCViewModel sharedModel] setCurrentSection:intent];
 }
 
 - (IBAction)actionSync:(id)sender {
 }
+
+#pragma mark - Core Data function
+
+- (void)setDataFromCore {
+    Chantier *chantier = [Chantier MR_findFirst];
+    
+//    chantier.codesite = @"code 1634";
+//    chantier.phase = @"153 1634";
+//    chantier.amenageur = @"Vinci autoroutes";
+//    chantier.ladate = @"01/02/1992";
+    
+    _labelTitre.text = chantier.nom;
+    _labelAdresse.text = chantier.adresse;
+    _labelCodeSite.text = chantier.codesite;
+    _labelBrin.text = chantier.brin;
+    _labelPhase.text = chantier.phase;
+    _labelAmenageur.text = chantier.amenageur;
+    _labelDate.text = chantier.ladate;
+    
+//    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+//        if (success) {
+//            NSLog(@"You successfully saved your context.");
+//        } else if (error) {
+//            NSLog(@"Error saving context: %@", error.description);
+//        }
+//    }];
+}
+
 @end

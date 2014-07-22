@@ -23,8 +23,6 @@
 #define VIEW_CHANTIERMENU      @"PTBChantierMenuVC"  // 5
 #define VIEW_TACHESTABLE       @"PTBTachesTableVC"
 #define VIEW_TACHE             @"PTBTacheVC"
-#define VIEW_LEVEESRESERVETABLE @"PTBLeveesReserveTableVC"
-#define VIEW_LEVEERESERVE      @"PTBLeveeReserveVC"
 #define VIEW_TAKEPICTURE       @"PTBTakePictureVC"  // 10
 #define VIEW_WRITECOMMENT      @"PTBWriteCommentVC"
 #define VIEW_DOCUMENTSTABLE    @"PTBDocumentsTableVC"

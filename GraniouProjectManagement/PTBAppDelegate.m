@@ -58,7 +58,7 @@
     //MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_LOGIN];      //Understand section/view
 
     
-    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_MONTEUR andViewName:VIEW_TOPMENU];
+    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_ACCOUNT];
     
     
     [intent setAnimationStyle:UIViewAnimationOptionTransitionFlipFromLeft];
@@ -119,8 +119,6 @@
     [factory registerView:VIEW_CHANTIERMENU]; // 5
     [factory registerView:VIEW_TACHESTABLE];
     [factory registerView:VIEW_TACHE];
-    [factory registerView:VIEW_LEVEESRESERVETABLE];
-    [factory registerView:VIEW_LEVEERESERVE];
     [factory registerView:VIEW_TAKEPICTURE]; // 10
     [factory registerView:VIEW_WRITECOMMENT];
     [factory registerView:VIEW_DOCUMENTSTABLE];

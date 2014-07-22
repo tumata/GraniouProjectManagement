@@ -60,24 +60,13 @@
 {
     [super viewDidLoad];
     
-    
-    
     _scrollViewGlobal.scrollsToTop = YES;
     _navigationView.delegate = self;
-    
-    
-    // -----------------
-    // Generated for the tests
-    //
-    //NSString *foo = @"Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
-    //[_textViewDescription setText:foo];
-    //[self setGoodSizeForTextView:_textViewDescription];
-    
-    //_imageDescription = [UIImage imageNamed:@"LogoGraniou.png"];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSLog(@"reload");
+    
+    NSLog(@"viewDidAppear");
     [self reloadView];
 }
 
@@ -199,6 +188,7 @@
 
 -(void)exitSavingComment:(NSString *)comment {
     
+    comment = [self makeSureStringIsCompliant:comment];
     _commentaire = comment;
     [self saveCommentToPersistantStore];
     
@@ -269,6 +259,12 @@
                             lineBreakMode:UILineBreakModeWordWrap];
     
     [view setBounds:CGRectMake(0, 0, view.bounds.size.width, size.height + 10)];
+}
+
+- (NSString *)makeSureStringIsCompliant:(NSString *)mot {
+    
+    NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:@"$\\][{}/"];
+    return [[mot componentsSeparatedByCharactersInSet:charSet] componentsJoinedByString:@""];
 }
 
 #pragma mark - Persistant store functions

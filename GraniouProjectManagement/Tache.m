@@ -2,22 +2,24 @@
 //  Tache.m
 //  GraniouProjectManagement
 //
-//  Created by Yeti LLC on 7/14/14.
+//  Created by Yeti LLC on 7/21/14.
 //  Copyright (c) 2014 Graniou. All rights reserved.
 //
 
 #import "Tache.h"
 #import "Chantier.h"
+#import "Images.h"
 
 
 @implementation Tache
 
-@dynamic infos;
-@dynamic nom;
-@dynamic identifiant;
 @dynamic commentaire;
-@dynamic urlPhoto;
+@dynamic identifiant;
+@dynamic laDescription;
 @dynamic modified;
+@dynamic titre;
+@dynamic type;
+@dynamic images;
 @dynamic chantier;
 
 @end

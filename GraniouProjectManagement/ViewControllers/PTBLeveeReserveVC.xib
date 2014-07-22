@@ -11,6 +11,7 @@
                 <outlet property="heightConstraintCommentaire" destination="z92-pi-rTH" id="1Ie-Lj-Jc4"/>
                 <outlet property="heightConstraintDescription" destination="gcC-I1-620" id="KAf-Nt-TYa"/>
                 <outlet property="labelTitre" destination="Cw1-7h-3YW" id="dr2-A3-drP"/>
+                <outlet property="navigationView" destination="29A-HK-225" id="O1x-j9-1M4"/>
                 <outlet property="scrollViewImageCommentaire" destination="uOx-Nq-ygN" id="Yhg-uR-IkZ"/>
                 <outlet property="scrollViewImageDescription" destination="A7b-uv-oyu" id="cuu-fj-6N5"/>
                 <outlet property="textViewCommentaire" destination="C6b-tZ-ZQE" id="7Cr-wq-0jG"/>

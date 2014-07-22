@@ -10,6 +10,7 @@
                 <outlet property="buttonImage" destination="Fua-Xr-K8d" id="8X0-uW-s17"/>
                 <outlet property="heightConstraintCommentaire" destination="1ZB-0U-j4e" id="rvi-Ox-fXE"/>
                 <outlet property="labelTitre" destination="wF2-FK-3vl" id="0Z3-So-ecX"/>
+                <outlet property="navigationView" destination="cbb-yO-lFh" id="xgj-vi-T3l"/>
                 <outlet property="scrollViewImageCommentaire" destination="pLq-r5-5MT" id="oDg-1N-l2o"/>
                 <outlet property="textViewCommentaire" destination="d73-rt-qHg" id="HqH-bM-lkk"/>
                 <outlet property="textViewDescription" destination="reH-bh-y86" id="wpg-UW-9qP"/>

@@ -5,7 +5,7 @@
         <attribute name="amenageur" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="brin" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="codesite" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="identifiant" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="identifiant" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="ladate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ligne" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nom" optional="YES" attributeType="String" syncable="YES"/>
@@ -13,24 +13,26 @@
         <attribute name="phase" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pk" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="recetteur" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="leveesReserve" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="LeveeReserve" syncable="YES"/>
         <relationship name="taches" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Tache" inverseName="chantier" inverseEntity="Tache" syncable="YES"/>
     </entity>
-    <entity name="LeveeReserve" representedClassName="LeveeReserve" parentEntity="Tache" syncable="YES">
-        <attribute name="urlInfoPhoto" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Images" representedClassName="Images" syncable="YES">
+        <attribute name="imageCommentaire" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="imageDescription" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tache" inverseName="images" inverseEntity="Tache" syncable="YES"/>
     </entity>
     <entity name="Tache" representedClassName="Tache" syncable="YES">
         <attribute name="commentaire" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifiant" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="infos" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="laDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="modified" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="nom" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="urlPhoto" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="titre" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="chantier" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chantier" inverseName="taches" inverseEntity="Chantier" syncable="YES"/>
+        <relationship name="images" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Images" inverseName="parent" inverseEntity="Images" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Chantier" positionX="-47" positionY="26" width="128" height="253"/>
-        <element name="LeveeReserve" positionX="234" positionY="35" width="128" height="58"/>
-        <element name="Tache" positionX="234" positionY="146" width="128" height="148"/>
+        <element name="Chantier" positionX="-47" positionY="26" width="128" height="238"/>
+        <element name="Tache" positionX="198" positionY="117" width="128" height="163"/>
+        <element name="Images" positionX="412" positionY="191" width="128" height="88"/>
     </elements>
 </model>

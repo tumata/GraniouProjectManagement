@@ -12,13 +12,13 @@
 #import "PTBWriteCommentVC.h"
 #import "PTBTakePictureVC.h"
 
-@interface PTBTopMenuVC () <PTBNavigationViewDelegate, PTBWriteCommentDelegate, PTBTakePictureVCDelegate>
+#import "Tache.h"
+
+@interface PTBTopMenuVC () <PTBNavigationViewDelegate>
 
 @property (weak, nonatomic) IBOutlet PTBNavigationView *navigationView;
 
 @property (weak, nonatomic) PTBWriteCommentVC *writeCommentVC;
-@property (weak, nonatomic) IBOutlet UITextView *textView;
-
 @property (weak, nonatomic) PTBTakePictureVC *takePictureVC;
 
 - (IBAction)pressBouton:(id)sender;
@@ -53,7 +53,9 @@
 #pragma mark - NavigationVC delegate methods
 
 - (void)navigationViewDidPressLeftButton {
-    NSLog(@"Bouton retour appuye");
+    NSAssert([MCViewModel sharedModel].historyStack.count > 1, @"Pressed back button with historystack at 0");
+    [MCViewModel sharedModel].currentSection = [MCIntent intentWithSectionName:SECTION_LAST andAnimation:ANIMATION_POP];
+    
 }
 
 - (void)navigationViewDidPressRightButton {
@@ -61,56 +63,28 @@
 }
 
 - (IBAction)pressBouton:(id)sender {
-//    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_MONTEUR andViewName:VIEW_WRITECOMMENT];
-//    
-//    
-//    [intent setAnimationStyle:UIViewAnimationOptionTransitionFlipFromLeft];
-//    [[MCViewModel sharedModel] setCurrentSection:intent];
-
     
-//    PTBWriteCommentVC *writeCommentVC = [[PTBWriteCommentVC alloc] init];
-//    writeCommentVC.delegate = self;
-//    _writeCommentVC = writeCommentVC;
-//    [self presentViewController:self.writeCommentVC animated:YES completion:nil];
+    Tache *tache = [Tache MR_findFirstByAttribute:@"type" withValue:@"tache"];
     
-
-//    PTBTakePictureVC *takePictureVC = [[PTBTakePictureVC alloc] init];
-//    takePictureVC.delegate = self;
-//    _takePictureVC = takePictureVC;
-//    [self presentViewController:_takePictureVC animated:YES completion:nil];
+    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_MONTEUR andViewName:VIEW_TACHE];
+    [intent setAnimationStyle:UIViewAnimationOptionTransitionCrossDissolve];
     
+    [[intent savedInstanceState] setObject:tache forKey:@"source"];
     
-    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_MONTEUR andViewName:VIEW_LEVEERESERVE];
-
-    [intent setAnimationStyle:UIViewAnimationOptionTransitionFlipFromLeft];
     [[MCViewModel sharedModel] setCurrentSection:intent];
     
 }
 
-#pragma mark - WriteCommentDelegate methods
 
--(void)exitSavingComment:(NSString *)comment {
+- (IBAction)pressLR:(id)sender {
+    Tache *tache = [Tache MR_findFirstByAttribute:@"type" withValue:@"ldr"];
     
-    _textView.text = comment;
-    [self dismissViewControllerAnimated:YES completion:^{
-        _writeCommentVC = nil;
-    }];
-}
-
--(void)exitCancelling {
-    [self dismissViewControllerAnimated:YES completion:^{
-        _writeCommentVC = nil;
-    }];
-}
-
-#pragma mark - TakePicturesDelegate methods
-
--(void)exitSavingPicture:(UIImage *)image {
+    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_MONTEUR andViewName:VIEW_LEVEERESERVE];
+    [intent setAnimationStyle:UIViewAnimationOptionTransitionCrossDissolve];
     
-}
-
--(void)exitCancellingPicture {
+    [[intent savedInstanceState] setObject:tache forKey:@"source"];
     
+    [[MCViewModel sharedModel] setCurrentSection:intent];
 }
 
 @end

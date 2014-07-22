@@ -2,12 +2,11 @@
 //  Chantier.m
 //  GraniouProjectManagement
 //
-//  Created by Yeti LLC on 7/14/14.
+//  Created by Yeti LLC on 7/21/14.
 //  Copyright (c) 2014 Graniou. All rights reserved.
 //
 
 #import "Chantier.h"
-#import "LeveeReserve.h"
 #import "Tache.h"
 
 
@@ -26,6 +25,5 @@
 @dynamic pk;
 @dynamic recetteur;
 @dynamic taches;
-@dynamic leveesReserve;
 
 @end

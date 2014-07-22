@@ -22,3 +22,38 @@
 @property (nonatomic, weak) id<PTBTakePictureVCDelegate>delegate;
 
 @end
+
+
+
+/*
+
+ ---------------------------------------------
+ ---------->  Pour lancer la fenetre :
+ ---------------------------------------------
+ 
+ //    PTBTakePictureVC *takePictureVC = [[PTBTakePictureVC alloc] init];
+ //    takePictureVC.delegate = self;
+ //    _takePictureVC = takePictureVC;
+ //    [self presentViewController:_takePictureVC animated:YES completion:nil];
+ 
+ ----------------------------------------------
+ ---------->  Delegate a implanter :
+ ---------------------------------------------
+ 
+ #pragma mark - TakePictureDelegate methods
+ 
+ - (void)exitSavingPicture:(UIImage *)image {
+    [self dismissViewControllerAnimated:YES completion:^{
+        _takePictureVC = nil;
+    }];
+ }
+ 
+ -(void)exitCancellingPicture {
+    [self dismissViewControllerAnimated:YES completion:^{
+        _takePictureVC = nil;
+    }];
+ }
+
+ 
+
+*/

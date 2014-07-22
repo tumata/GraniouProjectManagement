@@ -10,15 +10,11 @@
 #import "ManticoreViewFactory.h"
 #import "PTBAppModel.h"
 
-#import "Chantier.h"
 #import "Tache.h"
-#import "LeveeReserve.h"
+#import "Chantier.h"
+
 
 @implementation PTBAppDelegate
-
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 
 + (UIWindow*)mainWindow{
@@ -35,6 +31,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [MagicalRecord setupCoreDataStackWithStoreNamed:@"GraniouDB"];
+    
+    //[self setupSomeObjectsInDB] ;
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
@@ -64,7 +64,7 @@
     [intent setAnimationStyle:UIViewAnimationOptionTransitionFlipFromLeft];
     [[MCViewModel sharedModel] setCurrentSection:intent];
 
-    //[self tutorial];
+   
     
     return YES;
 }
@@ -93,96 +93,9 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
+    [MagicalRecord cleanUp];
 }
 
-- (void)saveContext
-{
-    NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil) {
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-             // Replace this implementation with code to handle the error appropriately.
-             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        } 
-    }
-}
-
-#pragma mark - Core Data stack
-
-// Returns the managed object context for the application.
-// If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
-- (NSManagedObjectContext *)managedObjectContext
-{
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
-    }
-    
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-    }
-    return _managedObjectContext;
-}
-
-// Returns the managed object model for the application.
-// If the model doesn't already exist, it is created from the application's model.
-- (NSManagedObjectModel *)managedObjectModel
-{
-    if (_managedObjectModel != nil) {
-        return _managedObjectModel;
-    }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"GraniouProjectManagement" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return _managedObjectModel;
-}
-
-// Returns the persistent store coordinator for the application.
-// If the coordinator doesn't already exist, it is created and the application's store added to it.
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
-    if (_persistentStoreCoordinator != nil) {
-        return _persistentStoreCoordinator;
-    }
-    
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"GraniouProjectManagement.sqlite"];
-    
-    NSError *error = nil;
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-         
-         Typical reasons for an error here include:
-         * The persistent store is not accessible;
-         * The schema for the persistent store is incompatible with current managed object model.
-         Check the error message to determine what the actual problem was.
-         
-         
-         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
-         
-         If you encounter schema incompatibility errors during development, you can reduce their frequency by:
-         * Simply deleting the existing store:
-         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
-         
-         * Performing automatic lightweight migration by passing the following dictionary as the options parameter:
-         @{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES}
-         
-         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
-         
-         */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }    
-    
-    return _persistentStoreCoordinator;
-}
 
 #pragma mark - Application's Documents directory
 
@@ -221,42 +134,50 @@
 
 #define CHANTIER    @"Chantier"
 #define TACHE       @"Tache"
-#define LR          @"LeveeReserve"
 
--(void) tutorial {
-    NSManagedObjectContext *context = [self managedObjectContext];
-    Chantier *chantier = [NSEntityDescription
-                                      insertNewObjectForEntityForName:CHANTIER
-                                      inManagedObjectContext:context];
-    chantier.identifiant = [NSNumber numberWithInt:1];
-    chantier.adresse = @"Testville";
-    chantier.codesite = @"Testland";
-    
-    Tache *tache = [NSEntityDescription
-                                            insertNewObjectForEntityForName:TACHE
-                                            inManagedObjectContext:context];
-    tache.nom = @"tache 1";
-    tache.chantier = chantier;
-    
-    [chantier addTachesObject:tache];
-    
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
-    
-    // Test listing all FailedBankInfos from the store
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:CHANTIER
-                                              inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (Chantier *chantier in fetchedObjects) {
-        NSLog(@"Adresse: %@", chantier.adresse);
-        Tache *tache = [chantier.taches anyObject];
-        NSLog(@"Zip: %@", tache.nom);
-    }
 
+- (void)setupSomeObjectsInDB {
+    
+    Tache *tache1 = [Tache MR_createEntity];
+    tache1.identifiant = [NSNumber numberWithInt:1];
+    tache1.titre = @"Regarder le monde";
+    tache1.laDescription = @"Aller faire un tour en biccyclette pendant que son frere fait des betises et que ses parents sont a la foire comtoise. Plutot cool comme programme n'est-ce pas ?";
+    tache1.type = @"tache";
+    
+    Tache *tache2 = [Tache MR_createEntity];
+    tache2.identifiant = [NSNumber numberWithInt:2];
+    tache2.titre = @"Regarder la deux";
+    tache2.laDescription = @"Aller faire un tour en biccyclette pendant que son frere fait des betises et que ses parents sont a la foire comtoise. Plutot cool comme programme n'est-ce pas ?";
+    tache2.type = @"ldr";
+    
+    Tache *tache3 = [Tache MR_createEntity];
+    tache3.identifiant = [NSNumber numberWithInt:3];
+    tache3.titre = @"Regarder le trois";
+    tache3.laDescription = @"Aller faire un tour en biccyclette pendant que son frere fait des betises et que ses parents sont a la foire comtoise. Plutot cool comme programme n'est-ce pas ?";
+    tache3.type = @"ldr";
+    
+    Tache *tache4 = [Tache MR_createEntity];
+    tache4.identifiant = [NSNumber numberWithInt:4];
+    tache4.titre = @"Regarder la quatre";
+    tache4.laDescription = @"Aller faire un tour en biccyclette pendant que son frere fait des betises et que ses parents sont a la foire comtoise. Plutot cool comme programme n'est-ce pas ?";
+    tache4.type = @"tache";
+    
+    Chantier *chantier = [Chantier MR_createEntity];
+    chantier.nom = @"Le plus beau chantier";
+    chantier.adresse = @"Rue de la ruelle";
+    chantier.brin = @"120";
+    [chantier addTachesObject:tache1];
+    [chantier addTachesObject:tache2];
+    [chantier addTachesObject:tache3];
+    [chantier addTachesObject:tache4];
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        if (success) {
+            NSLog(@"You successfully saved your context.");
+        } else if (error) {
+            NSLog(@"Error saving context: %@", error.description);
+        }
+    }];
 }
 
 

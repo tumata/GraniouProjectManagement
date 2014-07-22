@@ -14,8 +14,12 @@
 #import "PTBWriteCommentVC.h"
 #import "PTBTakePictureVC.h"
 #import "PTBLeveeReserveVC.h"
+#import "Tache.h"
 
-@interface PTBLeveeReserveVC () <PTBWriteCommentDelegate, PTBTakePictureVCDelegate>
+@interface PTBLeveeReserveVC () <PTBWriteCommentDelegate, PTBTakePictureVCDelegate, PTBNavigationViewDelegate>
+
+
+@property (weak, nonatomic) IBOutlet PTBNavigationView *navigationView;
 
 @property (strong, nonatomic) PTBWriteCommentVC *writeCommentVC;
 @property (strong, nonatomic) PTBTakePictureVC *takePictureVC;
@@ -44,7 +48,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -52,13 +56,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _navigationView.delegate = self;
     
     // -----------------
     // Generated for the tests
     //
-    NSString *foo = @"Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
-    [_textViewDescription setText:foo];
-    [self setGoodSizeForTextView:_textViewDescription];
+    //NSString *foo = @"Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+    //[_textViewDescription setText:foo];
+    //[self setGoodSizeForTextView:_textViewDescription];
     
     _imageDescription = [UIImage imageNamed:@"LogoGraniou.png"];
 }
@@ -71,15 +76,20 @@
 
 -(void)onResume:(MCIntent *)intent {
     
+    [self setSource:[intent.savedInstanceState objectForKey:@"source"]];
+    
     [self reloadView];
     [super onResume:intent];
 }
 
 -(void)onPause:(MCIntent *)intent {
     // todo : remove all subviews
+    
+    // Save context
+    [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
+    
     [super onPause:intent];
 }
-
 
 - (void)setSource:(id)source {
     _source = source;
@@ -87,14 +97,16 @@
 }
 
 - (void)setDataFromSource {
-    id titre = [_source valueForKey:@"nom"];
-    id description = [_source valueForKey:@"infos"];
+    id titre = [_source valueForKey:@"titre"];
+    id description = [_source valueForKey:@"laDescription"];
     id commentaire = [_source valueForKey:@"commentaire"];
-    id urlPhoto = [_source valueForKey:@"urlPhoto"];
     
     _labelTitre.text = [titre description];
     _textViewDescription.text = [description description];
     _textViewCommentaire.text = [commentaire description];
+    
+    _imageCommentaire = [_source valueForKeyPath:@"images.imageCommentaire"];
+    // recuperer image description si ldr
     
     [self setGoodSizeForTextView:_textViewDescription];
     [self setGoodSizeForTextView:_textViewCommentaire];
@@ -131,6 +143,13 @@
     takePictureVC.delegate = self;
     _takePictureVC = takePictureVC;
     [self presentViewController:_takePictureVC animated:YES completion:nil];
+}
+
+#pragma mark - NavigationView delegate methods
+
+-(void)navigationViewDidPressLeftButton {
+    NSAssert([MCViewModel sharedModel].historyStack.count > 1, @"Pressed back button with historystack at 0");
+    [MCViewModel sharedModel].currentSection = [MCIntent intentWithSectionName:SECTION_LAST andAnimation:ANIMATION_POP];
 }
 
 #pragma mark - WriteCommentDelegate methods

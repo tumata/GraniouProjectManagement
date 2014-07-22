@@ -14,9 +14,11 @@
 #import "PTBWriteCommentVC.h"
 #import "PTBTakePictureVC.h"
 #import "Tache.h"
+#import "Images.h"
 
 @interface PTBTacheVC () <PTBWriteCommentDelegate, PTBTakePictureVCDelegate, PTBNavigationViewDelegate>
 
+@property (strong, nonatomic) NSManagedObject *source;
 
 @property (weak, nonatomic) IBOutlet PTBNavigationView *navigationView;
 
@@ -29,9 +31,11 @@
 @property (weak, nonatomic) IBOutlet UITextView *textViewDescription;
 @property (weak, nonatomic) IBOutlet UITextView *textViewCommentaire;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollViewGlobal;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewImageDescription;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewImageCommentaire;
 
+@property (strong, nonatomic) NSString *commentaire;
 @property (strong, nonatomic) UIImage *imageDescription;
 @property (strong, nonatomic) UIImage *imageCommentaire;
 
@@ -55,7 +59,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    
+    _scrollViewGlobal.scrollsToTop = YES;
     _navigationView.delegate = self;
+    
     
     // -----------------
     // Generated for the tests
@@ -67,6 +76,11 @@
     //_imageDescription = [UIImage imageNamed:@"LogoGraniou.png"];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"reload");
+    [self reloadView];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -74,18 +88,30 @@
 }
 
 -(void)onResume:(MCIntent *)intent {
-    
+    NSAssert([intent.savedInstanceState objectForKey:@"source"], @"Pas d'ID recu");
     [self setSource:[intent.savedInstanceState objectForKey:@"source"]];
     
-    [self reloadView];
+    // Affiche classe selectionee
+    NSLog(@"%@", [[_source superclass] description]);
+    
+    // Test que source est instance de NSManagedObject
+    NSAssert([[[_source superclass] description] isEqualToString:@"NSManagedObject"], @"Mausaise classe _source dans tache");
+    
     [super onResume:intent];
 }
 
 -(void)onPause:(MCIntent *)intent {
-    // todo : remove all subviews
+    // Remove all heavy stuff from there
+    _source = nil;
     
-    // Save context
-    [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
+    _imageCommentaire = nil;
+    _imageDescription = nil;
+    [[_scrollViewImageCommentaire subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [[_scrollViewImageDescription subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    [_scrollViewGlobal setContentOffset:CGPointZero animated:NO];
+    
+    NSLog(@"pause");
     
     [super onPause:intent];
 }
@@ -100,31 +126,48 @@
     id description = [_source valueForKey:@"laDescription"];
     id commentaire = [_source valueForKey:@"commentaire"];
     
+    _commentaire = [commentaire description];
     _labelTitre.text = [titre description];
     _textViewDescription.text = [description description];
-    _textViewCommentaire.text = [commentaire description];
     
-    _imageCommentaire = [_source valueForKeyPath:@"images.imageCommentaire"];
-    // recuperer image description si ldr
     
-    [self setGoodSizeForTextView:_textViewDescription];
-    [self setGoodSizeForTextView:_textViewCommentaire];
+    NSData *imageDescription = [_source valueForKeyPath:@"images.imageDescription"];
+    if (imageDescription) _imageDescription = [UIImage imageWithData:imageDescription];
     
+    NSData *imageCommentaire = [_source valueForKeyPath:@"images.imageCommentaire"];
+    if (imageCommentaire) _imageCommentaire = [UIImage imageWithData:imageCommentaire];
 }
 
 -(void)reloadView {
+    // Creation des images si elles sont la
     [self createAndSetImage:_imageDescription andScrollView:_scrollViewImageDescription constraint:_heightConstraintDescription];
     [self createAndSetImage:_imageCommentaire andScrollView:_scrollViewImageCommentaire constraint:_heightConstraintCommentaire];
     
-    if (_textViewCommentaire.text.length) {
-        _buttonCommentaire.titleLabel.text = @"Modifier le commentaire";
+    // Commentaire
+    _textViewCommentaire.text = _commentaire;
+    
+    // Contenu des boutons
+    if (_commentaire.length > 0) {
+        [_buttonCommentaire setSelected:0];
+        [_buttonCommentaire setTitle:@"Modifier le commentaire" forState:UIControlStateNormal];
     }
-    else _buttonCommentaire.titleLabel.text = @"Ajouter un commentaire";
+    else {
+        [_buttonCommentaire setSelected:0];
+        [_buttonCommentaire setTitle:@"Ajouter un commentaire" forState:UIControlStateNormal];
+    }
     
     if (_imageCommentaire) {
-        _buttonImage.titleLabel.text = @"Modifier la photo";
+        [_buttonImage setSelected:0];
+        [_buttonImage setTitle:@"Modifier la photo" forState:UIControlStateNormal];
     }
-    else _buttonImage.titleLabel.text = @"Ajouter une photo";
+    else {
+        [_buttonImage setSelected:0];
+        [_buttonImage setTitle:@"Ajouter une photo" forState:UIControlStateNormal];
+    }
+    
+    // Taille des textView
+    [self setGoodSizeForTextView:_textViewDescription];
+    [self setGoodSizeForTextView:_textViewCommentaire];
 }
 
 
@@ -133,6 +176,7 @@
 - (IBAction)actionCommentaire:(id)sender {
     PTBWriteCommentVC *writeCommentVC = [[PTBWriteCommentVC alloc] init];
     writeCommentVC.delegate = self;
+    [writeCommentVC setCommentaire: _commentaire];
     _writeCommentVC = writeCommentVC;
     [self presentViewController:self.writeCommentVC animated:YES completion:nil];
 }
@@ -154,18 +198,22 @@
 #pragma mark - WriteCommentDelegate methods
 
 -(void)exitSavingComment:(NSString *)comment {
-    _textViewCommentaire.text = comment;
     
-    [self reloadView];
+    _commentaire = comment;
+    [self saveCommentToPersistantStore];
     
     [self dismissViewControllerAnimated:YES completion:^{
         _writeCommentVC = nil;
+        
     }];
+    
+    [self reloadView];
 }
 
 -(void)exitCancelling {
     [self dismissViewControllerAnimated:YES completion:^{
         _writeCommentVC = nil;
+        [self reloadView];
     }];
 }
 
@@ -174,8 +222,9 @@
 -(void)exitSavingPicture:(UIImage *)image {
     _imageCommentaire = nil;
     _imageCommentaire = image;
-    [self reloadView];
+    [self savePictureToPersistantStore];
     
+    [self reloadView];
     [self dismissViewControllerAnimated:YES completion:^{
         _takePictureVC = nil;
     }];
@@ -193,8 +242,10 @@
     if (theImage) {
         UIImage *image = [theImage resizedImageWithMaximumSize:CGSizeMake(1000, 600)];
         
-        [scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        
+        if (scrollView.subviews.count > 0) {
+            [scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        }
+    
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         [scrollView addSubview:imageView];
         
@@ -203,6 +254,9 @@
         if (scrollView.contentSize.height > 390) {
             [constraint setConstant:390];
         } else constraint.constant = scrollView.contentSize.height;
+    }
+    else {
+        [constraint setConstant:0];
     }
 }
 
@@ -217,8 +271,40 @@
     [view setBounds:CGRectMake(0, 0, view.bounds.size.width, size.height + 10)];
 }
 
-- (UIImage *)getPhotoForUrl:(id)url {
-    return nil;
+#pragma mark - Persistant store functions
+
+- (void)saveCommentToPersistantStore {
+    [_source setValue:_commentaire forKey:@"commentaire"];
+    
+    [[_source managedObjectContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        if (success) {
+            NSLog(@"Saved Comment succes");
+        }
+        else NSLog(@"Error saving comment : %@", error.localizedDescription);
+    }];
+}
+
+- (void)savePictureToPersistantStore {
+    NSData *imageData = UIImageJPEGRepresentation(_imageCommentaire, 1.0);
+    
+    if (![_source valueForKeyPath:@"images.imageCommentaire"]) {
+        Images *image = [Images MR_createEntity];
+        image.imageCommentaire = imageData;
+        
+        [_source setValue:image forKey:@"images"];
+    }
+    else {
+        [_source setValue:imageData forKeyPath:@"images.imageCommentaire"];
+    }
+    
+    
+    [[_source managedObjectContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        if (success) {
+            NSLog(@"Saved image with succes");
+        }
+        else NSLog(@"Error saving image : %@", error.localizedDescription);
+    }];
+
 }
 
 

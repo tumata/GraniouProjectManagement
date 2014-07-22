@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
+@property (nonatomic, strong) NSString *commentaire;
+
 - (IBAction)actionValider:(id)sender;
 - (IBAction)actionCancel:(id)sender;
 
@@ -37,6 +39,8 @@
     if ([[UIScreen mainScreen]bounds].size.height < 500) {
         [self registerForKeyboardNotifications];
     }
+    
+    _textView.text = _commentaire;
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,8 +50,7 @@
 }
 
 - (void)setCommentaire:(NSString *)commentaire {
-    _commentaire = commentaire;
-    self.textView.text = _commentaire;
+    _commentaire = [commentaire copy];
 }
 
 

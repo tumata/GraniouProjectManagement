@@ -20,7 +20,8 @@
 @interface PTBWriteCommentVC : UIViewController
 
 @property (nonatomic, weak) id<PTBWriteCommentDelegate>delegate;
-@property (nonatomic, copy) NSString *commentaire;
+
+- (void)setCommentaire:(NSString *)commentaire;
 
 @end
 

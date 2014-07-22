@@ -34,14 +34,15 @@
 		F644B0F2197DBB3600D846BE /* MagicalRecord+Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B0D2197DBB3600D846BE /* MagicalRecord+Setup.m */; };
 		F644B0F3197DBB3600D846BE /* MagicalRecord+ShorthandSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B0D4197DBB3600D846BE /* MagicalRecord+ShorthandSupport.m */; };
 		F644B0F4197DBB3600D846BE /* MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B0D6197DBB3600D846BE /* MagicalRecord.m */; };
-		F644B100197DCC1B00D846BE /* Tache.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B0FF197DCC1B00D846BE /* Tache.m */; };
-		F644B103197DCC1B00D846BE /* Chantier.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B102197DCC1B00D846BE /* Chantier.m */; };
-		F644B106197DCC1C00D846BE /* Images.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B105197DCC1C00D846BE /* Images.m */; };
 		F644B10A197DEDC100D846BE /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = F644B107197DEDC100D846BE /* camera.png */; };
 		F644B10B197DEDC100D846BE /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = F644B108197DEDC100D846BE /* menu.png */; };
 		F644B10C197DEDC100D846BE /* remove.png in Resources */ = {isa = PBXBuildFile; fileRef = F644B109197DEDC100D846BE /* remove.png */; };
 		F644B10F197DEDD200D846BE /* fond-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F644B10D197DEDD200D846BE /* fond-1.jpg */; };
 		F644B110197DEDD200D846BE /* LogoGraniou.png in Resources */ = {isa = PBXBuildFile; fileRef = F644B10E197DEDD200D846BE /* LogoGraniou.png */; };
+		F644B117197ED1BE00D846BE /* Tache.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B116197ED1BE00D846BE /* Tache.m */; };
+		F644B11A197ED1BE00D846BE /* IdentifiantsTaches.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B119197ED1BE00D846BE /* IdentifiantsTaches.m */; };
+		F644B11D197ED1BE00D846BE /* Chantier.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B11C197ED1BE00D846BE /* Chantier.m */; };
+		F644B120197ED1BF00D846BE /* Images.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B11F197ED1BF00D846BE /* Images.m */; };
 		F6D3A55F1970A244008FDE1B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A55E1970A244008FDE1B /* Foundation.framework */; };
 		F6D3A5611970A244008FDE1B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5601970A244008FDE1B /* CoreGraphics.framework */; };
 		F6D3A5631970A244008FDE1B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5621970A244008FDE1B /* UIKit.framework */; };
@@ -160,17 +161,19 @@
 		F644B0D8197DBB3600D846BE /* MagicalRecordLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecordLogging.h; sourceTree = "<group>"; };
 		F644B0D9197DBB3600D846BE /* MagicalRecordShorthand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecordShorthand.h; sourceTree = "<group>"; };
 		F644B0DA197DBB3600D846BE /* CoreData+MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreData+MagicalRecord.h"; sourceTree = "<group>"; };
-		F644B0FE197DCC1B00D846BE /* Tache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tache.h; sourceTree = "<group>"; };
-		F644B0FF197DCC1B00D846BE /* Tache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tache.m; sourceTree = "<group>"; };
-		F644B101197DCC1B00D846BE /* Chantier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chantier.h; sourceTree = "<group>"; };
-		F644B102197DCC1B00D846BE /* Chantier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chantier.m; sourceTree = "<group>"; };
-		F644B104197DCC1C00D846BE /* Images.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Images.h; sourceTree = "<group>"; };
-		F644B105197DCC1C00D846BE /* Images.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Images.m; sourceTree = "<group>"; };
 		F644B107197DEDC100D846BE /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camera.png; path = Images/camera.png; sourceTree = "<group>"; };
 		F644B108197DEDC100D846BE /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = Images/menu.png; sourceTree = "<group>"; };
 		F644B109197DEDC100D846BE /* remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = remove.png; path = Images/remove.png; sourceTree = "<group>"; };
 		F644B10D197DEDD200D846BE /* fond-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "fond-1.jpg"; path = "Images/fond-1.jpg"; sourceTree = "<group>"; };
 		F644B10E197DEDD200D846BE /* LogoGraniou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LogoGraniou.png; path = Images/LogoGraniou.png; sourceTree = "<group>"; };
+		F644B115197ED1BE00D846BE /* Tache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tache.h; sourceTree = "<group>"; };
+		F644B116197ED1BE00D846BE /* Tache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tache.m; sourceTree = "<group>"; };
+		F644B118197ED1BE00D846BE /* IdentifiantsTaches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentifiantsTaches.h; sourceTree = "<group>"; };
+		F644B119197ED1BE00D846BE /* IdentifiantsTaches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentifiantsTaches.m; sourceTree = "<group>"; };
+		F644B11B197ED1BE00D846BE /* Chantier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chantier.h; sourceTree = "<group>"; };
+		F644B11C197ED1BE00D846BE /* Chantier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chantier.m; sourceTree = "<group>"; };
+		F644B11E197ED1BF00D846BE /* Images.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Images.h; sourceTree = "<group>"; };
+		F644B11F197ED1BF00D846BE /* Images.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Images.m; sourceTree = "<group>"; };
 		F6D3A55B1970A244008FDE1B /* GraniouProjectManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraniouProjectManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6D3A55E1970A244008FDE1B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F6D3A5601970A244008FDE1B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -480,12 +483,14 @@
 		F6D3A5B419748E6F008FDE1B /* MOModel */ = {
 			isa = PBXGroup;
 			children = (
-				F644B104197DCC1C00D846BE /* Images.h */,
-				F644B105197DCC1C00D846BE /* Images.m */,
-				F644B101197DCC1B00D846BE /* Chantier.h */,
-				F644B102197DCC1B00D846BE /* Chantier.m */,
-				F644B0FE197DCC1B00D846BE /* Tache.h */,
-				F644B0FF197DCC1B00D846BE /* Tache.m */,
+				F644B11E197ED1BF00D846BE /* Images.h */,
+				F644B11F197ED1BF00D846BE /* Images.m */,
+				F644B11B197ED1BE00D846BE /* Chantier.h */,
+				F644B11C197ED1BE00D846BE /* Chantier.m */,
+				F644B118197ED1BE00D846BE /* IdentifiantsTaches.h */,
+				F644B119197ED1BE00D846BE /* IdentifiantsTaches.m */,
+				F644B115197ED1BE00D846BE /* Tache.h */,
+				F644B116197ED1BE00D846BE /* Tache.m */,
 			);
 			name = MOModel;
 			sourceTree = "<group>";
@@ -748,15 +753,14 @@
 				F6D3A60E1975D08A008FDE1B /* PTBTakePictureVC.m in Sources */,
 				F644B0EC197DBB3600D846BE /* NSPersistentStore+MagicalRecord.m in Sources */,
 				F6D3A60C1975D08A008FDE1B /* PTBTachesTableVC.m in Sources */,
-				F644B106197DCC1C00D846BE /* Images.m in Sources */,
 				F644B0DC197DBB3600D846BE /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				F644B0F3197DBB3600D846BE /* MagicalRecord+ShorthandSupport.m in Sources */,
 				F6D3A6121975D08A008FDE1B /* PTBWriteCommentVC.m in Sources */,
+				F644B11A197ED1BE00D846BE /* IdentifiantsTaches.m in Sources */,
 				F644B0E8197DBB3600D846BE /* NSManagedObjectContext+MagicalRecord.m in Sources */,
 				F6D3A6001975D08A008FDE1B /* PTBDocumentsTableVC.m in Sources */,
 				F6D3A5FE1975D08A008FDE1B /* PTBChantierMenuVC.m in Sources */,
 				F6D3A59C1970B57D008FDE1B /* PTBAccountVC.m in Sources */,
-				F644B103197DCC1B00D846BE /* Chantier.m in Sources */,
 				F6D3A5A01970B57D008FDE1B /* PTBProfileSectionVC.m in Sources */,
 				F644B0E4197DBB3600D846BE /* NSManagedObject+MagicalFinders.m in Sources */,
 				F6D3A5711970A244008FDE1B /* PTBAppDelegate.m in Sources */,
@@ -768,14 +772,16 @@
 				F644B0E2197DBB3600D846BE /* NSManagedObject+MagicalAggregation.m in Sources */,
 				F6D3A5741970A244008FDE1B /* GraniouProjectManagement.xcdatamodeld in Sources */,
 				F644B0E0197DBB3600D846BE /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
+				F644B11D197ED1BE00D846BE /* Chantier.m in Sources */,
 				F644B0E3197DBB3600D846BE /* NSManagedObject+MagicalDataImport.m in Sources */,
 				F6D3A6191975D8C6008FDE1B /* PTBAuthUser.m in Sources */,
 				F6D3A6061975D08A008FDE1B /* PTBMonteurSectionVC.m in Sources */,
-				F644B100197DCC1B00D846BE /* Tache.m in Sources */,
+				F644B120197ED1BF00D846BE /* Images.m in Sources */,
 				F644B0DF197DBB3600D846BE /* NSObject+MagicalDataImport.m in Sources */,
 				F644B0ED197DBB3600D846BE /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */,
 				F6D3A61D197752B0008FDE1B /* PTBTacheVC.m in Sources */,
 				F6D3A6101975D08A008FDE1B /* PTBTopMenuVC.m in Sources */,
+				F644B117197ED1BE00D846BE /* Tache.m in Sources */,
 				F644B0EB197DBB3600D846BE /* NSManagedObjectModel+MagicalRecord.m in Sources */,
 				F644B0E6197DBB3600D846BE /* NSManagedObject+MagicalRequests.m in Sources */,
 				F6D3A62E197844B3008FDE1B /* PTBNavigationView.m in Sources */,

@@ -2,14 +2,14 @@
 //  Chantier.h
 //  GraniouProjectManagement
 //
-//  Created by Yeti LLC on 7/21/14.
+//  Created by Yeti LLC on 7/22/14.
 //  Copyright (c) 2014 Graniou. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Tache;
+@class IdentifiantsTaches, Tache;
 
 @interface Chantier : NSManagedObject
 
@@ -26,6 +26,7 @@
 @property (nonatomic, retain) NSString * pk;
 @property (nonatomic, retain) NSString * recetteur;
 @property (nonatomic, retain) NSSet *taches;
+@property (nonatomic, retain) NSSet *listeTaches;
 @end
 
 @interface Chantier (CoreDataGeneratedAccessors)
@@ -34,5 +35,10 @@
 - (void)removeTachesObject:(Tache *)value;
 - (void)addTaches:(NSSet *)values;
 - (void)removeTaches:(NSSet *)values;
+
+- (void)addListeTachesObject:(IdentifiantsTaches *)value;
+- (void)removeListeTachesObject:(IdentifiantsTaches *)value;
+- (void)addListeTaches:(NSSet *)values;
+- (void)removeListeTaches:(NSSet *)values;
 
 @end

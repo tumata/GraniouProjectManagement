@@ -2,7 +2,7 @@
 //  Tache.m
 //  GraniouProjectManagement
 //
-//  Created by Yeti LLC on 7/21/14.
+//  Created by Yeti LLC on 7/22/14.
 //  Copyright (c) 2014 Graniou. All rights reserved.
 //
 
@@ -19,7 +19,7 @@
 @dynamic modified;
 @dynamic titre;
 @dynamic type;
-@dynamic images;
 @dynamic chantier;
+@dynamic images;
 
 @end

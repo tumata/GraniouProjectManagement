@@ -52,6 +52,12 @@
 #pragma mark - Actions
 
 - (IBAction)actionLogout:(id)sender {
+    Chantier *chantier = [Chantier MR_findFirst];
+    
+    [[chantier managedObjectContext] MR_saveToPersistentStoreAndWait];
+    
+    [self setDataFromCore];
+
 }
 
 - (IBAction)actionLogin:(id)sender {
@@ -67,12 +73,7 @@
 
 - (void)setDataFromCore {
     Chantier *chantier = [Chantier MR_findFirst];
-    
-//    chantier.codesite = @"code 1634";
-//    chantier.phase = @"153 1634";
-//    chantier.amenageur = @"Vinci autoroutes";
-//    chantier.ladate = @"01/02/1992";
-    
+
     _labelTitre.text = chantier.nom;
     _labelAdresse.text = chantier.adresse;
     _labelCodeSite.text = chantier.codesite;
@@ -80,14 +81,6 @@
     _labelPhase.text = chantier.phase;
     _labelAmenageur.text = chantier.amenageur;
     _labelDate.text = chantier.ladate;
-    
-//    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-//        if (success) {
-//            NSLog(@"You successfully saved your context.");
-//        } else if (error) {
-//            NSLog(@"Error saving context: %@", error.description);
-//        }
-//    }];
 }
 
 @end

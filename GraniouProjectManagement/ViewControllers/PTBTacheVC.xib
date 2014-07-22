@@ -12,6 +12,7 @@
                 <outlet property="heightConstraintDescription" destination="DMN-ee-ABC" id="BJU-mE-mEJ"/>
                 <outlet property="labelTitre" destination="OJV-Mv-8tM" id="9Zw-vW-YX4"/>
                 <outlet property="navigationView" destination="wkH-WL-un5" id="CMR-Ik-NeJ"/>
+                <outlet property="scrollViewGlobal" destination="74j-0J-ufz" id="k60-Lm-RDs"/>
                 <outlet property="scrollViewImageCommentaire" destination="8wC-aN-eRs" id="lvQ-9y-DBG"/>
                 <outlet property="scrollViewImageDescription" destination="AJ5-vO-3Rn" id="xVH-0h-GrT"/>
                 <outlet property="textViewCommentaire" destination="Qsg-8r-dsd" id="vNm-LJ-Rut"/>
@@ -77,10 +78,13 @@
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rk8-0R-DNn" userLabel="Add/change comment">
-                            <rect key="frame" x="20" y="204" width="280" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rk8-0R-DNn" userLabel="Add/change comment">
+                            <rect key="frame" x="0.0" y="204" width="320" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="hLT-42-cBW"/>
+                            </constraints>
                             <state key="normal" title="Ajouter un commentaire">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -97,9 +101,12 @@
                             </constraints>
                         </scrollView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sY-fF-NyQ" userLabel="Add/change image">
-                            <rect key="frame" x="0.0" y="254" width="320" height="30"/>
+                            <rect key="frame" x="0.0" y="254" width="321" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="Jxs-h3-BMn"/>
+                            </constraints>
                             <state key="normal" title="Ajouter une photo">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -120,6 +127,7 @@
                         <constraint firstAttribute="trailing" secondItem="Qsg-8r-dsd" secondAttribute="trailing" constant="20" id="Nba-lL-Lm9"/>
                         <constraint firstAttribute="centerX" secondItem="3Nk-J5-kQa" secondAttribute="centerX" id="SDr-eV-kbL"/>
                         <constraint firstAttribute="centerX" secondItem="OJV-Mv-8tM" secondAttribute="centerX" id="U6l-Ka-f0z"/>
+                        <constraint firstAttribute="centerX" secondItem="5sY-fF-NyQ" secondAttribute="centerX" id="VRP-pH-N0W"/>
                         <constraint firstItem="Des-VK-PfN" firstAttribute="top" secondItem="OJV-Mv-8tM" secondAttribute="bottom" constant="24" id="Wvs-Dc-y6q"/>
                         <constraint firstItem="Des-VK-PfN" firstAttribute="leading" secondItem="74j-0J-ufz" secondAttribute="leading" constant="20" id="aBy-qe-GvT"/>
                         <constraint firstItem="3Nk-J5-kQa" firstAttribute="top" secondItem="AJ5-vO-3Rn" secondAttribute="bottom" constant="20" id="aqF-nr-hAN"/>
@@ -130,12 +138,11 @@
                         <constraint firstItem="OJV-Mv-8tM" firstAttribute="top" secondItem="74j-0J-ufz" secondAttribute="top" constant="20" id="jej-gr-ZPi"/>
                         <constraint firstItem="Rk8-0R-DNn" firstAttribute="top" secondItem="Qsg-8r-dsd" secondAttribute="bottom" id="kJo-RA-fBg"/>
                         <constraint firstAttribute="centerX" secondItem="Qsg-8r-dsd" secondAttribute="centerX" id="lAj-i9-pY9"/>
-                        <constraint firstItem="Rk8-0R-DNn" firstAttribute="leading" secondItem="74j-0J-ufz" secondAttribute="leading" constant="20" id="lLI-Zv-wwZ"/>
+                        <constraint firstItem="Rk8-0R-DNn" firstAttribute="leading" secondItem="74j-0J-ufz" secondAttribute="leading" id="lLI-Zv-wwZ"/>
                         <constraint firstItem="8wC-aN-eRs" firstAttribute="leading" secondItem="74j-0J-ufz" secondAttribute="leading" id="n8U-8N-nRo"/>
-                        <constraint firstAttribute="trailing" secondItem="Rk8-0R-DNn" secondAttribute="trailing" constant="20" id="q1O-zk-c4D"/>
+                        <constraint firstAttribute="trailing" secondItem="Rk8-0R-DNn" secondAttribute="trailing" id="q1O-zk-c4D"/>
                         <constraint firstAttribute="centerX" secondItem="Des-VK-PfN" secondAttribute="centerX" id="qSN-qf-phm"/>
                         <constraint firstAttribute="trailing" secondItem="8wC-aN-eRs" secondAttribute="trailing" id="spb-hf-ho3"/>
-                        <constraint firstAttribute="trailing" secondItem="5sY-fF-NyQ" secondAttribute="trailing" id="x6b-B0-ZzG"/>
                         <constraint firstItem="AJ5-vO-3Rn" firstAttribute="top" secondItem="Des-VK-PfN" secondAttribute="bottom" id="z5v-VV-i4S"/>
                     </constraints>
                 </scrollView>

@@ -13,6 +13,7 @@
         <attribute name="phase" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pk" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="recetteur" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="region" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="listeTaches" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IdentifiantsTaches" inverseName="parent" inverseEntity="IdentifiantsTaches" syncable="YES"/>
         <relationship name="taches" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Tache" inverseName="chantier" inverseEntity="Tache" syncable="YES"/>
     </entity>
@@ -37,7 +38,7 @@
         <relationship name="images" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Images" inverseName="parent" inverseEntity="Images" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Chantier" positionX="-47" positionY="26" width="128" height="253"/>
+        <element name="Chantier" positionX="-47" positionY="26" width="128" height="268"/>
         <element name="Images" positionX="412" positionY="191" width="128" height="88"/>
         <element name="Tache" positionX="198" positionY="117" width="128" height="163"/>
         <element name="IdentifiantsTaches" positionX="-45" positionY="341" width="128" height="88"/>

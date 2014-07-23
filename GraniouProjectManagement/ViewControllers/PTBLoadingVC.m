@@ -8,8 +8,11 @@
 
 #import "PTBLoadingVC.h"
 #import "PTBAppModel.h"
+#import "PTBGetChantier.h"
 
 @interface PTBLoadingVC ()
+
+@property (weak, nonatomic) IBOutlet UIProgressView *loadingProgress;
 
 @end
 
@@ -27,7 +30,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    PTBGetChantier *getChantier = [[PTBGetChantier alloc] init];
+    [getChantier startDownloadingChantierWithProgressView:_loadingProgress withCallback:^(BOOL succes, NSError *error) {
+        if (succes) {
+            NSLog(@"Success");
+        }
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning

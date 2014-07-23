@@ -25,6 +25,7 @@
 @property (nonatomic, retain) NSString * phase;
 @property (nonatomic, retain) NSString * pk;
 @property (nonatomic, retain) NSString * recetteur;
+@property (nonatomic, retain) NSString * region;
 @property (nonatomic, retain) NSSet *taches;
 @property (nonatomic, retain) NSSet *listeTaches;
 @end

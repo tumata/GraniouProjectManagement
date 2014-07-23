@@ -16,6 +16,8 @@ typedef void (^PTBCompletionBlock)(BOOL succes, NSError *error);
 + (bool)isLoggedIn;
 + (NSString *)getIDChantier;
 
++ (BOOL)isAllTachesDownloaded;
+
 - (void)tryLoginUser:(NSString *)username password:(NSString *)pass withCallback:(PTBCompletionBlock)callback;
 
 @end

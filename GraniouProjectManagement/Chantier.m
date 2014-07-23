@@ -25,6 +25,7 @@
 @dynamic phase;
 @dynamic pk;
 @dynamic recetteur;
+@dynamic region;
 @dynamic taches;
 @dynamic listeTaches;
 

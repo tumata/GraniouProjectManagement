@@ -10,9 +10,6 @@
 
 @interface PTBLoadingVC : MCViewController
 
-@property (weak, nonatomic) IBOutlet UIProgressView *loadingProgress;
-
-
 - (IBAction)buttonPressed:(id)sender;
 
 @end

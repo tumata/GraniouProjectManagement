@@ -41,10 +41,11 @@
 		F644B110197DEDD200D846BE /* LogoGraniou.png in Resources */ = {isa = PBXBuildFile; fileRef = F644B10E197DEDD200D846BE /* LogoGraniou.png */; };
 		F644B117197ED1BE00D846BE /* Tache.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B116197ED1BE00D846BE /* Tache.m */; };
 		F644B11A197ED1BE00D846BE /* IdentifiantsTaches.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B119197ED1BE00D846BE /* IdentifiantsTaches.m */; };
-		F644B11D197ED1BE00D846BE /* Chantier.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B11C197ED1BE00D846BE /* Chantier.m */; };
 		F644B120197ED1BF00D846BE /* Images.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B11F197ED1BF00D846BE /* Images.m */; };
 		F644B127197F0E8200D846BE /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = F644B125197F0E8200D846BE /* check.png */; };
 		F644B128197F0E8200D846BE /* unCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = F644B126197F0E8200D846BE /* unCheck.png */; };
+		F644B12B197F1D0800D846BE /* PTBGetChantier.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B12A197F1D0800D846BE /* PTBGetChantier.m */; };
+		F644B12E197F254900D846BE /* Chantier.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B12D197F254900D846BE /* Chantier.m */; };
 		F6D3A55F1970A244008FDE1B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A55E1970A244008FDE1B /* Foundation.framework */; };
 		F6D3A5611970A244008FDE1B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5601970A244008FDE1B /* CoreGraphics.framework */; };
 		F6D3A5631970A244008FDE1B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5621970A244008FDE1B /* UIKit.framework */; };
@@ -172,12 +173,14 @@
 		F644B116197ED1BE00D846BE /* Tache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tache.m; sourceTree = "<group>"; };
 		F644B118197ED1BE00D846BE /* IdentifiantsTaches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentifiantsTaches.h; sourceTree = "<group>"; };
 		F644B119197ED1BE00D846BE /* IdentifiantsTaches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentifiantsTaches.m; sourceTree = "<group>"; };
-		F644B11B197ED1BE00D846BE /* Chantier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chantier.h; sourceTree = "<group>"; };
-		F644B11C197ED1BE00D846BE /* Chantier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chantier.m; sourceTree = "<group>"; };
 		F644B11E197ED1BF00D846BE /* Images.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Images.h; sourceTree = "<group>"; };
 		F644B11F197ED1BF00D846BE /* Images.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Images.m; sourceTree = "<group>"; };
 		F644B125197F0E8200D846BE /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = check.png; path = Images/check.png; sourceTree = "<group>"; };
 		F644B126197F0E8200D846BE /* unCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unCheck.png; path = Images/unCheck.png; sourceTree = "<group>"; };
+		F644B129197F1D0800D846BE /* PTBGetChantier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTBGetChantier.h; sourceTree = "<group>"; };
+		F644B12A197F1D0800D846BE /* PTBGetChantier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTBGetChantier.m; sourceTree = "<group>"; };
+		F644B12C197F254900D846BE /* Chantier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chantier.h; sourceTree = "<group>"; };
+		F644B12D197F254900D846BE /* Chantier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chantier.m; sourceTree = "<group>"; };
 		F6D3A55B1970A244008FDE1B /* GraniouProjectManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraniouProjectManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6D3A55E1970A244008FDE1B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F6D3A5601970A244008FDE1B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -487,10 +490,10 @@
 		F6D3A5B419748E6F008FDE1B /* MOModel */ = {
 			isa = PBXGroup;
 			children = (
+				F644B12C197F254900D846BE /* Chantier.h */,
+				F644B12D197F254900D846BE /* Chantier.m */,
 				F644B11E197ED1BF00D846BE /* Images.h */,
 				F644B11F197ED1BF00D846BE /* Images.m */,
-				F644B11B197ED1BE00D846BE /* Chantier.h */,
-				F644B11C197ED1BE00D846BE /* Chantier.m */,
 				F644B118197ED1BE00D846BE /* IdentifiantsTaches.h */,
 				F644B119197ED1BE00D846BE /* IdentifiantsTaches.m */,
 				F644B115197ED1BE00D846BE /* Tache.h */,
@@ -562,6 +565,8 @@
 			children = (
 				F6D3A6171975D8C6008FDE1B /* PTBAuthUser.h */,
 				F6D3A6181975D8C6008FDE1B /* PTBAuthUser.m */,
+				F644B129197F1D0800D846BE /* PTBGetChantier.h */,
+				F644B12A197F1D0800D846BE /* PTBGetChantier.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -746,7 +751,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F644B0DB197DBB3600D846BE /* MagicalImportFunctions.m in Sources */,
+				F644B12B197F1D0800D846BE /* PTBGetChantier.m in Sources */,
 				F644B0DD197DBB3600D846BE /* NSEntityDescription+MagicalDataImport.m in Sources */,
+				F644B12E197F254900D846BE /* Chantier.m in Sources */,
 				F6D3A5A51970B612008FDE1B /* PTBAppModel.m in Sources */,
 				F6D3A56D1970A244008FDE1B /* main.m in Sources */,
 				F644B0E7197DBB3600D846BE /* NSManagedObjectContext+MagicalObserving.m in Sources */,
@@ -780,7 +787,6 @@
 				F644B0E2197DBB3600D846BE /* NSManagedObject+MagicalAggregation.m in Sources */,
 				F6D3A5741970A244008FDE1B /* GraniouProjectManagement.xcdatamodeld in Sources */,
 				F644B0E0197DBB3600D846BE /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
-				F644B11D197ED1BE00D846BE /* Chantier.m in Sources */,
 				F644B0E3197DBB3600D846BE /* NSManagedObject+MagicalDataImport.m in Sources */,
 				F6D3A6191975D8C6008FDE1B /* PTBAuthUser.m in Sources */,
 				F6D3A6061975D08A008FDE1B /* PTBMonteurSectionVC.m in Sources */,

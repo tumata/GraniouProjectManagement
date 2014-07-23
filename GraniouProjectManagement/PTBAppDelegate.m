@@ -9,6 +9,7 @@
 #import "PTBAppDelegate.h"
 #import "ManticoreViewFactory.h"
 #import "PTBAppModel.h"
+#import "PTBAuthUser.h"
 
 #import "Tache.h"
 #import "Chantier.h"
@@ -55,10 +56,17 @@
     
     // Show the main view controller
     
-    //MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_LOGIN];      //Understand section/view
+    MCIntent* intent;
+    
+    if ([PTBAuthUser isLoggedIn]) {
+        intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_LOADING];
+    }
+    else {
+        intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_LOGIN];
+    }
 
     
-    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_ACCOUNT];
+    // intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_ACCOUNT];
     
     
     [intent setAnimationStyle:UIViewAnimationOptionTransitionFlipFromLeft];

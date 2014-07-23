@@ -7,13 +7,15 @@
 //
 
 #import "PTBAuthUser.h"
+#import "IdentifiantsTaches.h"
+#import "Tache.h"
 
 // Queue pour fetcher la data
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
 // Liens et clefs pour recuperer depuis le serveur
 #define kBaseURLString           @"http://graniou-rail-project.fr/WebService/"
-#define kUsersSourceFile         @"json_users.php"
+#define kLoginBaseUrlString      @"check.php?"
 
 #define kUsers                  @"users"
 #define kLogin                  @"login"
@@ -23,14 +25,10 @@
 #define vDroitAccesResponsable  @"Responsable"
 
 
-static NSDictionary *dicoKusersVpass = nil;
-static NSDictionary *dicoKusersVidChantier = nil;
-
 @interface PTBAuthUser ()
 
 @property (nonatomic, strong) NSString *loginAuth;
 @property (nonatomic, strong) NSString *passwordAuth;
-@property (nonatomic, strong) NSString *idChantier;
 
 @end
 
@@ -53,6 +51,20 @@ static NSDictionary *dicoKusersVidChantier = nil;
     else return nil;
 }
 
++(BOOL)isAllTachesDownloaded {
+    bool good = true;
+    
+    if ([PTBAuthUser isLoggedIn]) {
+        for (IdentifiantsTaches *unIdentifiant in [IdentifiantsTaches MR_findAll]) {
+            NSPredicate *tacheFiltre = [NSPredicate predicateWithFormat:@"(identifiant == %@) AND (type == %@)", unIdentifiant.identifiant, unIdentifiant.type];
+            if (![Tache MR_findAllWithPredicate:tacheFiltre]) {
+                good = false;
+            }
+        }
+    }
+    return good;
+}
+
 
 void(^tryLoginUserCallback)(BOOL success, NSError *error);
 
@@ -66,21 +78,15 @@ void(^tryLoginUserCallback)(BOOL success, NSError *error);
     _loginAuth = username;
     _passwordAuth = pass;
     
-     // Start doing some time consuming tasks like sending a request to the backend services
-    if (!dicoKusersVpass)
-        dispatch_async(kBgQueue, ^{
-            NSData *jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[kBaseURLString stringByAppendingString:kUsersSourceFile]]];
-            [self performSelectorOnMainThread:@selector(onBackendResponse:) withObject:jsonData waitUntilDone:YES];
-        });
-    else {
-        NSLog(@"Ne telecharge pas mais test credentials");
-        // Test logger
-        bool logged = [self logInUser:_loginAuth password:_passwordAuth];
-        // Transmet la reponse
-        tryLoginUserCallback(logged, nil);
-    }
-    
-
+     // Sending a request to the backend services
+    dispatch_async(kBgQueue, ^{
+        NSString *fullLoginRequest = [NSString stringWithFormat:@"%@%@login=%@&password=%@", kBaseURLString, kLoginBaseUrlString, username, pass];
+        
+        NSLog(@"%@", fullLoginRequest);
+        
+        NSData *jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:fullLoginRequest]];
+        [self performSelectorOnMainThread:@selector(onBackendResponse:) withObject:jsonData waitUntilDone:YES];
+    });
 }
 
 //----------------------------------------------------
@@ -92,35 +98,22 @@ void(^tryLoginUserCallback)(BOOL success, NSError *error);
     BOOL good = false;
     
     if (response) {
-        
         id jsonObjects = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:&error];
-            
-        //NSLog(@"%@", jsonObjects);
-            
-        // Recuperation de la table "users"
-        NSArray *entries = [jsonObjects objectForKey:kUsers];
-            
-        // On cree le dictionnaire des login/passwords
-        NSMutableDictionary *loginsPasswords = [[NSMutableDictionary alloc] init];
-        NSMutableDictionary *loginsIDChantier = [[NSMutableDictionary alloc] init];
         
-        // Pour chaque element
-        for (NSMutableDictionary *item in entries) {
-            // Clef droitAcces
-            NSString *droitAcces = [item objectForKey:kDroitAcces];
-            
-            // Quel est son droit. Si Responsable, pas d'acces
-            if (![droitAcces isEqualToString:vDroitAccesResponsable]) {
-                [loginsPasswords setObject:[item objectForKey:kPassword] forKey:[item objectForKey:kLogin]];
-                [loginsIDChantier setObject:[item objectForKey:kIdChantier] forKey:[item objectForKey:kLogin]];
-            }
+        NSLog(@"%@", jsonObjects);
+        
+        NSNumber *idChantier = [(NSDictionary *)jsonObjects valueForKey:@"id_chantier"];
+        NSLog(@"%i", [idChantier integerValue]);
+        
+        if ([idChantier integerValue] != -1) {
+            [self logInUserWithIdChantier:idChantier];
+            good = true;
         }
-        
-        dicoKusersVpass = loginsPasswords;
-        dicoKusersVidChantier = loginsIDChantier;
     }
-        
-    good = [self logInUser:_loginAuth password:_passwordAuth];
+    else {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+
     tryLoginUserCallback(good, error);
 }
     
@@ -128,32 +121,10 @@ void(^tryLoginUserCallback)(BOOL success, NSError *error);
 //----------------------------------------------------
 // On log l'utilisateur en fonction de l'ID Chantier
 //
-- (bool)logInUser:(NSString *)username password:(NSString *)pass {
-    bool good = false;
-    // Test credentials
-    if ([self isGoodLoginPassword:_loginAuth password:_passwordAuth]) {
-        NSString *idChantier = [dicoKusersVidChantier objectForKey:username];
-        
-        [[NSUserDefaults standardUserDefaults] setObject:idChantier forKey:kIdChantier];
-        NSLog(@"Authentifie et userDefault : %@", [[NSUserDefaults standardUserDefaults] objectForKey:kIdChantier]);;
-        
-        good = true;
-        dicoKusersVpass = nil;
-        dicoKusersVidChantier = nil;
-    }
-    return good;
-}
-
-//----------------------------------------------------
-// Compare les entrees a la liste
-//
-- (BOOL)isGoodLoginPassword:(NSString *)login password:(NSString *)password {
-    if (dicoKusersVpass) {
-        if ([[dicoKusersVpass objectForKey:login] isEqualToString:password]) {
-            return true;
-        }
-    }
-    return false;
+- (void)logInUserWithIdChantier:(NSNumber *)idChantier {
+    
+    [[NSUserDefaults standardUserDefaults] setObject:idChantier forKey:kIdChantier];
+    NSLog(@"Authentifie et userDefault : %i", [[[NSUserDefaults standardUserDefaults] objectForKey:kIdChantier] integerValue]);
 }
 
 

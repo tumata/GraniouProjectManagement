@@ -11,9 +11,9 @@
 #import "Chantier.h"
 #import "IdentifiantsTaches.h"
 #import "Tache.h"
+#import "PTBLoadingVC.h"
 
-// Queue pour fetcher la data
-#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
 
 // Liens et clefs pour recuperer depuis le serveur
 #define kBaseURLString          @"http://graniou-rail-project.fr/WebService/"
@@ -24,7 +24,13 @@
 
 @interface PTBGetChantier()
 
+@property (strong, nonatomic) NSMutableDictionary *tachesToUpload;
+@property (strong, nonatomic) NSMutableDictionary *tachesToDownload;
 
+
+// Related VC
+@property (weak, nonatomic) PTBLoadingVC *loadingVC;
+@property (strong, nonatomic) NSNumber *progress;
 
 
 @end
@@ -32,77 +38,93 @@
 @implementation PTBGetChantier
 
 
-void(^tryGetAllInfosChantier)(BOOL success, NSError *error);
-void(^tryGetOneTacheChantier)(BOOL success, NSError *error);
-
-
-
 //--------------------------------------------
 // Fonction principale permettant la connection
 //
-- (void)startDownloadingChantierWithProgressView:(UIProgressView *)progressView withCallback:(PTBCompletionBlock)callback {
-    tryGetAllInfosChantier = callback;
+- (void)startSynchronizingChantier:(UIViewController *)appliedView {
     
-    
-    progressView.progress = 0.0;
-    
-    // ------------------------------------------------
-    // Uploader tout ce qui n'a pas ete uploade
-    // Si fail, pas grave, mais on ne retelecharge rien
-    //
+    if ([appliedView isKindOfClass:[PTBLoadingVC class]]) {
+        _loadingVC = (PTBLoadingVC *)appliedView;
+    }
+    else NSAssert(true, @"appliedView not a PTBLoadingVC");
     
     
     // -----------------------------------------
     // Verifier que user authentifie et chantier
     //
     NSAssert([PTBAuthUser isLoggedIn], @"Pas logge...");
-    if (![PTBAuthUser isLoggedIn]) tryGetAllInfosChantier(0,nil);
+    if (![PTBAuthUser isLoggedIn]) return;
     
     
+    // -----------------------------------------
+    // Initialisations
+    //
+    _progress = [NSNumber numberWithFloat:0.0];
+    [_loadingVC performSelectorOnMainThread:@selector(setProgress:) withObject:_progress waitUntilDone:NO];
+    
+    
+    
+    // ------------------------------------------------
+    // Uploader tout ce qui n'a pas ete uploade
+    // Si fail, pas grave, mais on ne retelecharge rien
+    //
+    //[self uploadNeededTaches];
+    //[self performSelector:@selector(uploadNeededTaches) onThread:[NSThread currentThread] withObject:NULL waitUntilDone:YES];
+    
+
     // -----------------------------------------
     // Charger les donnees chantier
+    // Si non chargees :
+    //      pas de chantier dans DB -> error : indispensable
+    //      chantier dans DB -> on continue
     //
-    if (![self recupererMetaChantier]) tryGetAllInfosChantier(0,nil);
-    progressView.progress += 0.1;
+    [self recupererMetaChantier];
+    [self setProgressTo:_progress.floatValue + 0.1];
     
     
-    // -----------------------------------------
-    // Charger toutes les taches
+    // --------------------------------------------------
+    // Charger toutes les taches qui ont besoin de l'etre
     //
-    NSUInteger totalCount = [IdentifiantsTaches MR_countOfEntities];
+    [self downloadNeededTaches];
     
+    
+    //Sauvegarde du chantier
+    [[[Chantier MR_findFirstByAttribute:@"identifiant" withValue:[PTBAuthUser getIDChantier]] managedObjectContext] MR_saveToPersistentStoreAndWait];
+    
+    
+    // Lancement interface chantier
+    [_loadingVC performSelectorOnMainThread:@selector(finishedGettingAllData) withObject:NULL waitUntilDone:NO];
+}
+
+
+// ----------------------------------------------------
+// Envoi sur le serveur toutes les taches modifiees
+//
+-(void)uploadNeededTaches {
     Chantier *currentChantier = [Chantier MR_findFirstByAttribute:@"identifiant" withValue:[PTBAuthUser getIDChantier]];
-    for (IdentifiantsTaches *identifiantTache in [IdentifiantsTaches MR_findByAttribute:@"parent" withValue:currentChantier]) {
+    
+    if (currentChantier) {
+        // Filtre selon taches modifiees
+        NSPredicate *tacheFiltre = [NSPredicate predicateWithFormat:@"(modified == %@", [NSNumber numberWithBool:true]];
         
-        if (![self getOrSendByIdentifiantTache:identifiantTache inChantier:currentChantier]) {
-            NSLog(@"Tache non recuperee");
+        NSSet *tachesModified = [currentChantier.taches filteredSetUsingPredicate:tacheFiltre];
+        
+        for (Tache *tache in tachesModified) {
+            
+            // Ajouter la tache aux taches a uploader  : dico ("identifiant" : "type")
+            
+            // Uploader la tache
+                // Reussi : (enlever de la liste) + (modified = false)
+            
+            NSLog(@"upload tache : %@", tache.identifiant);
         }
     }
-
-    
-    tryGetAllInfosChantier(1,nil);
-    
-}
-
-//----------------------------------------------------
-// Une fois la reponse du serveur recue
-// Only saves people from "equipe"
-- (void)onBackendResponse:(NSData *)response {
-    NSError *error = nil;
-    BOOL good = false;
-    
-    if (response) {
-        
-        id jsonObjects = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:&error];
-        
-        NSLog(@"%@", jsonObjects);
-        
-       
-        
+    else {
+        NSLog(@"Pas encore de chantier donc rien a uploader");
     }
-    
-    //tryGetInfosChantier(1, nil);
 }
+
+
 
 
 // -----------------------------------------------------
@@ -110,6 +132,8 @@ void(^tryGetOneTacheChantier)(BOOL success, NSError *error);
 // Test si celle-ci existent deja et ne les ajoutent pas
 //
 -(BOOL)recupererMetaChantier {
+    
+    
     // --------------------
     // Acces au webservice
     //
@@ -129,37 +153,41 @@ void(^tryGetOneTacheChantier)(BOOL success, NSError *error);
     NSArray *infosTaches = [jsonObjects objectForKey:@"taches"];
     NSArray *infosLdr = [jsonObjects objectForKey:@"ldr"];
     
-    // Chantier deja cree dans la DB ?
-    Chantier *newChantier = [Chantier MR_findFirstByAttribute:@"identifiant" withValue:[PTBAuthUser getIDChantier]];
-    // Non
-    if (!newChantier) {
-        newChantier = [Chantier MR_createEntity];
+    
+    // Recuperation du chantier
+    NSManagedObjectContext *myNewContext = [NSManagedObjectContext MR_context];
+    Chantier *currentChantier = [Chantier MR_findFirstByAttribute:@"identifiant" withValue:[PTBAuthUser getIDChantier] inContext:myNewContext];
+
+    
+    
+    if (!currentChantier) {
+        currentChantier = [Chantier MR_createEntityInContext:myNewContext];
         
         // infos chantier
         for (NSString* key in [info allKeys]) {
             NSLog(@"%@", key);
             if ([key isEqualToString:@"id"]) {
-                [newChantier setValue:[NSNumber numberWithInteger:[[info objectForKey:key]integerValue]] forKey:@"identifiant"];
+                [currentChantier setValue:[NSNumber numberWithInteger:[[info objectForKey:key]integerValue]] forKey:@"identifiant"];
             }
             else {
-                [newChantier setValue:[info objectForKey:key] forKey:key];
+                [currentChantier setValue:[info objectForKey:key] forKey:key];
             }
         }
         
         // infos taches
         for (NSNumber *value in infosTaches) {
-            IdentifiantsTaches *newIdTache = [IdentifiantsTaches MR_createEntity];
+            IdentifiantsTaches *newIdTache = [IdentifiantsTaches MR_createEntityInContext:myNewContext];
             newIdTache.type = @"tache";
             newIdTache.identifiant = value;
-            [newChantier addListeTachesObject:newIdTache];
+            [currentChantier addListeTachesObject:newIdTache];
         }
         
         // infos ldr
         for (NSNumber *value in infosLdr) {
-            IdentifiantsTaches *newIdTache = [IdentifiantsTaches MR_createEntity];
+            IdentifiantsTaches *newIdTache = [IdentifiantsTaches MR_createEntityInContext:myNewContext];
             newIdTache.type = @"ldr";
             newIdTache.identifiant = value;
-            [newChantier addListeTachesObject:newIdTache];
+            [currentChantier addListeTachesObject:newIdTache];
         }
     }
     //Oui
@@ -168,11 +196,11 @@ void(^tryGetOneTacheChantier)(BOOL success, NSError *error);
         for (NSNumber *value in infosTaches) {
             NSPredicate *tacheFiltre = [NSPredicate predicateWithFormat:@"(identifiant == %@) AND (type == %@)", value, @"tache"];
             
-            if ([[IdentifiantsTaches MR_findAllWithPredicate:tacheFiltre] count] == 0) {
-                IdentifiantsTaches *newIdTache = [IdentifiantsTaches MR_createEntity];
+            if ([[IdentifiantsTaches MR_findAllWithPredicate:tacheFiltre inContext:myNewContext] count] == 0) {
+                IdentifiantsTaches *newIdTache = [IdentifiantsTaches MR_createEntityInContext:myNewContext];
                 newIdTache.type = @"tache";
                 newIdTache.identifiant = value;
-                [newChantier addListeTachesObject:newIdTache];
+                [currentChantier addListeTachesObject:newIdTache];
             }
             else {
                 NSLog(@"Existe deja %@", tacheFiltre);
@@ -183,11 +211,11 @@ void(^tryGetOneTacheChantier)(BOOL success, NSError *error);
         for (NSNumber *value in infosLdr) {
             NSPredicate *tacheFiltre = [NSPredicate predicateWithFormat:@"(identifiant == %@) AND (type == %@)", value, @"ldr"];
             
-            if ([[IdentifiantsTaches MR_findAllWithPredicate:tacheFiltre] count] == 0) {
-                IdentifiantsTaches *newIdTache = [IdentifiantsTaches MR_createEntity];
+            if ([[IdentifiantsTaches MR_findAllWithPredicate:tacheFiltre inContext:myNewContext] count] == 0) {
+                IdentifiantsTaches *newIdTache = [IdentifiantsTaches MR_createEntityInContext:myNewContext];
                 newIdTache.type = @"ldr";
                 newIdTache.identifiant = value;
-                [newChantier addListeTachesObject:newIdTache];
+                [currentChantier addListeTachesObject:newIdTache];
             }
             else {
                 NSLog(@"Existe deja %@", tacheFiltre);
@@ -196,55 +224,64 @@ void(^tryGetOneTacheChantier)(BOOL success, NSError *error);
     }
     
     //Sauvegarde du chantier
-    [[newChantier managedObjectContext] MR_saveToPersistentStoreAndWait];
+    [[currentChantier managedObjectContext] MR_saveToPersistentStoreAndWait];
 
     return true;
 }
 
 
-// -------------------------------------
-// Si la tache est presente et modifiee : on l'envoi
-// Si non presente : on la telecharge
-//
-- (BOOL)getOrSendByIdentifiantTache:(IdentifiantsTaches *)identifiantTache inChantier:(Chantier *)currentChantier {
-    bool good = false;
+-(void)downloadNeededTaches {
     
-    NSPredicate *tacheFiltre = [NSPredicate predicateWithFormat:@"(identifiant == %@) AND (type == %@)", identifiantTache.identifiant, identifiantTache.type];
+    // Recuperation du chantier
+    NSManagedObjectContext *myNewContext = [NSManagedObjectContext MR_context];
+    Chantier *currentChantier = [Chantier MR_findFirstByAttribute:@"identifiant" withValue:[PTBAuthUser getIDChantier] inContext:myNewContext];
     
-    // La tache est-elle presente ?
-    //
-    NSArray *laTache = [Tache MR_findAllWithPredicate:tacheFiltre];
+    // On recupere la liste totale des infosTaches
+    NSSet *setInfosTachesTotalChantier = currentChantier.listeTaches;
+    NSArray *listeInfosTachesTotalChantier = [setInfosTachesTotalChantier allObjects];
     
-    if ([laTache count] > 0) {
-        NSAssert([laTache count] <= 1, @"Plus de deux taches trouvees");
-        
-        // oui. est-ce que "modified" ?
-        //
-        Tache *tache = [laTache objectAtIndex:0];
-        if (tache.modified) {
-            //
-            // oui : envoyer server
-            //
-            NSLog(@"Tache modified : envoyer serveur");
+    // On recupere la liste des taches
+    NSSet *setTaches = currentChantier.taches;
+    NSArray *listeTaches = [setTaches allObjects];
+    
+    
+    for (Tache *idTache in listeTaches) {
+        // Filtre pour ne garder que les infosTaches des taches non presentes
+        NSPredicate *filtreTachesDB = [NSPredicate predicateWithFormat:@"NOT((type == %@) AND (identifiant == %@))", idTache.type, idTache.identifiant];
+        listeInfosTachesTotalChantier = [listeInfosTachesTotalChantier filteredArrayUsingPredicate:filtreTachesDB];
+        NSLog(@"%i", [listeInfosTachesTotalChantier count]);
+    }
+    
+    float delta = (1 - [_progress floatValue])/2/[listeInfosTachesTotalChantier count];
+    
+    for (IdentifiantsTaches *identifiant in listeInfosTachesTotalChantier) {
+        // Ajouter au tableau tachesToDownload
+        if ([self downloadTacheWithIdentifiant:identifiant]) {
+            // Enlever du tableau tachesToDownload
+            NSLog(@"Tache %@ downloaded", identifiant.identifiant);
         }
+        else {
+            NSLog(@"Probleme reseau telechargement tache %@", identifiant.identifiant);
+        }
+        [self addDeltaToProgress:delta];
     }
-    else {
-        // Telecharger la tache
-        //
-        good = [self downloadTacheWithIdentifiant:identifiantTache inChantier:currentChantier];
-    }
-
-    return good;
 }
 
 
-- (BOOL)downloadTacheWithIdentifiant:(IdentifiantsTaches *)identifiantTache inChantier:(Chantier *)currentChantier {
+
+
+// -----------------------------------------------------
+// Telecharge une tache a partir de son identifiant
+//
+- (BOOL)downloadTacheWithIdentifiant:(IdentifiantsTaches *)identifiantTache{
     
-    if ([identifiantTache.type isEqualToString:@"ldr"]) return true;
-    // --------------------
+    // ----------------------------------------------------------------------------
     // Acces au webservice
     //
-    NSString *urlGetChantier = [NSString stringWithFormat:@"%@%@type=%@&id=%@", kBaseURLString, kTacheUrlString, identifiantTache.type, identifiantTache.identifiant];
+    NSString *type = identifiantTache.type;
+    NSString *identifiant = [identifiantTache.identifiant stringValue];
+    
+    NSString *urlGetChantier = [NSString stringWithFormat:@"%@%@type=%@&id=%@", kBaseURLString, kTacheUrlString, type, identifiant];
     NSLog(@"%@", urlGetChantier);
     NSData *jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlGetChantier]];
     
@@ -253,24 +290,56 @@ void(^tryGetOneTacheChantier)(BOOL success, NSError *error);
     NSError *error;
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     
+    // Bug API, tache est dans un tableau a l'index 0 ...
+    NSDictionary *infosTache;
+    if ([type isEqualToString:@"tache"]) {
+         infosTache = [[jsonObjects objectForKey:identifiantTache.type] objectAtIndex:0];
+    } else {
+        infosTache = [jsonObjects objectForKey:identifiantTache.type];
+    }
     
-    NSDictionary *infosTache = [[jsonObjects objectForKey:identifiantTache.type] objectAtIndex:0];
+    // ------------------------------------------------------------------------------------
     
-    Tache *tache = [Tache MR_createEntity];
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+        
+        Tache *tache = [Tache MR_createEntityInContext:localContext];
+        
+        tache.type = type;
+        tache.modified = [NSNumber numberWithBool:false];
+        
+        tache.identifiant = [NSNumber numberWithInteger:[[infosTache objectForKey:@"identifiant"] integerValue]];
+        tache.titre = [infosTache objectForKey:@"titre"];
+        tache.laDescription = [infosTache objectForKey:@"laDescription"];
+        tache.commentaire = [infosTache objectForKey:@"commentaire"];
+        
+        // Gerer les images !!!!!!
+        
+        [[Chantier MR_findFirstInContext:localContext] addTachesObject:tache];
+        
+        [localContext MR_saveToPersistentStoreAndWait];
+    }];
     
-    tache.type = identifiantTache.type;
-    tache.modified = [NSNumber numberWithBool:false];
+    // ------------------------------------------------------------------------------------
     
-    tache.identifiant = [NSNumber numberWithInteger:[[infosTache objectForKey:@"id"] integerValue]];
-    tache.titre = [infosTache objectForKey:@"titreTache"];
-    tache.laDescription = [infosTache objectForKey:@"contenuTache"];
-    tache.commentaire = [infosTache objectForKey:@"commentaire"];
-    
-    // AJOUTER TOUT LE RESTE ET GESTION LDR ET IMAGES NSDATA
-    
-    [currentChantier addTachesObject:tache];
+    jsonData = nil;
+    jsonObjects = nil;
+    infosTache = nil;
     
     return true;
+}
+
+
+
+
+
+-(void)addDeltaToProgress:(float)delta {
+    [self setProgressTo:([_progress floatValue] + delta)];
+}
+
+-(void)setProgressTo:(float)value {
+    if (value > 1) value = 1.0;
+    _progress = [NSNumber numberWithFloat:value];
+    [_loadingVC performSelectorOnMainThread:@selector(setProgress:) withObject:_progress waitUntilDone:NO];
 }
 
 @end

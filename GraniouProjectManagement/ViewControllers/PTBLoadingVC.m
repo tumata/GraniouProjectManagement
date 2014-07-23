@@ -12,7 +12,11 @@
 
 @interface PTBLoadingVC ()
 
+@property (strong, nonatomic) NSOperationQueue *operationQueue;
+
 @property (weak, nonatomic) IBOutlet UIProgressView *loadingProgress;
+
+
 
 @end
 
@@ -31,13 +35,16 @@
 {
     [super viewDidLoad];
     
-    PTBGetChantier *getChantier = [[PTBGetChantier alloc] init];
-    [getChantier startDownloadingChantierWithProgressView:_loadingProgress withCallback:^(BOOL succes, NSError *error) {
-        if (succes) {
-            NSLog(@"Success");
-        }
-    }];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self loadChantier];
+}
+
+-(void)onPause:(MCIntent *)intent {
     
+    [super onPause:intent];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,5 +57,26 @@
     MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_ACCOUNT];
     [intent setAnimationStyle:ANIMATION_NOTHING];
     [[MCViewModel sharedModel] setCurrentSection:intent];
+}
+
+- (void)loadChantier {
+    PTBGetChantier *getChantier = [[PTBGetChantier alloc] init];
+    _operationQueue = [[NSOperationQueue alloc] init];
+    
+    NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:getChantier
+                                                                            selector:@selector(startSynchronizingChantier:)
+                                                                              object:self];
+    [_operationQueue addOperation:operation];
+}
+
+- (void)setProgress:(NSNumber *)prog {
+    _loadingProgress.progress = [prog floatValue];
+}
+
+-(void)finishedGettingAllData {
+    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_ACCOUNT];
+    [intent setAnimationStyle:ANIMATION_NOTHING];
+    [[MCViewModel sharedModel] setCurrentSection:intent];
+
 }
 @end

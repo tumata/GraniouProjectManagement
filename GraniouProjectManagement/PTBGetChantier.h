@@ -10,8 +10,10 @@
 
 @interface PTBGetChantier : NSObject
 
-typedef void (^PTBCompletionBlock)(BOOL succes, NSError *error);
+//typedef void (^PTBCompletionBlock)(BOOL succes, NSError *error);
 
-- (void)startDownloadingChantierWithProgressView:(UIProgressView *)progressView withCallback:(PTBCompletionBlock)callback;
+//- (void)startSynchronizingChantierWithProgressView:(UIProgressView *)progressView withCallback:(PTBCompletionBlock)callback;
+
+- (void)startSynchronizingChantier:(UIViewController *)appliedView;
 
 @end

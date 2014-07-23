@@ -12,4 +12,8 @@
 
 - (IBAction)buttonPressed:(id)sender;
 
+- (void)setProgress:(NSNumber *)prog;
+
+- (void)finishedGettingAllData;
+
 @end

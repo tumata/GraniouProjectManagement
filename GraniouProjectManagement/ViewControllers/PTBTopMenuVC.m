@@ -53,7 +53,7 @@
 #pragma mark - NavigationVC delegate methods
 
 - (void)navigationViewDidPressLeftButton {
-    NSAssert([MCViewModel sharedModel].historyStack.count > 1, @"Pressed back button with historystack at 0");
+    NSAssert([MCViewModel sharedModel].historyStack.count >= 1, @"Pressed back button with historystack at 0");
     [MCViewModel sharedModel].currentSection = [MCIntent intentWithSectionName:SECTION_LAST andAnimation:ANIMATION_POP];
     
 }

@@ -8,8 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PTBGetChantier : NSOperation
+@interface PTBGetChantier : NSObject
 
-- (id)initWithView:(UIViewController *)appliedView;
+
++ (PTBGetChantier *)sharedInstance;
+
+// return TRUE if it started
+
+- (BOOL)startSynchronization;
+- (BOOL)startSynchronizationWithViewController:(UIViewController *)appliedView;
+
 
 @end

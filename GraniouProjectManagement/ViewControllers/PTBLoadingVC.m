@@ -66,11 +66,12 @@
 - (void)loadChantier {
     _loadingProgress.progress = 0.0;
     
-    PTBGetChantier *getChantier = [[PTBGetChantier alloc] initWithView:self];
-    _operationQueue = [[NSOperationQueue alloc] init];
-    [_operationQueue setMaxConcurrentOperationCount:1];
+//    _operationQueue = [[NSOperationQueue alloc] init];
+//    [_operationQueue setMaxConcurrentOperationCount:1];
+//    
+//    [_operationQueue addOperation:[[NSInvocationOperation alloc] initWithTarget:[PTBGetChantier sharedInstance] selector:@selector(startSynchronizationWithViewController:) object:self]];
     
-    [_operationQueue addOperation:getChantier];
+    [[PTBGetChantier sharedInstance] startSynchronizationWithViewController:self];
 }
 
 
@@ -81,17 +82,17 @@
 }
 
 
--(void)finishedGettingAllData:(NSDictionary *)finishedInfos {
-    
-    NSString *countNotDownloaded = [finishedInfos objectForKey:@"notDownloadedCount"];
-    if ([countNotDownloaded integerValue] > 0) {
-        [self launchAlertView:finishedInfos];
-    } else {
-        MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_ACCOUNT];
-        [intent setAnimationStyle:ANIMATION_NOTHING];
-        [[MCViewModel sharedModel] setCurrentSection:intent];
-    }
-}
+//-(void)finishedGettingAllData:(NSDictionary *)finishedInfos {
+//    
+//    NSString *countNotDownloaded = [finishedInfos objectForKey:@"notDownloadedCount"];
+//    if ([countNotDownloaded integerValue] > 0) {
+//        [self launchAlertView:finishedInfos];
+//    } else {
+//        MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_ACCOUNT];
+//        [intent setAnimationStyle:ANIMATION_NOTHING];
+//        [[MCViewModel sharedModel] setCurrentSection:intent];
+//    }
+//}
 
 #pragma mark - Alert view
 

@@ -49,7 +49,7 @@
 		F644B128197F0E8200D846BE /* unCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = F644B126197F0E8200D846BE /* unCheck.png */; };
 		F644B12B197F1D0800D846BE /* PTBGetChantier.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B12A197F1D0800D846BE /* PTBGetChantier.m */; };
 		F644B12E197F254900D846BE /* Chantier.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B12D197F254900D846BE /* Chantier.m */; };
-		F66E7CDE1981885C00C21A56 /* PTBSendTaches.m in Sources */ = {isa = PBXBuildFile; fileRef = F66E7CDD1981885C00C21A56 /* PTBSendTaches.m */; };
+		F66E7CDE1981885C00C21A56 /* PTBSendTache.m in Sources */ = {isa = PBXBuildFile; fileRef = F66E7CDD1981885C00C21A56 /* PTBSendTache.m */; };
 		F6D3A55F1970A244008FDE1B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A55E1970A244008FDE1B /* Foundation.framework */; };
 		F6D3A5611970A244008FDE1B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5601970A244008FDE1B /* CoreGraphics.framework */; };
 		F6D3A5631970A244008FDE1B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5621970A244008FDE1B /* UIKit.framework */; };
@@ -189,8 +189,8 @@
 		F644B12A197F1D0800D846BE /* PTBGetChantier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTBGetChantier.m; sourceTree = "<group>"; };
 		F644B12C197F254900D846BE /* Chantier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chantier.h; sourceTree = "<group>"; };
 		F644B12D197F254900D846BE /* Chantier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chantier.m; sourceTree = "<group>"; };
-		F66E7CDC1981885C00C21A56 /* PTBSendTaches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTBSendTaches.h; sourceTree = "<group>"; };
-		F66E7CDD1981885C00C21A56 /* PTBSendTaches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTBSendTaches.m; sourceTree = "<group>"; };
+		F66E7CDC1981885C00C21A56 /* PTBSendTache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTBSendTache.h; sourceTree = "<group>"; };
+		F66E7CDD1981885C00C21A56 /* PTBSendTache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTBSendTache.m; sourceTree = "<group>"; };
 		F6D3A55B1970A244008FDE1B /* GraniouProjectManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraniouProjectManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6D3A55E1970A244008FDE1B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F6D3A5601970A244008FDE1B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -577,8 +577,8 @@
 				F6D3A6181975D8C6008FDE1B /* PTBAuthUser.m */,
 				F644B129197F1D0800D846BE /* PTBGetChantier.h */,
 				F644B12A197F1D0800D846BE /* PTBGetChantier.m */,
-				F66E7CDC1981885C00C21A56 /* PTBSendTaches.h */,
-				F66E7CDD1981885C00C21A56 /* PTBSendTaches.m */,
+				F66E7CDC1981885C00C21A56 /* PTBSendTache.h */,
+				F66E7CDD1981885C00C21A56 /* PTBSendTache.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -806,7 +806,7 @@
 				F644B0E2197DBB3600D846BE /* NSManagedObject+MagicalAggregation.m in Sources */,
 				F6D3A5741970A244008FDE1B /* GraniouProjectManagement.xcdatamodeld in Sources */,
 				F644B0E0197DBB3600D846BE /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
-				F66E7CDE1981885C00C21A56 /* PTBSendTaches.m in Sources */,
+				F66E7CDE1981885C00C21A56 /* PTBSendTache.m in Sources */,
 				F644B0E3197DBB3600D846BE /* NSManagedObject+MagicalDataImport.m in Sources */,
 				F6D3A6191975D8C6008FDE1B /* PTBAuthUser.m in Sources */,
 				F6D3A6061975D08A008FDE1B /* PTBMonteurSectionVC.m in Sources */,

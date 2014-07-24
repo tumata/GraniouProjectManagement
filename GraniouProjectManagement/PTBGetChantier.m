@@ -13,6 +13,7 @@
 #import "Tache.h"
 #import "PTBLoadingVC.h"
 #import "Images.h"
+#import "PTBSendTache.h"
 
 
 
@@ -24,10 +25,15 @@
 
 
 
-@interface PTBGetChantier()
+@interface PTBGetChantier() <NSURLSessionDataDelegate>
 
 @property (strong, nonatomic) NSMutableDictionary *tachesToUpload;
 @property (strong, nonatomic) NSMutableDictionary *tachesToDownload;
+
+@property (strong, nonatomic) NSOperationQueue *queueGet;
+@property (strong, nonatomic) NSOperationQueue *queueSet;
+
+@property (strong, atomic) PTBSendTache *sendTaches;
 
 
 // Related VC
@@ -43,22 +49,48 @@
 @implementation PTBGetChantier
 
 
-- (id)initWithView:(UIViewController *)appliedView {
-    self = [super init];
-    _associatedViewController = appliedView;
++ (PTBGetChantier *)sharedInstance {
+    static PTBGetChantier *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
+- (id)init {
+    if (self = [super init]) {
+        self.queueGet = [[NSOperationQueue alloc] init];
+        self.queueSet = [[NSOperationQueue alloc] init];
+        
+        [self.queueGet setMaxConcurrentOperationCount:1];
+        [self.queueSet setMaxConcurrentOperationCount:1];
+    }
     return self;
 }
 
-- (void)main {
-    _finishedInfos = [[NSMutableDictionary alloc] init];
-    [self startSynchronizingChantier];
+// Returns true if operation started
+-(BOOL)startSynchronization {
+    if (_queueGet.operationCount || _queueSet.operationCount) return false;
+    _associatedViewController = nil;
+    [self startGettingChantier];
+    return true;
 }
+
+//returns true if operation started
+-(BOOL)startSynchronizationWithViewController:(UIViewController *)appliedView {
+    if (_queueGet.operationCount || _queueSet.operationCount) return false;
+    _associatedViewController = appliedView;
+    [self startGettingChantier];
+    return true;
+}
+
 
 
 //--------------------------------------------
 // Fonction principale permettant la connection
 //
-- (void)startSynchronizingChantier {
+- (void)startGettingChantier {
     
     
     // -----------------------------------------
@@ -79,6 +111,7 @@
     // Uploader tout ce qui n'a pas ete uploade
     // Si fail, pas grave, mais on ne retelecharge rien
     //
+    
     [self uploadNeededTaches];
     
 
@@ -88,18 +121,19 @@
     //      pas de chantier dans DB -> error : indispensable
     //      chantier dans DB -> on continue
     //
-    [self recupererMetaChantier];
-    [self setProgressTo:_progress.floatValue + 0.1];
+    [_queueGet addOperation:[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(recupererMetaChantier) object:nil]];
+    //[self recupererMetaChantier];
     
     
     // --------------------------------------------------
     // Charger toutes les taches qui ont besoin de l'etre
     //
-    [self downloadNeededTaches];
+    [_queueGet addOperation:[[NSInvocationOperation alloc]initWithTarget:self selector:@selector(downloadNeededTaches) object:nil]];
+    //[self downloadNeededTaches];
     
     
     //Sauvegarde du chantier
-    [[[Chantier MR_findFirstByAttribute:@"identifiant" withValue:[PTBAuthUser getIDChantier]] managedObjectContext] MR_saveToPersistentStoreAndWait];
+    //[[[Chantier MR_findFirstByAttribute:@"identifiant" withValue:[PTBAuthUser getIDChantier]] managedObjectContext] MR_saveToPersistentStoreAndWait];
     
     
     // Lancement interface chantier
@@ -127,24 +161,17 @@
         NSSet *tachesModified = [currentChantier.taches filteredSetUsingPredicate:tacheFiltre];
         
         for (Tache *tache in tachesModified) {
-            [self uploadTacheWithTache:tache];
+            PTBSendTache *operation = [[PTBSendTache alloc] init];
+            operation.type = tache.type;
+            operation.identifiant = tache.identifiant;
+            operation.connectionDelegate = self;
             
+            [_queueSet addOperation:operation];
             
         }
     }
-    else {
-        NSLog(@"Pas encore de chantier donc rien a uploader");
-    }
 }
 
-
-// -----------------------------------------------------
-// Envoi une tache sur le serveur
-//
--(BOOL)uploadTacheWithTache:(Tache *)tache {
-    NSLog(@"upload tache : %@", tache.identifiant);
-    return true;
-}
 
 
 // -----------------------------------------------------
@@ -246,6 +273,7 @@
     //Sauvegarde du chantier
     [[currentChantier managedObjectContext] MR_saveToPersistentStoreAndWait];
 
+    [self setProgressTo:_progress.floatValue + 0.1];
     return true;
 }
 
@@ -401,11 +429,45 @@
 }
 
 -(void)setProgressTo:(float)value {
-    if ([_associatedViewController respondsToSelector:@selector(setProgress:)]) {
-        if (value > 1) value = 1.0;
-        _progress = [NSNumber numberWithFloat:value];
-        [_associatedViewController performSelectorOnMainThread:@selector(setProgress:) withObject:_progress waitUntilDone:NO];
+    if (_associatedViewController) {
+        if ([_associatedViewController respondsToSelector:@selector(setProgress:)]) {
+            if (value > 1) value = 1.0;
+            _progress = [NSNumber numberWithFloat:value];
+            [_associatedViewController performSelectorOnMainThread:@selector(setProgress:) withObject:_progress waitUntilDone:NO];
+        }
     }
 }
+
+
+#pragma mark - NSURLSessionData Delegate Methods
+
+//-------------------------------------------------------
+// Lancé une fois la data depuis le serveur récuperée
+//
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+    didReceiveData:(NSData *)data
+{
+    NSString *theReply = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding: NSASCIIStringEncoding];
+    NSLog(@"Reponse : %@ \n", theReply);
+}
+
+//-------------------------------------------------------
+// Une fois la connection terminée, fonction appelée.
+// Permet de savoir également si appareil Connecté
+//
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
+didCompleteWithError:(NSError *)error
+{
+    if (error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+    else {
+        NSLog(@"Connection successfull");
+    }
+    
+}
+
+
+
 
 @end

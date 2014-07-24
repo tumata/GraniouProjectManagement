@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PTBSendTaches : NSOperation
+@interface PTBSendTache : NSOperation
 
 //
 // Cette classe lance la notification : "PTBTachesEnvoyees"
@@ -17,5 +17,10 @@
 //          @"nombreTachesTotal": @"stringRepr"
 //          @"nombreTachesEnvoyees": @"stringRepr"
 //
+
+@property (strong, nonatomic) NSString *type;
+@property (strong, nonatomic) NSNumber *identifiant;
+@property (weak, nonatomic) id<NSURLSessionDataDelegate>connectionDelegate;
+
 
 @end

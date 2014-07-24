@@ -121,8 +121,8 @@
         [cell.imageView setImage:[UIImage imageNamed:@"unCheck.png"]];
     }
     cell.textLabel.text = [tache valueForKey:kNom];
-    NSLog(@"%@", [tache valueForKey:@"laDescription"]);
     cell.detailTextLabel.text = [tache valueForKey:@"laDescription"];
+    
     return cell;
 }
 

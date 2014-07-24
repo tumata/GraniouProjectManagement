@@ -60,19 +60,17 @@
 -(void)onResume:(MCIntent *)intent {
     
     id type = [[intent savedInstanceState] objectForKey:@"sourceType"];
+    
+    // On s'assure que le type est "tache" ou "ldr", a modifier dans le futur
+    NSAssert([[type description] isEqualToString:@"tache"] || [[type description] isEqualToString:@"ldr"], @"Mauvais type donne en source pour la table");
+    
+    // Affectation du type
     _sourceType = [type description];
-    NSLog(@"%@", _sourceType);
-    
-    
     
     [super onResume:intent];
 }
 
 -(void)onPause:(MCIntent *)intent {
-    
-    
-    
-    
     [super onPause:intent];
 }
 

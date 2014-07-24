@@ -90,8 +90,23 @@
 #pragma mark - Actions
 
 - (IBAction)actionValider:(id)sender {
-    _commentaire = nil;
-    [self.delegate exitSavingComment:_textView.text];
+    
+    NSString *testLongueur = [_textView.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    testLongueur = [testLongueur stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+    testLongueur = [testLongueur stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    
+    if (testLongueur.length > 1) {
+        _commentaire = nil;
+        
+        NSString *result = [_textView.text stringByReplacingOccurrencesOfString:@"\n\n" withString:@""];
+        result = [result stringByReplacingOccurrencesOfString:@"\r\r" withString:@""];
+        result = [result stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
+        result = [result stringByReplacingOccurrencesOfString:@"\n\r" withString:@""];
+        result = [result stringByReplacingOccurrencesOfString:@"\r " withString:@"\r"];
+        result = [result stringByReplacingOccurrencesOfString:@"\n " withString:@"\n"];
+        
+        [self.delegate exitSavingComment:result];
+    }
 }
 
 - (IBAction)actionCancel:(id)sender {

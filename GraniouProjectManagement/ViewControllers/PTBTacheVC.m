@@ -67,7 +67,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    NSLog(@"viewDidAppear");
     [self reloadView];
 }
 
@@ -271,7 +270,10 @@
 #pragma mark - Persistant store functions
 
 - (void)saveCommentToPersistantStore {
+    // Modification de la value
     [_source setValue:_commentaire forKey:@"commentaire"];
+    // Tache modified
+    [_source setValue:[NSNumber numberWithBool:true] forKey:@"modified"];
     
     [[_source managedObjectContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
         if (success) {
@@ -293,6 +295,9 @@
     else {
         [_source setValue:imageData forKeyPath:@"images.imageCommentaire"];
     }
+    
+    // Tache modified
+    [_source setValue:[NSNumber numberWithBool:true] forKey:@"modified"];
     
     
     [[_source managedObjectContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {

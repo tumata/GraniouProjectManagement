@@ -22,6 +22,7 @@
 
 
 
+
 @interface PTBGetChantier()
 
 @property (strong, nonatomic) NSMutableDictionary *tachesToUpload;
@@ -29,27 +30,26 @@
 
 
 // Related VC
-@property (weak, nonatomic) PTBLoadingVC *loadingVC;
-@property (strong, atomic) NSNumber *progress;
+@property (weak, nonatomic)     UIViewController *associatedViewController;
+@property (strong, atomic)      NSNumber *progress;
 
+@property (strong, nonatomic)   NSMutableDictionary *finishedInfos;
 
 @end
+
+
 
 @implementation PTBGetChantier
 
 
 - (id)initWithView:(UIViewController *)appliedView {
     self = [super init];
-    
-    if ([appliedView isKindOfClass:[PTBLoadingVC class]]) {
-        _loadingVC = (PTBLoadingVC *)appliedView;
-    }
-    else NSAssert(true, @"appliedView not a PTBLoadingVC");
-    
+    _associatedViewController = appliedView;
     return self;
 }
 
 - (void)main {
+    _finishedInfos = [[NSMutableDictionary alloc] init];
     [self startSynchronizingChantier];
 }
 
@@ -71,16 +71,14 @@
     // Initialisations
     //
     _progress = [NSNumber numberWithFloat:0.0];
-    [_loadingVC performSelectorOnMainThread:@selector(setProgress:) withObject:_progress waitUntilDone:NO];
-    
+    [self setProgress:0];
     
     
     // ------------------------------------------------
     // Uploader tout ce qui n'a pas ete uploade
     // Si fail, pas grave, mais on ne retelecharge rien
     //
-    //[self uploadNeededTaches];
-    //[self performSelector:@selector(uploadNeededTaches) onThread:[NSThread currentThread] withObject:NULL waitUntilDone:YES];
+    [self uploadNeededTaches];
     
 
     // -----------------------------------------
@@ -104,7 +102,12 @@
     
     
     // Lancement interface chantier
-    [_loadingVC performSelectorOnMainThread:@selector(finishedGettingAllData) withObject:NULL waitUntilDone:NO];
+    SEL finished = @selector(finishedGettingAllData:);
+    
+    if ([_associatedViewController respondsToSelector:finished]) {
+        [_associatedViewController performSelectorOnMainThread:finished withObject:_finishedInfos waitUntilDone:NO];
+    }
+    
 }
 
 
@@ -112,20 +115,20 @@
 // Envoi sur le serveur toutes les taches modifiees
 //
 -(void)uploadNeededTaches {
-    Chantier *currentChantier = [Chantier MR_findFirstByAttribute:@"identifiant" withValue:[PTBAuthUser getIDChantier]];
+    // Recuperation du chantier
+    NSManagedObjectContext *myNewContext = [NSManagedObjectContext MR_context];
+    Chantier *currentChantier = [Chantier MR_findFirstByAttribute:@"identifiant" withValue:[PTBAuthUser getIDChantier] inContext:myNewContext];
     
     if (currentChantier) {
         // Filtre selon taches modifiees
-        NSPredicate *tacheFiltre = [NSPredicate predicateWithFormat:@"('modified' == %@", [NSNumber numberWithBool:true]];
+        NSPredicate *tacheFiltre = [NSPredicate predicateWithFormat:@"modified == %@", [NSNumber numberWithBool:true]];
         
         NSSet *tachesModified = [currentChantier.taches filteredSetUsingPredicate:tacheFiltre];
         
         for (Tache *tache in tachesModified) {
             
-            // Ajouter la tache aux taches a uploader  : dico ("identifiant" : "type")
-            
-            // Uploader la tache
-                // Reussi : (enlever de la liste) + (modified = false)
+            // UPLOADER TACHE
+                // Reussi : (modified = false)
             
             NSLog(@"upload tache : %@", tache.identifiant);
         }
@@ -242,6 +245,7 @@
 
 
 -(void)downloadNeededTaches {
+    int countTachesNonRecuperees = 0;
     
     // Recuperation du chantier
     NSManagedObjectContext *myNewContext = [NSManagedObjectContext MR_context];
@@ -263,7 +267,7 @@
         NSLog(@"%i", [listeInfosTachesTotalChantier count]);
     }
     
-    float delta = (1 - [_progress floatValue])/2/[listeInfosTachesTotalChantier count];
+    float delta = (1 - [_progress floatValue])/[listeInfosTachesTotalChantier count];
     
     for (IdentifiantsTaches *identifiant in listeInfosTachesTotalChantier) {
         
@@ -272,12 +276,17 @@
         }
         else {
             NSLog(@"Probleme reseau telechargement tache %@", identifiant.identifiant);
+            countTachesNonRecuperees++;
         }
         [self addDeltaToProgress:delta];
     }
     
+    // Rempli le dictionnaire infos notDownloadedCount
+    [_finishedInfos setObject:[NSString stringWithFormat:@"%i", countTachesNonRecuperees] forKey:@"notDownloadedCount"];
+    
+    
     // Si listeInfosTachesTotalChantier vide alors delta = infini. on ajoute 50% du reste
-    if (isinf(delta)) [self addDeltaToProgress:((1 - [_progress floatValue])/2)];
+    if (isinf(delta)) [self addDeltaToProgress:((1 - [_progress floatValue]))];
 }
 
 
@@ -350,9 +359,11 @@
 }
 
 -(void)setProgressTo:(float)value {
-    if (value > 1) value = 1.0;
-    _progress = [NSNumber numberWithFloat:value];
-    [_loadingVC performSelectorOnMainThread:@selector(setProgress:) withObject:_progress waitUntilDone:NO];
+    if ([_associatedViewController respondsToSelector:@selector(setProgress:)]) {
+        if (value > 1) value = 1.0;
+        _progress = [NSNumber numberWithFloat:value];
+        [_associatedViewController performSelectorOnMainThread:@selector(setProgress:) withObject:_progress waitUntilDone:NO];
+    }
 }
 
 @end

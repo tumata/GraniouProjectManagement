@@ -88,7 +88,7 @@ void(^tryLoginUserCallback)(BOOL success, NSError *error);
         NSData *jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:fullLoginRequest] options:NSDataReadingMappedIfSafe error:&error];
         
         NSMutableDictionary *dicoDataAndError = [NSMutableDictionary dictionaryWithObject:error forKey:@"error"];
-        if (jsonData) [dicoDataAndError setObject:error forKey:@"data"];
+        if (jsonData) [dicoDataAndError setObject:jsonData forKey:@"data"];
         
         [self performSelectorOnMainThread:@selector(onBackendResponse:) withObject:dicoDataAndError waitUntilDone:NO];
     });

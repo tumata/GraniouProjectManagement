@@ -76,7 +76,11 @@
     _loadingProgress.progress = [prog floatValue];
 }
 
--(void)finishedGettingAllData {
+-(void)finishedGettingAllData:(NSDictionary *)finishedInfos {
+    
+    NSString *countNotDownloaded = [finishedInfos objectForKey:@"notDownloadedCount"];
+    NSLog(@"%@ taches n'ont pas ete telechargees", countNotDownloaded);
+    
     MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_ACCOUNT];
     [intent setAnimationStyle:ANIMATION_NOTHING];
     [[MCViewModel sharedModel] setCurrentSection:intent];

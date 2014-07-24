@@ -86,12 +86,10 @@
 
 
 - (IBAction)pressLR:(id)sender {
-    Tache *tache = [Tache MR_findFirstByAttribute:@"type" withValue:@"ldr"];
-    
-    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_MONTEUR andViewName:VIEW_TACHE];
+    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_MONTEUR andViewName:VIEW_TACHESTABLE];
     [intent setAnimationStyle:UIViewAnimationOptionTransitionCrossDissolve];
     
-    [[intent savedInstanceState] setObject:tache forKey:@"source"];
+    [[intent savedInstanceState] setObject:@"ldr" forKey:@"sourceType"];
     
     [[MCViewModel sharedModel] setCurrentSection:intent];
 }

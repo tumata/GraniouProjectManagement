@@ -10,15 +10,17 @@
 #import "PTBAppModel.h"
 #import "PTBGetChantier.h"
 
-@interface PTBLoadingVC ()
+@interface PTBLoadingVC () <UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSOperationQueue *operationQueue;
 
 @property (weak, nonatomic) IBOutlet UIProgressView *loadingProgress;
 
-
+@property (strong, nonatomic) UIAlertView *alertView;
 
 @end
+
+
 
 @implementation PTBLoadingVC
 
@@ -62,6 +64,8 @@
 
 
 - (void)loadChantier {
+    _loadingProgress.progress = 0.0;
+    
     PTBGetChantier *getChantier = [[PTBGetChantier alloc] initWithView:self];
     _operationQueue = [[NSOperationQueue alloc] init];
     [_operationQueue setMaxConcurrentOperationCount:1];
@@ -76,14 +80,43 @@
     _loadingProgress.progress = [prog floatValue];
 }
 
+
 -(void)finishedGettingAllData:(NSDictionary *)finishedInfos {
     
     NSString *countNotDownloaded = [finishedInfos objectForKey:@"notDownloadedCount"];
-    NSLog(@"%@ taches n'ont pas ete telechargees", countNotDownloaded);
-    
-    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_ACCOUNT];
-    [intent setAnimationStyle:ANIMATION_NOTHING];
-    [[MCViewModel sharedModel] setCurrentSection:intent];
-
+    if ([countNotDownloaded integerValue] > 0) {
+        [self launchAlertView:finishedInfos];
+    } else {
+        MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_ACCOUNT];
+        [intent setAnimationStyle:ANIMATION_NOTHING];
+        [[MCViewModel sharedModel] setCurrentSection:intent];
+    }
 }
+
+#pragma mark - Alert view
+
+- (void)launchAlertView:(NSDictionary *)finishedInfos {
+    
+    NSString *title = @"Attention";
+    NSString *description = [NSString stringWithFormat:@"%@ tâches sur %@ n'ont pu être téléchargées", [finishedInfos objectForKey:@"notDownloadedCount"],[finishedInfos objectForKey:@"shouldDownloadCount"]];
+    NSString *cancel = @"Réessayer";
+    NSString *ok = @"Je comprends";
+    
+    _alertView = [[UIAlertView alloc] initWithTitle:title message:description delegate:self cancelButtonTitle:cancel otherButtonTitles:ok, nil];
+    [_alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [self loadChantier];
+        
+    }
+    else if (buttonIndex == 1) {
+        // Je comprends
+        MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_ACCOUNT];
+        [intent setAnimationStyle:ANIMATION_NOTHING];
+        [[MCViewModel sharedModel] setCurrentSection:intent];
+    }
+}
+
 @end

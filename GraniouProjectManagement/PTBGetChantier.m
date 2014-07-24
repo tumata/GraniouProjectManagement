@@ -12,6 +12,7 @@
 #import "IdentifiantsTaches.h"
 #import "Tache.h"
 #import "PTBLoadingVC.h"
+#import "Images.h"
 
 
 
@@ -126,11 +127,9 @@
         NSSet *tachesModified = [currentChantier.taches filteredSetUsingPredicate:tacheFiltre];
         
         for (Tache *tache in tachesModified) {
+            [self uploadTacheWithTache:tache];
             
-            // UPLOADER TACHE
-                // Reussi : (modified = false)
             
-            NSLog(@"upload tache : %@", tache.identifiant);
         }
     }
     else {
@@ -139,6 +138,13 @@
 }
 
 
+// -----------------------------------------------------
+// Envoi une tache sur le serveur
+//
+-(BOOL)uploadTacheWithTache:(Tache *)tache {
+    NSLog(@"upload tache : %@", tache.identifiant);
+    return true;
+}
 
 
 // -----------------------------------------------------
@@ -243,9 +249,12 @@
     return true;
 }
 
-
+// -------------------------------------------
+// Telecharge les taches necessaires
+//
 -(void)downloadNeededTaches {
     int countTachesNonRecuperees = 0;
+    int shouldDownloadCount = 0;
     
     // Recuperation du chantier
     NSManagedObjectContext *myNewContext = [NSManagedObjectContext MR_context];
@@ -267,8 +276,10 @@
         NSLog(@"%i", [listeInfosTachesTotalChantier count]);
     }
     
+    shouldDownloadCount = [listeInfosTachesTotalChantier count];
     float delta = (1 - [_progress floatValue])/[listeInfosTachesTotalChantier count];
     
+    // listeInfosTachesTotalChantier ne contient plus que les taches non presentes ici
     for (IdentifiantsTaches *identifiant in listeInfosTachesTotalChantier) {
         
         if ([self downloadTacheWithIdentifiant:identifiant]) {
@@ -283,13 +294,11 @@
     
     // Rempli le dictionnaire infos notDownloadedCount
     [_finishedInfos setObject:[NSString stringWithFormat:@"%i", countTachesNonRecuperees] forKey:@"notDownloadedCount"];
-    
+    [_finishedInfos setObject:[NSString stringWithFormat:@"%i", shouldDownloadCount] forKey:@"shouldDownloadCount"];
     
     // Si listeInfosTachesTotalChantier vide alors delta = infini. on ajoute 50% du reste
     if (isinf(delta)) [self addDeltaToProgress:((1 - [_progress floatValue]))];
 }
-
-
 
 
 // -----------------------------------------------------
@@ -334,10 +343,43 @@
         tache.laDescription = [infosTache objectForKey:@"laDescription"];
         tache.commentaire = [infosTache objectForKey:@"commentaire"];
         
-        // Gerer les images !!!!!!
+        // Images
+        Images *image;
+        // 1. image description
+        if ([type isEqualToString:@"ldr"]) {
+            NSDictionary *imageDescriptionDico = [infosTache objectForKey:@"imageDescription"];
+            NSString *stringBase64Image = [imageDescriptionDico objectForKey:@"data"];
+            if ([stringBase64Image length] > 5) {
+                // Conversion base 64 en NSData
+                NSData *data = [[NSData alloc] initWithBase64EncodedString:stringBase64Image options:NSDataBase64DecodingIgnoreUnknownCharacters];
+                // CreationImage
+                image = [Images MR_createEntityInContext:localContext];
+                image.imageDescription = data;
+                data = nil;
+                stringBase64Image = nil;
+                imageDescriptionDico = nil;
+            }
+        }
+        // 2. imageCommentaire
+        NSDictionary *imageCommentaireDico = [infosTache objectForKey:@"imageCommentaire"];
+        NSString *stringBase64Image = [imageCommentaireDico objectForKey:@"data"];
+        if ([stringBase64Image length] > 5) {
+            // Conversion base 64 en NSData
+            NSData *data = [[NSData alloc] initWithBase64EncodedString:stringBase64Image options:NSDataBase64DecodingIgnoreUnknownCharacters];
+            // CreationImage
+            if (!image) {
+                image = [Images MR_createEntityInContext:localContext];
+            }
+            image.imageCommentaire = data;
+            data = nil;
+            stringBase64Image = nil;
+            imageCommentaireDico = nil;
+        }
+        // 3. ajout image
+        if (image) tache.images = image;
+        
         
         [[Chantier MR_findFirstInContext:localContext] addTachesObject:tache];
-        
         [localContext MR_saveToPersistentStoreAndWait];
     }];
     
@@ -352,7 +394,7 @@
 
 
 
-
+#pragma mark - Progress view methods
 
 -(void)addDeltaToProgress:(float)delta {
     [self setProgressTo:([_progress floatValue] + delta)];

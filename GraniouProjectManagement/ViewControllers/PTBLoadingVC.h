@@ -15,7 +15,8 @@
 - (void)setProgress:(NSNumber *)prog;
 
 // keys :
-//  "notDownloadedCount" : "string"
+//      "notDownloadedCount" : "string"
+//      "shouldDownloadCount" : "string"
 - (void)finishedGettingAllData:(NSDictionary *)finishedInfos;
 
 @end

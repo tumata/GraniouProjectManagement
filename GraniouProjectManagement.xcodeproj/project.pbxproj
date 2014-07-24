@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9093F73B1980D20500D25B6E /* arrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 9093F73A1980D20500D25B6E /* arrowLeft.png */; };
 		D89B62105573488CB640CF3C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1827E63AF64A5C9B7892E5 /* libPods.a */; };
 		F644B0DB197DBB3600D846BE /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B0A1197DBB3600D846BE /* MagicalImportFunctions.m */; };
 		F644B0DC197DBB3600D846BE /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B0A3197DBB3600D846BE /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -107,6 +108,7 @@
 
 /* Begin PBXFileReference section */
 		13A8D27112334B76BA002B31 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		9093F73A1980D20500D25B6E /* arrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowLeft.png; sourceTree = "<group>"; };
 		AB1827E63AF64A5C9B7892E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F644B0A0197DBB3600D846BE /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		F644B0A1197DBB3600D846BE /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
@@ -584,6 +586,7 @@
 		F6D3A64319798F02008FDE1B /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				9093F73A1980D20500D25B6E /* arrowLeft.png */,
 				F644B125197F0E8200D846BE /* check.png */,
 				F644B126197F0E8200D846BE /* unCheck.png */,
 				F644B107197DEDC100D846BE /* camera.png */,
@@ -690,6 +693,7 @@
 				F644B10A197DEDC100D846BE /* camera.png in Resources */,
 				F6D3A5761970A244008FDE1B /* Images.xcassets in Resources */,
 				F644B10B197DEDC100D846BE /* menu.png in Resources */,
+				9093F73B1980D20500D25B6E /* arrowLeft.png in Resources */,
 				F6D3A6031975D08A008FDE1B /* PTBLoadingVC.xib in Resources */,
 				F644B10F197DEDD200D846BE /* fond-1.jpg in Resources */,
 				F6D3A6071975D08A008FDE1B /* PTBMonteurSectionVC.xib in Resources */,

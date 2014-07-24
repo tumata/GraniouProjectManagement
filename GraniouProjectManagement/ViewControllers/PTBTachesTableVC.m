@@ -99,13 +99,19 @@
     return [_sourceArray count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return  80;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
+    
     
     Tache *tache = [_sourceArray objectAtIndex:indexPath.row];
     
@@ -115,6 +121,8 @@
         [cell.imageView setImage:[UIImage imageNamed:@"unCheck.png"]];
     }
     cell.textLabel.text = [tache valueForKey:kNom];
+    NSLog(@"%@", [tache valueForKey:@"laDescription"]);
+    cell.detailTextLabel.text = [tache valueForKey:@"laDescription"];
     return cell;
 }
 

@@ -12,9 +12,6 @@
 
 @property (strong, nonatomic) IBOutlet UIView *view;
 
-- (IBAction)boutonGauchePressed:(id)sender;
-- (IBAction)boutonDroitPressed:(id)sender;
-
 @end
 
 @implementation PTBNavigationView
@@ -57,19 +54,6 @@
 }
 
 
-- (IBAction)boutonGauchePressed:(id)sender {
-    [self disableMultiTimesPressedButton];
-    [self.delegate navigationViewDidPressLeftButton];
-    
-}
-
-- (IBAction)boutonDroitPressed:(id)sender {
-    [self disableMultiTimesPressedButton];
-    if ([self.delegate respondsToSelector:@selector(navigationViewDidPressRightButton)]) {
-        [self.delegate navigationViewDidPressRightButton];
-    }
-}
-
 #pragma mark - Handling fast - pressed button
 
 - (void)disableMultiTimesPressedButton {
@@ -80,4 +64,25 @@
 - (void)setInteractionStop {
     [_view setUserInteractionEnabled:true];
 }
+
+- (void)setStatusBarSameColor {
+    _statusBarView.backgroundColor = _navigationBar.backgroundColor;
+}
+
+#pragma mark - touches events
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    CGPoint point = [[touches anyObject] locationInView:_boutonGauche];
+    if (point.x < 70) {
+        [self disableMultiTimesPressedButton];
+        [self.delegate navigationViewDidPressLeftButton];
+    }
+    if (point.x > 250) {
+        [self disableMultiTimesPressedButton];
+        if ([self.delegate respondsToSelector:@selector(navigationViewDidPressRightButton)]) {
+            [self.delegate navigationViewDidPressRightButton];
+        }
+    }
+}
+
 @end

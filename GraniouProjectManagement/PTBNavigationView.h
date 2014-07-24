@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @protocol PTBNavigationViewDelegate <NSObject>
 @required
 - (void)navigationViewDidPressLeftButton;
@@ -23,12 +24,14 @@
 @property (weak, nonatomic) IBOutlet UIView *navigationBar;
 
 // Enabled by default - text "< retour"
-@property (weak, nonatomic) IBOutlet UIButton *boutonGauche;
+@property (weak, nonatomic) IBOutlet UIImageView *boutonGauche;
 
 // Hidden by default - empty text
 @property (weak, nonatomic) IBOutlet UIButton *boutonDroit;
 
 // Titre - empty text by default
 @property (weak, nonatomic) IBOutlet UILabel *titre;
+
+
 
 @end

@@ -8,16 +8,13 @@
 
 #import "PTBAccountVC.h"
 #import "Chantier.h"
+#import "PTBInfosScrollView.h"
 
 @interface PTBAccountVC ()
 
-@property (weak, nonatomic) IBOutlet UILabel *labelTitre;
-@property (weak, nonatomic) IBOutlet UILabel *labelAdresse;
-@property (weak, nonatomic) IBOutlet UILabel *labelCodeSite;
-@property (weak, nonatomic) IBOutlet UILabel *labelBrin;
-@property (weak, nonatomic) IBOutlet UILabel *labelPhase;
-@property (weak, nonatomic) IBOutlet UILabel *labelAmenageur;
-@property (weak, nonatomic) IBOutlet UILabel *labelDate;
+
+@property (weak, nonatomic) IBOutlet PTBInfosScrollView *infosScrollView;
+
 
 
 - (IBAction)actionLogout:(id)sender;
@@ -40,8 +37,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
-    [self setDataFromCore];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,12 +47,7 @@
 #pragma mark - Actions
 
 - (IBAction)actionLogout:(id)sender {
-    Chantier *chantier = [Chantier MR_findFirst];
-    
-    [[chantier managedObjectContext] MR_saveToPersistentStoreAndWait];
-    
-    [self setDataFromCore];
-
+    NSLog(@"%@", NSStringFromCGRect([_infosScrollView frame]));
 }
 
 - (IBAction)actionLogin:(id)sender {
@@ -67,20 +57,6 @@
 }
 
 - (IBAction)actionSync:(id)sender {
-}
-
-#pragma mark - Core Data function
-
-- (void)setDataFromCore {
-    Chantier *chantier = [Chantier MR_findFirst];
-
-    _labelTitre.text = chantier.nom;
-    _labelAdresse.text = chantier.adresse;
-    _labelCodeSite.text = chantier.codesite;
-    _labelBrin.text = chantier.brin;
-    _labelPhase.text = chantier.phase;
-    _labelAmenageur.text = chantier.amenageur;
-    _labelDate.text = chantier.ladate;
 }
 
 @end

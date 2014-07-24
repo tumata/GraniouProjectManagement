@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9093F73B1980D20500D25B6E /* arrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 9093F73A1980D20500D25B6E /* arrowLeft.png */; };
+		9093F7401980D94600D25B6E /* PTBInfosScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9093F73F1980D94600D25B6E /* PTBInfosScrollView.m */; };
+		9093F7441980D9B300D25B6E /* PTBInfosScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9093F7431980D9B300D25B6E /* PTBInfosScrollView.xib */; };
 		D89B62105573488CB640CF3C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1827E63AF64A5C9B7892E5 /* libPods.a */; };
 		F644B0DB197DBB3600D846BE /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B0A1197DBB3600D846BE /* MagicalImportFunctions.m */; };
 		F644B0DC197DBB3600D846BE /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B0A3197DBB3600D846BE /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -109,6 +111,9 @@
 /* Begin PBXFileReference section */
 		13A8D27112334B76BA002B31 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		9093F73A1980D20500D25B6E /* arrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowLeft.png; sourceTree = "<group>"; };
+		9093F73E1980D94600D25B6E /* PTBInfosScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTBInfosScrollView.h; sourceTree = "<group>"; };
+		9093F73F1980D94600D25B6E /* PTBInfosScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTBInfosScrollView.m; sourceTree = "<group>"; };
+		9093F7431980D9B300D25B6E /* PTBInfosScrollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTBInfosScrollView.xib; sourceTree = "<group>"; };
 		AB1827E63AF64A5C9B7892E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F644B0A0197DBB3600D846BE /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		F644B0A1197DBB3600D846BE /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
@@ -579,6 +584,9 @@
 				F6D3A62A19775627008FDE1B /* PTBNavigationView.xib */,
 				F6D3A62C197844B3008FDE1B /* PTBNavigationView.h */,
 				F6D3A62D197844B3008FDE1B /* PTBNavigationView.m */,
+				9093F7431980D9B300D25B6E /* PTBInfosScrollView.xib */,
+				9093F73E1980D94600D25B6E /* PTBInfosScrollView.h */,
+				9093F73F1980D94600D25B6E /* PTBInfosScrollView.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -687,6 +695,7 @@
 				F644B10C197DEDC100D846BE /* remove.png in Resources */,
 				F644B128197F0E8200D846BE /* unCheck.png in Resources */,
 				F6D3A56B1970A244008FDE1B /* InfoPlist.strings in Resources */,
+				9093F7441980D9B300D25B6E /* PTBInfosScrollView.xib in Resources */,
 				F6D3A62B19775627008FDE1B /* PTBNavigationView.xib in Resources */,
 				F6D3A5A11970B57D008FDE1B /* PTBProfileSectionVC.xib in Resources */,
 				F6D3A59D1970B57D008FDE1B /* PTBAccountVC.xib in Resources */,
@@ -775,6 +784,7 @@
 				F644B0DC197DBB3600D846BE /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				F644B0F3197DBB3600D846BE /* MagicalRecord+ShorthandSupport.m in Sources */,
 				F6D3A6121975D08A008FDE1B /* PTBWriteCommentVC.m in Sources */,
+				9093F7401980D94600D25B6E /* PTBInfosScrollView.m in Sources */,
 				F644B11A197ED1BE00D846BE /* IdentifiantsTaches.m in Sources */,
 				F644B0E8197DBB3600D846BE /* NSManagedObjectContext+MagicalRecord.m in Sources */,
 				F6D3A6001975D08A008FDE1B /* PTBDocumentsTableVC.m in Sources */,

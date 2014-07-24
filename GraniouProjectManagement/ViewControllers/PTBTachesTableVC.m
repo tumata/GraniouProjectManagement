@@ -22,7 +22,7 @@
 @property (strong, nonatomic) NSArray *sourceArray;
 
 @property (weak, nonatomic) IBOutlet PTBNavigationView *navigationView;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 @end
 

@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PTBLoginVC">
             <connections>
                 <outlet property="buttonLogin" destination="Doa-rt-6QE" id="u5z-Cc-Iib"/>
+                <outlet property="erreurLabel" destination="Llg-MB-Kke" id="l3m-eE-lFG"/>
                 <outlet property="erreurView" destination="pYF-EW-mJK" id="MEj-Al-M9M"/>
                 <outlet property="identifiant" destination="k1q-qJ-y9x" id="dqB-le-VxR"/>
                 <outlet property="logoGraniou" destination="FZo-hd-ifb" id="THv-hK-cMk"/>
@@ -95,8 +96,8 @@
                             <rect key="frame" x="50" y="151" width="220" height="19"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Erreur de saisie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Llg-MB-Kke">
-                                    <rect key="frame" x="50" y="0.0" width="120" height="21"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Erreur de saisie" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Llg-MB-Kke">
+                                    <rect key="frame" x="0.0" y="-1" width="220" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -110,6 +111,9 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="19" id="KKH-YW-YjC"/>
                                 <constraint firstAttribute="width" constant="220" id="WJD-XE-JCg"/>
+                                <constraint firstItem="Llg-MB-Kke" firstAttribute="leading" secondItem="pYF-EW-mJK" secondAttribute="leading" id="iE0-Le-jxi"/>
+                                <constraint firstAttribute="centerY" secondItem="Llg-MB-Kke" secondAttribute="centerY" id="pc8-dw-Glt"/>
+                                <constraint firstAttribute="trailing" secondItem="Llg-MB-Kke" secondAttribute="trailing" id="urd-Eh-Vfb"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9OV-IW-vGx" userLabel="ConnexionView">

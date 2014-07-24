@@ -84,11 +84,11 @@ void(^tryLoginUserCallback)(BOOL success, NSError *error);
         
         //NSLog(@"%@", fullLoginRequest);
         
-        NSError *error;
+        NSError *error = [[NSError alloc] init];
         NSData *jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:fullLoginRequest] options:NSDataReadingMappedIfSafe error:&error];
         
-        NSDictionary *dicoDataAndError = @{@"data": jsonData,
-                                           @"error": error};
+        NSMutableDictionary *dicoDataAndError = [NSMutableDictionary dictionaryWithObject:error forKey:@"error"];
+        if (jsonData) [dicoDataAndError setObject:error forKey:@"data"];
         
         [self performSelectorOnMainThread:@selector(onBackendResponse:) withObject:dicoDataAndError waitUntilDone:NO];
     });
@@ -100,11 +100,16 @@ void(^tryLoginUserCallback)(BOOL success, NSError *error);
 - (void)onBackendResponse:(NSDictionary *)object
 {
     NSError *error = [object objectForKey:@"error"];
-    NSData *response = [object objectForKey:@"data"];
+    NSLog(@"%@", error.domain);
+    if ([error.domain isEqualToString:@"NSCocoaErrorDomain"]) {
+        error = [NSError errorWithDomain:@"Erreur reseau" code:0 userInfo:nil];
+    }
     
     bool good = false;
     
-    if (response) {
+    if ([object objectForKey:@"data"]) {
+        NSData *response = [object objectForKey:@"data"];
+        
         id jsonObjects = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:&error];
         
         NSNumber *idChantier = [(NSDictionary *)jsonObjects valueForKey:@"id_chantier"];
@@ -116,13 +121,11 @@ void(^tryLoginUserCallback)(BOOL success, NSError *error);
             good = true;
         }
         else if ([idChantier integerValue] == -1) {
-            error = [NSError errorWithDomain:@"WrongPassword" code:0 userInfo:nil];
+            error = [NSError errorWithDomain:@"Erreur identifiants" code:0 userInfo:nil];
         } else {
-            error = [NSError errorWithDomain:@"ServeurError" code:1 userInfo:nil];
+            error = [NSError errorWithDomain:@"Erreur serveur !!!" code:1 userInfo:nil];
         }
     }
-
-    NSLog(@"%@", [error localizedDescription]);
     
     tryLoginUserCallback(good, error);
 }

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *mdp;
 @property (weak, nonatomic) IBOutlet UIButton    *buttonLogin;
 
+@property (weak, nonatomic) IBOutlet UILabel *erreurLabel;
 @property (weak, nonatomic) IBOutlet UIView *erreurView;
 @property (weak, nonatomic) IBOutlet UIImageView *logoGraniou;
 
@@ -105,6 +106,11 @@
 #pragma mark - errorView Animations
 
 - (void)displayErrorViewAnimated:(NSError *)error {
+   
+    _erreurLabel.text = [error domain];
+    
+    
+    
     [UIView animateWithDuration:1.0
                      animations:^{
                          _erreurView.alpha = 1.0;
@@ -116,16 +122,6 @@
                      }];
 }
 
-//- (void)displayErrorViewAnimated {
-//    [_erreurView setAlpha:0.0];
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDuration:0.5];
-//    _erreurView.hidden = false;
-//    [_erreurView setAlpha:1.0];
-//    [UIView commitAnimations];
-//    
-//    [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(updateActivityIndicator:) userInfo:nil repeats:NO];
-//}
 
 - (void) updateActivityIndicator:(NSTimer *)incomingTimer {
     _erreurView.hidden = true;

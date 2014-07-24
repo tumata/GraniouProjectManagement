@@ -8,12 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PTBGetChantier : NSObject
+@interface PTBGetChantier : NSOperation
 
-//typedef void (^PTBCompletionBlock)(BOOL succes, NSError *error);
-
-//- (void)startSynchronizingChantierWithProgressView:(UIProgressView *)progressView withCallback:(PTBCompletionBlock)callback;
-
-- (void)startSynchronizingChantier:(UIViewController *)appliedView;
+- (id)initWithView:(UIViewController *)appliedView;
 
 @end

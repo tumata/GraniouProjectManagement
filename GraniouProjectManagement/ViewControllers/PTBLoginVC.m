@@ -94,7 +94,7 @@
                 // On redonne la possibilite de cliquer
                 [sender setEnabled:true];
                 // Annonce erreur de saisie
-                [self displayErrorViewAnimated];
+                [self displayErrorViewAnimated:error];
                 // Remise champ mdp vide
                 _mdp.text = @"";
             }
@@ -104,7 +104,7 @@
 
 #pragma mark - errorView Animations
 
-- (void)displayErrorViewAnimated {
+- (void)displayErrorViewAnimated:(NSError *)error {
     [UIView animateWithDuration:1.0
                      animations:^{
                          _erreurView.alpha = 1.0;

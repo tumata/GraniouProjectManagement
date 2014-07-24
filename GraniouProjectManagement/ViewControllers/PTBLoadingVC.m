@@ -35,12 +35,12 @@
 {
     [super viewDidLoad];
     
+    NSLog(@"ViewDidLoad !!!!!!!!!!!!!!!!!!!!");
+    [self loadChantier];
+    
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self loadChantier];
-}
+
 
 -(void)onPause:(MCIntent *)intent {
     
@@ -59,15 +59,18 @@
     [[MCViewModel sharedModel] setCurrentSection:intent];
 }
 
+
+
 - (void)loadChantier {
-    PTBGetChantier *getChantier = [[PTBGetChantier alloc] init];
+    PTBGetChantier *getChantier = [[PTBGetChantier alloc] initWithView:self];
     _operationQueue = [[NSOperationQueue alloc] init];
+    [_operationQueue setMaxConcurrentOperationCount:1];
     
-    NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:getChantier
-                                                                            selector:@selector(startSynchronizingChantier:)
-                                                                              object:self];
-    [_operationQueue addOperation:operation];
+    [_operationQueue addOperation:getChantier];
 }
+
+
+
 
 - (void)setProgress:(NSNumber *)prog {
     _loadingProgress.progress = [prog floatValue];

@@ -30,7 +30,7 @@
 
 // Related VC
 @property (weak, nonatomic) PTBLoadingVC *loadingVC;
-@property (strong, nonatomic) NSNumber *progress;
+@property (strong, atomic) NSNumber *progress;
 
 
 @end
@@ -38,15 +38,26 @@
 @implementation PTBGetChantier
 
 
-//--------------------------------------------
-// Fonction principale permettant la connection
-//
-- (void)startSynchronizingChantier:(UIViewController *)appliedView {
+- (id)initWithView:(UIViewController *)appliedView {
+    self = [super init];
     
     if ([appliedView isKindOfClass:[PTBLoadingVC class]]) {
         _loadingVC = (PTBLoadingVC *)appliedView;
     }
     else NSAssert(true, @"appliedView not a PTBLoadingVC");
+    
+    return self;
+}
+
+- (void)main {
+    [self startSynchronizingChantier];
+}
+
+
+//--------------------------------------------
+// Fonction principale permettant la connection
+//
+- (void)startSynchronizingChantier {
     
     
     // -----------------------------------------
@@ -105,7 +116,7 @@
     
     if (currentChantier) {
         // Filtre selon taches modifiees
-        NSPredicate *tacheFiltre = [NSPredicate predicateWithFormat:@"(modified == %@", [NSNumber numberWithBool:true]];
+        NSPredicate *tacheFiltre = [NSPredicate predicateWithFormat:@"('modified' == %@", [NSNumber numberWithBool:true]];
         
         NSSet *tachesModified = [currentChantier.taches filteredSetUsingPredicate:tacheFiltre];
         
@@ -255,9 +266,8 @@
     float delta = (1 - [_progress floatValue])/2/[listeInfosTachesTotalChantier count];
     
     for (IdentifiantsTaches *identifiant in listeInfosTachesTotalChantier) {
-        // Ajouter au tableau tachesToDownload
+        
         if ([self downloadTacheWithIdentifiant:identifiant]) {
-            // Enlever du tableau tachesToDownload
             NSLog(@"Tache %@ downloaded", identifiant.identifiant);
         }
         else {
@@ -265,6 +275,9 @@
         }
         [self addDeltaToProgress:delta];
     }
+    
+    // Si listeInfosTachesTotalChantier vide alors delta = infini. on ajoute 50% du reste
+    if (isinf(delta)) [self addDeltaToProgress:((1 - [_progress floatValue])/2)];
 }
 
 

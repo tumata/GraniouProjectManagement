@@ -82,38 +82,48 @@ void(^tryLoginUserCallback)(BOOL success, NSError *error);
     dispatch_async(kBgQueue, ^{
         NSString *fullLoginRequest = [NSString stringWithFormat:@"%@%@login=%@&password=%@", kBaseURLString, kLoginBaseUrlString, username, pass];
         
-        NSLog(@"%@", fullLoginRequest);
+        //NSLog(@"%@", fullLoginRequest);
         
-        NSData *jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:fullLoginRequest]];
-        [self performSelectorOnMainThread:@selector(onBackendResponse:) withObject:jsonData waitUntilDone:YES];
+        NSError *error;
+        NSData *jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:fullLoginRequest] options:NSDataReadingMappedIfSafe error:&error];
+        
+        NSDictionary *dicoDataAndError = @{@"data": jsonData,
+                                           @"error": error};
+        
+        [self performSelectorOnMainThread:@selector(onBackendResponse:) withObject:dicoDataAndError waitUntilDone:NO];
     });
 }
 
 //----------------------------------------------------
 // Une fois la reponse du serveur recue
 // Only saves people from "equipe"
-- (void)onBackendResponse:(NSData *)response
+- (void)onBackendResponse:(NSDictionary *)object
 {
-    NSError *error = nil;
-    BOOL good = false;
+    NSError *error = [object objectForKey:@"error"];
+    NSData *response = [object objectForKey:@"data"];
+    
+    bool good = false;
     
     if (response) {
         id jsonObjects = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:&error];
         
-        NSLog(@"%@", jsonObjects);
-        
         NSNumber *idChantier = [(NSDictionary *)jsonObjects valueForKey:@"id_chantier"];
         NSLog(@"%i", [idChantier integerValue]);
+        
         
         if ([idChantier integerValue] != -1) {
             [self logInUserWithIdChantier:idChantier];
             good = true;
         }
-    }
-    else {
-        NSLog(@"%@", [error localizedDescription]);
+        else if ([idChantier integerValue] == -1) {
+            error = [NSError errorWithDomain:@"WrongPassword" code:0 userInfo:nil];
+        } else {
+            error = [NSError errorWithDomain:@"ServeurError" code:1 userInfo:nil];
+        }
     }
 
+    NSLog(@"%@", [error localizedDescription]);
+    
     tryLoginUserCallback(good, error);
 }
     

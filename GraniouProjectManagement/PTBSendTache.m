@@ -51,10 +51,10 @@
     
     NSData *tacheData = [self tacheToData:tache];
     NSString *url = [NSString stringWithFormat:@"%@%@%@", baseURLString, tache.type, urlTacheEnd];
-    NSLog(@"Tache %@ envoyee : %@", tache.identifiant, url);
+    NSLog(@"Tache %@ \"%@\" envoyee : %@",tache.identifiant ,tache.titre, url);
     
     
-    [self sendHttpPostTacheWithData:tacheData toUrlWithString:url delegate:_connectionDelegate];
+    [self sendHttpPostTacheWithData:tacheData toUrlWithString:url tache:tache];
     [NSThread sleepForTimeInterval:2.0];
     return true;
 }
@@ -97,11 +97,14 @@
 
 
 - (void)sendHttpPostTacheWithData:(NSData *)body
-                  toUrlWithString:(NSString *)stringURL
-                         delegate:(id<NSURLSessionDataDelegate>)delegate {
+                                    toUrlWithString:(NSString *)stringURL
+                                              tache:(Tache *)tache {
+    
+    NSString *type = tache.type;
+    NSNumber *identifiant = tache.identifiant;
     
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: delegate delegateQueue: [NSOperationQueue mainQueue]];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate:nil delegateQueue: [NSOperationQueue mainQueue]];
     
     
     NSURL * url = [NSURL URLWithString:stringURL];
@@ -117,9 +120,41 @@
     [request setHTTPBody:body];
     
     
-    NSURLSessionDataTask * dataTask = [defaultSession dataTaskWithRequest:request];
-    [dataTask resume];
+    NSURLSessionDataTask * dataTask = [defaultSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"%i", error.code);
+        }
+        else {
+            [NSThread sleepForTimeInterval:2.0];
+            
+            // Recuperation du chantier
+            NSManagedObjectContext *myNewContext = [NSManagedObjectContext MR_context];
+            Chantier *currentChantier = [Chantier MR_findFirstByAttribute:@"identifiant" withValue:[PTBAuthUser getIDChantier] inContext:myNewContext];
+            
+            if (currentChantier) {
+                // Filtre selon taches modifiees
+                NSPredicate *tacheFiltre = [NSPredicate predicateWithFormat:@"type == %@ AND identifiant == %@", type, identifiant];
+                
+                Tache *tache = [Tache MR_findFirstWithPredicate:tacheFiltre inContext:myNewContext];
+                tache.modified = [NSNumber numberWithBool:false];
+                
+                // Test si plus de taches modifiees
+                NSPredicate *modifiedFiltre = [NSPredicate predicateWithFormat:@"modified == %@", [NSNumber numberWithBool:true]];
+                
+                NSSet *tachesModified = [currentChantier.taches filteredSetUsingPredicate:modifiedFiltre];
+                
+                if ([tachesModified count] == 0) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"allTachesUploaded" object:nil];
+                }
+                
+                
+                
+                [myNewContext MR_saveToPersistentStoreAndWait];
+            }
+        }
+    }];
     
+    [dataTask resume];
     
 }
 

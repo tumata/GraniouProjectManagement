@@ -20,7 +20,6 @@
 
 @property (strong, nonatomic) NSString *type;
 @property (strong, nonatomic) NSNumber *identifiant;
-@property (weak, nonatomic) id<NSURLSessionDataDelegate>connectionDelegate;
 
 
 @end

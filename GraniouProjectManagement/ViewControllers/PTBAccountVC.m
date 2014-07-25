@@ -9,6 +9,7 @@
 #import "PTBAccountVC.h"
 #import "Chantier.h"
 #import "PTBInfosScrollView.h"
+#import "PTBGetChantier.h"
 
 @interface PTBAccountVC ()
 
@@ -57,6 +58,7 @@
 }
 
 - (IBAction)actionSync:(id)sender {
+    [[PTBGetChantier sharedInstance] uploadNeededTaches];
 }
 
 @end

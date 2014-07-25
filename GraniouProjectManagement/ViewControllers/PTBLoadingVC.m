@@ -36,16 +36,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSLog(@"ViewDidLoad !!!!!!!!!!!!!!!!!!!!");
     [self loadChantier];
+}
+
+-(void)onResume:(MCIntent *)intent {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishedGettingAllData:) name:@"tachesDownloaded" object:nil];
     
+    [super onResume:intent];
 }
 
 
-
 -(void)onPause:(MCIntent *)intent {
-    
     [super onPause:intent];
 }
 
@@ -65,12 +66,6 @@
 
 - (void)loadChantier {
     _loadingProgress.progress = 0.0;
-    
-//    _operationQueue = [[NSOperationQueue alloc] init];
-//    [_operationQueue setMaxConcurrentOperationCount:1];
-//    
-//    [_operationQueue addOperation:[[NSInvocationOperation alloc] initWithTarget:[PTBGetChantier sharedInstance] selector:@selector(startSynchronizationWithViewController:) object:self]];
-    
     [[PTBGetChantier sharedInstance] startSynchronizationWithViewController:self];
 }
 
@@ -82,17 +77,21 @@
 }
 
 
-//-(void)finishedGettingAllData:(NSDictionary *)finishedInfos {
-//    
-//    NSString *countNotDownloaded = [finishedInfos objectForKey:@"notDownloadedCount"];
-//    if ([countNotDownloaded integerValue] > 0) {
-//        [self launchAlertView:finishedInfos];
-//    } else {
-//        MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_ACCOUNT];
-//        [intent setAnimationStyle:ANIMATION_NOTHING];
-//        [[MCViewModel sharedModel] setCurrentSection:intent];
-//    }
-//}
+// Notification
+
+-(void)finishedGettingAllData:(NSNotification *)notification {
+    
+    NSDictionary *finishedInfos = [notification userInfo];
+    
+    NSString *countNotDownloaded = [finishedInfos objectForKey:@"notDownloadedCount"];
+    if ([countNotDownloaded integerValue] > 0) {
+        [self launchAlertView:finishedInfos];
+    } else {
+        MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_ACCOUNT];
+        [intent setAnimationStyle:UIViewAnimationOptionTransitionCrossDissolve];
+        [[MCViewModel sharedModel] setCurrentSection:intent];
+    }
+}
 
 #pragma mark - Alert view
 

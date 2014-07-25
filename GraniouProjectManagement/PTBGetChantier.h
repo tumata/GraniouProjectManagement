@@ -18,5 +18,21 @@
 - (BOOL)startSynchronization;
 - (BOOL)startSynchronizationWithViewController:(UIViewController *)appliedView;
 
-
+- (void)uploadNeededTaches;
 @end
+
+
+///////////////////////
+// Documentation :
+///////////////////////
+
+
+// Signals :
+
+//      "tachesUploaded"   + userInfo :
+//                                  "neededUploadCount"
+//                                  "uploadedCount"
+
+//      "tachesDownloaded" + userInfo :
+//                                  "notDownloadedCount"
+//                                  "shouldDownloadCount"

@@ -40,7 +40,7 @@
 @property (weak, nonatomic)     UIViewController *associatedViewController;
 @property (strong, atomic)      NSNumber *progress;
 
-@property (strong, nonatomic)   NSMutableDictionary *finishedInfos;
+
 
 @end
 
@@ -132,17 +132,6 @@
     //[self downloadNeededTaches];
     
     
-    //Sauvegarde du chantier
-    //[[[Chantier MR_findFirstByAttribute:@"identifiant" withValue:[PTBAuthUser getIDChantier]] managedObjectContext] MR_saveToPersistentStoreAndWait];
-    
-    
-    // Lancement interface chantier
-    SEL finished = @selector(finishedGettingAllData:);
-    
-    if ([_associatedViewController respondsToSelector:finished]) {
-        [_associatedViewController performSelectorOnMainThread:finished withObject:_finishedInfos waitUntilDone:NO];
-    }
-    
 }
 
 
@@ -160,11 +149,16 @@
         
         NSSet *tachesModified = [currentChantier.taches filteredSetUsingPredicate:tacheFiltre];
         
+        // Rien modifie, on envoi le signal tout envoye
+        if ([tachesModified count] == 0) {
+            NSDictionary *dico = @{@"neededUploadCount": @"0", @"uploadedCount": @"0"};
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"tachesUploaded" object:nil userInfo:dico];
+        }
+        
         for (Tache *tache in tachesModified) {
             PTBSendTache *operation = [[PTBSendTache alloc] init];
             operation.type = tache.type;
             operation.identifiant = tache.identifiant;
-            operation.connectionDelegate = self;
             
             [_queueSet addOperation:operation];
             
@@ -193,7 +187,7 @@
     NSError *error;
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     
-    NSLog(@"%@", jsonObjects);
+    //NSLog(@"%@", jsonObjects);
     
     // Les infos
     NSDictionary *info = [[jsonObjects objectForKey:@"info"] objectAtIndex:0];
@@ -283,6 +277,7 @@
 -(void)downloadNeededTaches {
     int countTachesNonRecuperees = 0;
     int shouldDownloadCount = 0;
+    NSMutableDictionary *finishedInfos = [[NSMutableDictionary alloc] init];
     
     // Recuperation du chantier
     NSManagedObjectContext *myNewContext = [NSManagedObjectContext MR_context];
@@ -321,11 +316,14 @@
     }
     
     // Rempli le dictionnaire infos notDownloadedCount
-    [_finishedInfos setObject:[NSString stringWithFormat:@"%i", countTachesNonRecuperees] forKey:@"notDownloadedCount"];
-    [_finishedInfos setObject:[NSString stringWithFormat:@"%i", shouldDownloadCount] forKey:@"shouldDownloadCount"];
+    [finishedInfos setObject:[NSString stringWithFormat:@"%i", countTachesNonRecuperees] forKey:@"notDownloadedCount"];
+    [finishedInfos setObject:[NSString stringWithFormat:@"%i", shouldDownloadCount] forKey:@"shouldDownloadCount"];
     
     // Si listeInfosTachesTotalChantier vide alors delta = infini. on ajoute 50% du reste
     if (isinf(delta)) [self addDeltaToProgress:((1 - [_progress floatValue]))];
+    
+    // Notification fin download :
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"tachesDownloaded" object:nil userInfo:finishedInfos];
 }
 
 
@@ -437,36 +435,6 @@
         }
     }
 }
-
-
-#pragma mark - NSURLSessionData Delegate Methods
-
-//-------------------------------------------------------
-// Lancé une fois la data depuis le serveur récuperée
-//
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
-    didReceiveData:(NSData *)data
-{
-    NSString *theReply = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding: NSASCIIStringEncoding];
-    NSLog(@"Reponse : %@ \n", theReply);
-}
-
-//-------------------------------------------------------
-// Une fois la connection terminée, fonction appelée.
-// Permet de savoir également si appareil Connecté
-//
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
-didCompleteWithError:(NSError *)error
-{
-    if (error) {
-        NSLog(@"%@", [error localizedDescription]);
-    }
-    else {
-        NSLog(@"Connection successfull");
-    }
-    
-}
-
 
 
 

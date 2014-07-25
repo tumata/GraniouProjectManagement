@@ -10,18 +10,24 @@
 #import "Chantier.h"
 #import "PTBInfosScrollView.h"
 #import "PTBGetChantier.h"
+#import "PTBAuthUser.h"
 
-@interface PTBAccountVC ()
+@interface PTBAccountVC () <UIAlertViewDelegate>
 
+@property (strong, nonatomic) PTBAuthUser *user;
 
 @property (strong, nonatomic) NSArray *data;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (weak, nonatomic) IBOutlet UILabel *labelTitre;
 
+// Synchronisation
 @property (weak, nonatomic) IBOutlet UIView *viewLoading;
 @property (weak, nonatomic) IBOutlet UIImageView *imageLoading;
 @property (strong, nonatomic) NSTimer *timer;
+
+// Deconnection
+@property (strong, nonatomic) UIAlertView *alertView;
 
 
 - (IBAction)actionLogout:(id)sender;
@@ -62,7 +68,29 @@
 }
 
 - (IBAction)actionLogout:(id)sender {
-    
+    _user = [[PTBAuthUser alloc] init];
+    [_user tryLogoutUserWithCallback:^(NSDictionary *infos) {
+        _user = nil;
+        if ([[infos objectForKey:@"uploaded"] isEqualToString:@"1"]) {
+            
+            [[MCViewModel sharedModel] clearViewCache];
+            [[MCViewModel sharedModel] clearHistoryStack];
+            
+            MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_LOGIN];
+            [intent setAnimationStyle:UIViewAnimationOptionTransitionCrossDissolve];
+            [[MCViewModel sharedModel] setCurrentSection:intent];
+        }
+        else {
+            // Tout n'a pas ete envoye
+            _alertView = [[UIAlertView alloc] initWithTitle:@"Attention, problème réseau."
+                                                    message:@"Toutes les données n'ont pu etre envoyées sur le serveur. \n Veuillez vérifiez votre connection cellulaire ou Wifi. \n Appuyer sur \"Me déconnecter\" supprimera les données non envoyées."
+                                                   delegate:self
+                                          cancelButtonTitle:@"Annuler"
+                                          otherButtonTitles:@"Me déconnecter", nil];
+            [_alertView show];
+        }
+        
+    }];
 }
 
 
@@ -174,5 +202,24 @@
     return cell;
 }
 
+
+
+#pragma mark - AlertView delegate
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        // Pas d'effet
+        _alertView = nil;
+    } else if (buttonIndex == 1) {
+        [PTBAuthUser forceLogout];
+        
+        [[MCViewModel sharedModel] clearViewCache];
+        [[MCViewModel sharedModel] clearHistoryStack];
+        
+        MCIntent* intent = [MCIntent intentWithSectionName:SECTION_PROFILE andViewName:VIEW_LOGIN];
+        [intent setAnimationStyle:UIViewAnimationOptionTransitionCrossDissolve];
+        [[MCViewModel sharedModel] setCurrentSection:intent];
+    }
+}
 
 @end

@@ -100,14 +100,16 @@
     
     [_scrollViewGlobal setContentOffset:CGPointZero animated:NO];
     
-    NSLog(@"pause");
-    
     [super onPause:intent];
 }
 
 - (void)setSource:(id)source {
     _source = source;
     [self setDataFromSource];
+}
+
+-(NSManagedObject *)getSource {
+    return _source;
 }
 
 - (void)setDataFromSource {
@@ -209,15 +211,13 @@
 
 #pragma mark - TakePicturesDelegate methods
 
--(void)exitSavingPicture:(UIImage *)image {
-    _imageCommentaire = nil;
-    _imageCommentaire = image;
-    [self savePictureToPersistantStore];
+-(void)exitSavingPicture {
     
-    [self reloadView];
     [self dismissViewControllerAnimated:YES completion:^{
         _takePictureVC = nil;
     }];
+    
+    [self setDataFromSource];
 }
 
 -(void)exitCancellingPicture {
@@ -282,33 +282,5 @@
         else NSLog(@"Error saving comment : %@", error.localizedDescription);
     }];
 }
-
-- (void)savePictureToPersistantStore {
-    NSData *imageData = UIImageJPEGRepresentation(_imageCommentaire, 1.0);
-    
-    if (![_source valueForKeyPath:@"images.imageCommentaire"]) {
-        Images *image = [Images MR_createEntity];
-        image.imageCommentaire = imageData;
-        
-        [_source setValue:image forKey:@"images"];
-    }
-    else {
-        [_source setValue:imageData forKeyPath:@"images.imageCommentaire"];
-    }
-    
-    // Tache modified
-    [_source setValue:[NSNumber numberWithBool:true] forKey:@"modified"];
-    
-    
-    [[_source managedObjectContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-        if (success) {
-            NSLog(@"Saved image with succes");
-        }
-        else NSLog(@"Error saving image : %@", error.localizedDescription);
-    }];
-
-}
-
-
 
 @end

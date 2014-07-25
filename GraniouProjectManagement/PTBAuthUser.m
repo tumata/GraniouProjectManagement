@@ -9,6 +9,8 @@
 #import "PTBAuthUser.h"
 #import "IdentifiantsTaches.h"
 #import "Tache.h"
+#import "PTBGetChantier.h"
+#import "Chantier.h"
 
 // Queue pour fetcher la data
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
@@ -66,8 +68,9 @@
 }
 
 
-void(^tryLoginUserCallback)(BOOL success, NSError *error);
+#pragma mark - Login functions
 
+void(^tryLoginUserCallback)(BOOL success, NSError *error);
 
 //--------------------------------------------
 // Fonction principale permettant la connection
@@ -140,5 +143,55 @@ void(^tryLoginUserCallback)(BOOL success, NSError *error);
     NSLog(@"Authentifie et userDefault : %i", [[[NSUserDefaults standardUserDefaults] objectForKey:kIdChantier] integerValue]);
 }
 
+
+
+
+#pragma mark - Logout functions
+
+void(^tryLogoutUserCallback)(NSDictionary *infos);
+
+//----------------------------------------------------
+// On tente de logout user
+//
+-(void)tryLogoutUserWithCallback:(PTBInfosCompletionBlock)callback {
+    tryLogoutUserCallback = callback;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logoutCompleted:) name:@"tachesUploaded" object:nil];
+    [[PTBGetChantier sharedInstance] uploadNeededTaches];
+    
+}
+
+//----------------------------------------------------
+// Une fois upload termine :
+// Transmet les infos donnees par PTBGetChantier
+//
+-(void)logoutCompleted:(NSNotification *)notification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"tachesUploaded" object:nil];
+    
+    // Si tout s'est bien passe :
+    if ([[[notification userInfo] objectForKey:@"uploaded"] isEqualToString:@"1"]) {
+        Chantier *chantier = [Chantier MR_findFirstByAttribute:@"identifiant" withValue:[PTBAuthUser getIDChantier]];
+        [chantier MR_deleteEntity];
+        [[chantier managedObjectContext] MR_saveToPersistentStoreAndWait];
+        
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kIdChantier];
+    }
+    
+    tryLogoutUserCallback([notification userInfo]);
+}
+
+
+//----------------------------------------------------
+// Forcer la deconnection
+//
++(void)forceLogout {
+    Chantier *chantier = [Chantier MR_findFirstByAttribute:@"identifiant" withValue:[PTBAuthUser getIDChantier]];
+    if (chantier) {
+        [chantier MR_deleteEntity];
+        [[chantier managedObjectContext] MR_saveToPersistentStoreAndWait];
+    
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kIdChantier];
+    }
+}
 
 @end

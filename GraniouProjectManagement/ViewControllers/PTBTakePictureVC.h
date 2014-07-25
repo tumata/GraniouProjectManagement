@@ -11,7 +11,7 @@
 @protocol PTBTakePictureVCDelegate <NSObject>
 
 @required
-- (void)exitSavingPicture:(UIImage *)image;
+- (void)exitSavingPicture;
 - (void)exitCancellingPicture;
 
 @end

@@ -11,6 +11,7 @@
 @interface PTBAuthUser : NSObject
 
 typedef void (^PTBCompletionBlock)(BOOL succes, NSError *error);
+typedef void (^PTBInfosCompletionBlock)(NSDictionary *infos);
 
 
 + (bool)isLoggedIn;
@@ -19,5 +20,9 @@ typedef void (^PTBCompletionBlock)(BOOL succes, NSError *error);
 + (BOOL)isAllTachesDownloaded;
 
 - (void)tryLoginUser:(NSString *)username password:(NSString *)pass withCallback:(PTBCompletionBlock)callback;
+
+- (void)tryLogoutUserWithCallback:(PTBInfosCompletionBlock)callback;
+
++ (void)forceLogout;
 
 @end

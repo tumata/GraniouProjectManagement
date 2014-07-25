@@ -106,9 +106,9 @@
     }
     
     if (indexPath.row == 0) {
-        cell.textLabel.text = @"Liste des taches";
+        cell.textLabel.text = @"Liste des tâches";
     } else if (indexPath.row == 1) {
-        cell.textLabel.text = @"Levees de réserve";
+        cell.textLabel.text = @"Levées de réserve";
     } else if (indexPath.row == 2) {
         cell.textLabel.text = @"Documents";
     }
@@ -119,6 +119,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setSelected:false];
+    
     if (indexPath.row == 0) {
         [self listeTachesBoutonPressed];
     } else if (indexPath.row == 1) {

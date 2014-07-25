@@ -78,7 +78,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdA-FW-2JU" userLabel="Titre">
-                    <rect key="frame" x="130" y="114" width="61" height="20"/>
+                    <rect key="frame" x="130" y="118" width="61" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="Courier-Bold" family="Courier" pointSize="20"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -136,7 +136,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="xdA-FW-2JU" firstAttribute="top" secondItem="kLk-R9-yEa" secondAttribute="bottom" constant="14" id="0eS-F7-srk"/>
+                <constraint firstItem="xdA-FW-2JU" firstAttribute="top" secondItem="kLk-R9-yEa" secondAttribute="bottom" constant="18" id="0eS-F7-srk"/>
                 <constraint firstAttribute="bottom" secondItem="mfs-kR-wbn" secondAttribute="bottom" id="15t-xU-ysr"/>
                 <constraint firstAttribute="centerX" secondItem="xdA-FW-2JU" secondAttribute="centerX" id="1VS-rs-bcl"/>
                 <constraint firstItem="odZ-ht-lBH" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="4DT-pA-maO"/>

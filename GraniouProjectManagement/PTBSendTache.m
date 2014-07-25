@@ -131,7 +131,7 @@
     NSURLSessionDataTask * dataTask = [defaultSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
             NSLog(@"%i", error.code);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"tachesUploaded" object:nil userInfo:@{@"uploaded": @"0"}];
+            [self performSelectorOnMainThread:@selector(sendNotification:) withObject:@{@"uploaded": @"0"} waitUntilDone:NO];
         }
         else {
             [NSThread sleepForTimeInterval:2.0];
@@ -155,18 +155,26 @@
                 NSLog(@"Taches modified : %i", [tachesModified count]);
                 
                 if ([tachesModified count] == 0) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"tachesUploaded" object:nil userInfo:@{@"uploaded": @"1"}];
+                    [self performSelectorOnMainThread:@selector(sendNotification:) withObject:@{@"uploaded": @"1"} waitUntilDone:NO];
                 }
                 
                 
                 
                 [myNewContext MR_saveToPersistentStoreAndWait];
+                [myNewContext reset];
             }
         }
     }];
     
     [dataTask resume];
     
+}
+
+
+// Use with "performSelectorOnMainThread for thread safety
+-(void)sendNotification:(NSDictionary *)infos {
+    NSLog(@"Pas de soucis ici");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"tachesUploaded" object:nil userInfo:infos];
 }
 
 @end

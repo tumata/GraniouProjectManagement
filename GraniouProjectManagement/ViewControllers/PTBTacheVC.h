@@ -10,4 +10,6 @@
 
 @interface PTBTacheVC : MCViewController
 
+-(NSManagedObject *)getSource;
+
 @end

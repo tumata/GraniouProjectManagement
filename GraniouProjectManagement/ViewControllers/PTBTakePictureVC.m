@@ -8,6 +8,8 @@
 
 #import "PTBTakePictureVC.h"
 #import "UIImage+ResizeMagick.h"
+#import "PTBTacheVC.h"
+#import "Images.h"
 
 @interface PTBTakePictureVC () <UINavigationControllerDelegate ,UIImagePickerControllerDelegate>
 
@@ -74,7 +76,13 @@
 
 - (IBAction)actionValider:(id)sender {
     NSAssert(_image, @"PTBTakePicture could press validate without image");
-    [self.delegate exitSavingPicture:_image];
+    
+    if ([self.delegate respondsToSelector:@selector(getSource)]) {
+        NSManagedObject *source = [self.delegate performSelector:@selector(getSource)];
+        [self savePictureToPersistantStore:source];
+    }
+    
+    [self.delegate exitSavingPicture];
 }
 
 - (IBAction)actionCancel:(id)sender {
@@ -100,6 +108,7 @@
     
     [self presentViewController:self.imagePickerController animated:YES completion:nil];
 }
+
 
 // This method is called when an image has been chosen from the library or taken from the camera.
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -128,6 +137,33 @@
     [_viewBeforePicture setHidden:true];
     
     _imagePickerController = nil;
+}
+
+#pragma mark - Persistant store save
+
+- (void)savePictureToPersistantStore:(NSManagedObject *)source {
+    NSData *imageData = UIImageJPEGRepresentation(_image, 0.7);
+    _image = nil;
+    
+    if (![source valueForKeyPath:@"images.imageCommentaire"]) {
+        Images *image = [Images MR_createEntity];
+        image.imageCommentaire = imageData;
+        
+        [source setValue:image forKey:@"images"];
+    }
+    else {
+        [source setValue:imageData forKeyPath:@"images.imageCommentaire"];
+    }
+    
+    imageData = nil;
+    
+    // Tache modified
+    [source setValue:[NSNumber numberWithBool:true] forKey:@"modified"];
+    
+    [[source managedObjectContext] MR_saveToPersistentStoreAndWait];
+    
+    
+    
 }
 
 

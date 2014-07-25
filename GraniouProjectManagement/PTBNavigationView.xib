@@ -53,7 +53,7 @@
                             <rect key="frame" x="0.0" y="10" width="60" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="2Jf-Hf-JU4"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="60" id="2Jf-Hf-JU4"/>
                                 <constraint firstAttribute="width" priority="750" constant="60" id="kgY-nM-K5H"/>
                             </constraints>
                         </imageView>

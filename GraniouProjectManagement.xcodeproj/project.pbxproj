@@ -10,7 +10,6 @@
 		9093F73B1980D20500D25B6E /* arrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 9093F73A1980D20500D25B6E /* arrowLeft.png */; };
 		9093F7401980D94600D25B6E /* PTBInfosScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9093F73F1980D94600D25B6E /* PTBInfosScrollView.m */; };
 		9093F7441980D9B300D25B6E /* PTBInfosScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9093F7431980D9B300D25B6E /* PTBInfosScrollView.xib */; };
-		9093F746198224F400D25B6E /* Data-Synchronize-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 9093F745198224F400D25B6E /* Data-Synchronize-128.png */; };
 		D89B62105573488CB640CF3C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB1827E63AF64A5C9B7892E5 /* libPods.a */; };
 		F644B0DB197DBB3600D846BE /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B0A1197DBB3600D846BE /* MagicalImportFunctions.m */; };
 		F644B0DC197DBB3600D846BE /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B0A3197DBB3600D846BE /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -51,6 +50,7 @@
 		F644B12B197F1D0800D846BE /* PTBGetChantier.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B12A197F1D0800D846BE /* PTBGetChantier.m */; };
 		F644B12E197F254900D846BE /* Chantier.m in Sources */ = {isa = PBXBuildFile; fileRef = F644B12D197F254900D846BE /* Chantier.m */; };
 		F66E7CDE1981885C00C21A56 /* PTBSendTache.m in Sources */ = {isa = PBXBuildFile; fileRef = F66E7CDD1981885C00C21A56 /* PTBSendTache.m */; };
+		F6A7883519831F66004E4F95 /* Data-Synchronize-128.png in Resources */ = {isa = PBXBuildFile; fileRef = F6A7883419831F66004E4F95 /* Data-Synchronize-128.png */; };
 		F6D3A55F1970A244008FDE1B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A55E1970A244008FDE1B /* Foundation.framework */; };
 		F6D3A5611970A244008FDE1B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5601970A244008FDE1B /* CoreGraphics.framework */; };
 		F6D3A5631970A244008FDE1B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D3A5621970A244008FDE1B /* UIKit.framework */; };
@@ -116,7 +116,6 @@
 		9093F73E1980D94600D25B6E /* PTBInfosScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTBInfosScrollView.h; sourceTree = "<group>"; };
 		9093F73F1980D94600D25B6E /* PTBInfosScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTBInfosScrollView.m; sourceTree = "<group>"; };
 		9093F7431980D9B300D25B6E /* PTBInfosScrollView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PTBInfosScrollView.xib; sourceTree = "<group>"; };
-		9093F745198224F400D25B6E /* Data-Synchronize-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Data-Synchronize-128.png"; sourceTree = "<group>"; };
 		AB1827E63AF64A5C9B7892E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F644B0A0197DBB3600D846BE /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		F644B0A1197DBB3600D846BE /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
@@ -193,6 +192,7 @@
 		F644B12D197F254900D846BE /* Chantier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chantier.m; sourceTree = "<group>"; };
 		F66E7CDC1981885C00C21A56 /* PTBSendTache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTBSendTache.h; sourceTree = "<group>"; };
 		F66E7CDD1981885C00C21A56 /* PTBSendTache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTBSendTache.m; sourceTree = "<group>"; };
+		F6A7883419831F66004E4F95 /* Data-Synchronize-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Data-Synchronize-128.png"; sourceTree = "<group>"; };
 		F6D3A55B1970A244008FDE1B /* GraniouProjectManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraniouProjectManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6D3A55E1970A244008FDE1B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F6D3A5601970A244008FDE1B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -601,7 +601,7 @@
 		F6D3A64319798F02008FDE1B /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				9093F745198224F400D25B6E /* Data-Synchronize-128.png */,
+				F6A7883419831F66004E4F95 /* Data-Synchronize-128.png */,
 				9093F73A1980D20500D25B6E /* arrowLeft.png */,
 				F644B125197F0E8200D846BE /* check.png */,
 				F644B126197F0E8200D846BE /* unCheck.png */,
@@ -707,7 +707,7 @@
 				F6D3A62B19775627008FDE1B /* PTBNavigationView.xib in Resources */,
 				F6D3A5A11970B57D008FDE1B /* PTBProfileSectionVC.xib in Resources */,
 				F6D3A59D1970B57D008FDE1B /* PTBAccountVC.xib in Resources */,
-				9093F746198224F400D25B6E /* Data-Synchronize-128.png in Resources */,
+				F6A7883519831F66004E4F95 /* Data-Synchronize-128.png in Resources */,
 				F644B10A197DEDC100D846BE /* camera.png in Resources */,
 				F6D3A5761970A244008FDE1B /* Images.xcassets in Resources */,
 				F644B10B197DEDC100D846BE /* menu.png in Resources */,

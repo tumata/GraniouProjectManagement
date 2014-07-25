@@ -156,6 +156,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Data-Synchronize-128.png" width="129" height="129"/>
+        <image name="Data-Synchronize-128.png" width="128" height="128"/>
     </resources>
 </document>

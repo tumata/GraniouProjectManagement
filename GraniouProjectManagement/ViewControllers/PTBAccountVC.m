@@ -68,8 +68,13 @@
 }
 
 - (IBAction)actionLogout:(id)sender {
+    [_viewLoading setHidden:false];
+    [self rotateView];
+    
     _user = [[PTBAuthUser alloc] init];
     [_user tryLogoutUserWithCallback:^(NSDictionary *infos) {
+        [_viewLoading setHidden:false];
+        
         _user = nil;
         if ([[infos objectForKey:@"uploaded"] isEqualToString:@"1"]) {
             
@@ -98,19 +103,20 @@
 
 - (IBAction)actionSync:(id)sender {
     [_viewLoading setHidden:false];
-
-    //_timer = [[NSTimer alloc] initWithFireDate:[NSDate date] interval:2.0 target:self selector:@selector(rotateView) userInfo:nil repeats:YES];
     [self rotateView];
     
     // Notification
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:@"tachesUploaded" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotificationSynchro:) name:@"tachesUploaded" object:nil];
     [[PTBGetChantier sharedInstance] uploadNeededTaches];
 }
 
-- (void)receivedNotification:(NSNotification *)notification {
-    
-    
-    [_viewLoading setHidden:true];
+- (void)receivedNotificationSynchro:(NSNotification *)notification {
+    [UIView animateWithDuration:2.0 animations:^{
+        _viewLoading.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [_viewLoading setHidden:true];
+        _viewLoading.alpha = 0.8;
+    }];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"tachesUploaded" object:nil];
 }

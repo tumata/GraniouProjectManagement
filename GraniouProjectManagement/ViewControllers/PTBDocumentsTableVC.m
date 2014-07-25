@@ -10,6 +10,10 @@
 
 @interface PTBDocumentsTableVC ()
 
+@property (weak, nonatomic) IBOutlet PTBNavigationView *navigationView;
+
+
+
 @end
 
 @implementation PTBDocumentsTableVC

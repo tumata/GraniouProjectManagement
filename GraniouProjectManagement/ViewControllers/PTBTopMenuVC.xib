@@ -24,36 +24,24 @@
                         <constraint firstAttribute="height" constant="64" id="rh8-3Z-3Pj"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33G-U0-GAB">
-                    <rect key="frame" x="53" y="518" width="109" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Levees Reserve">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="pressLR:" destination="-1" eventType="touchUpInside" id="Pd7-qH-AZM"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBQ-8g-yzt">
-                    <rect key="frame" x="215" y="504" width="85" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Liste Taches">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="listeTachesBoutonPressed:" destination="-1" eventType="touchUpInside" id="N6E-6l-qYe"/>
-                    </connections>
-                </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lNa-aI-03Q">
-                    <rect key="frame" x="0.0" y="87" width="320" height="284"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lNa-aI-03Q">
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="L3r-tb-lPP"/>
+                        <outlet property="delegate" destination="-1" id="HDr-FJ-HcR"/>
+                    </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="lNa-aI-03Q" firstAttribute="top" secondItem="hk0-mS-m1G" secondAttribute="bottom" id="2y2-8n-pZS"/>
+                <constraint firstAttribute="bottom" secondItem="lNa-aI-03Q" secondAttribute="bottom" id="GWU-P6-ISi"/>
+                <constraint firstAttribute="trailing" secondItem="lNa-aI-03Q" secondAttribute="trailing" id="QcW-vf-WAR"/>
                 <constraint firstItem="hk0-mS-m1G" firstAttribute="top" secondItem="1" secondAttribute="top" id="rJt-kG-snf"/>
                 <constraint firstItem="hk0-mS-m1G" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="tgy-ge-8SL"/>
+                <constraint firstItem="lNa-aI-03Q" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="ufq-fH-xEp"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

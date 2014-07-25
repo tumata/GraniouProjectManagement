@@ -127,6 +127,7 @@
     [request setHTTPBody:body];
     
     
+    // Lancement de la session avec block
     NSURLSessionDataTask * dataTask = [defaultSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
             NSLog(@"%i", error.code);
@@ -150,6 +151,8 @@
                 NSPredicate *modifiedFiltre = [NSPredicate predicateWithFormat:@"modified == %@", [NSNumber numberWithBool:true]];
                 
                 NSSet *tachesModified = [currentChantier.taches filteredSetUsingPredicate:modifiedFiltre];
+                
+                NSLog(@"Taches modified : %i", [tachesModified count]);
                 
                 if ([tachesModified count] == 0) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"tachesUploaded" object:nil userInfo:@{@"uploaded": @"1"}];

@@ -18,10 +18,6 @@
 
 @property (weak, nonatomic) IBOutlet PTBNavigationView *navigationView;
 
-@property (weak, nonatomic) PTBWriteCommentVC *writeCommentVC;
-@property (weak, nonatomic) PTBTakePictureVC *takePictureVC;
-
-- (IBAction)pressBouton:(id)sender;
 
 @end
 
@@ -71,18 +67,6 @@
     [[MCViewModel sharedModel] setCurrentSection:intent];
 }
 
-- (IBAction)pressBouton:(id)sender {
-    
-    Tache *tache = [Tache MR_findFirstByAttribute:@"type" withValue:@"tache"];
-    
-    MCIntent* intent = [MCIntent intentWithSectionName:SECTION_MONTEUR andViewName:VIEW_TACHE];
-    [intent setAnimationStyle:UIViewAnimationOptionTransitionCrossDissolve];
-    
-    [[intent savedInstanceState] setObject:tache forKey:@"source"];
-    
-    [[MCViewModel sharedModel] setCurrentSection:intent];
-    
-}
 
 
 - (IBAction)pressLR:(id)sender {

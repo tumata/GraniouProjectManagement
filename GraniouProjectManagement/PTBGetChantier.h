@@ -29,10 +29,12 @@
 
 // Signals :
 
-//      "tachesUploaded"   + userInfo :
-//                                  "neededUploadCount"
-//                                  "uploadedCount"
-
+// Ce signal ne peut etre appele qu'une seule fois par synchronisation
 //      "tachesDownloaded" + userInfo :
 //                                  "notDownloadedCount"
 //                                  "shouldDownloadCount"
+
+
+// Ce signal peut etre appele plusieurs fois par synchronisation
+//      "tachesUploaded"   + userInfo :
+//                                  "uploaded" : @"1" or @"0"

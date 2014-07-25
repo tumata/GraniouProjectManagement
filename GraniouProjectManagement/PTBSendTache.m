@@ -17,9 +17,9 @@
 // Ajouter soir ldr soit tache entre.
 #define urlTacheEnd        @"_ios.php"
 
+#define keyCompression 0.7
 
-
-@interface PTBSendTache () <NSURLSessionDataDelegate>
+@interface PTBSendTache ()
 
 
 @end
@@ -55,7 +55,11 @@
     
     
     [self sendHttpPostTacheWithData:tacheData toUrlWithString:url tache:tache];
-    [NSThread sleepForTimeInterval:2.0];
+    
+    int sleep = 2;
+    if ([tache.images.imageCommentaire length] > 5) sleep = 5;
+    
+    [NSThread sleepForTimeInterval:sleep];
     return true;
 }
 
@@ -71,11 +75,14 @@
     // Pour commencer la requete
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
+    // Conversion image en base 64 
+    NSData *image = tache.images.imageCommentaire;
+    NSString *nomImage = [NSString stringWithFormat:@"image-%@-%@", [tache.chantier.identifiant stringValue], [tache.identifiant stringValue]];
+    NSLog(@"%@", nomImage);
     
-    // Image
-    ///[body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"image\"; filename=\"%@.jpg\"\r\n", [self getNomImageCommentaire]] dataUsingEncoding:NSUTF8StringEncoding]];
-    ///[body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    ///[body appendData:[NSData dataWithData:UIImageJPEGRepresentation(_imageCommentaire, keyCompression)]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"image\"; filename=\"%@.jpg\"\r\n", nomImage] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[NSData dataWithData:UIImageJPEGRepresentation([UIImage imageWithData:image], keyCompression)]];
     
     // Id Tache
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -123,6 +130,7 @@
     NSURLSessionDataTask * dataTask = [defaultSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
             NSLog(@"%i", error.code);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"tachesUploaded" object:nil userInfo:@{@"uploaded": @"0"}];
         }
         else {
             [NSThread sleepForTimeInterval:2.0];
@@ -144,7 +152,7 @@
                 NSSet *tachesModified = [currentChantier.taches filteredSetUsingPredicate:modifiedFiltre];
                 
                 if ([tachesModified count] == 0) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"allTachesUploaded" object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"tachesUploaded" object:nil userInfo:@{@"uploaded": @"1"}];
                 }
                 
                 
@@ -157,15 +165,5 @@
     [dataTask resume];
     
 }
-
-
-
-
-//- (NSString *)getNomImageCommentaire {
-//    return [NSString stringWithFormat:@"image-%@-%@", _idChantier, _idTache];
-//}
-
-
-
 
 @end

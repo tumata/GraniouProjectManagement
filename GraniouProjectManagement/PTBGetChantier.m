@@ -151,7 +151,7 @@
         
         // Rien modifie, on envoi le signal tout envoye
         if ([tachesModified count] == 0) {
-            NSDictionary *dico = @{@"neededUploadCount": @"0", @"uploadedCount": @"0"};
+            NSDictionary *dico = @{@"neededUploadCount": @"0", @"notUploadedCount": @"0"};
             [[NSNotificationCenter defaultCenter] postNotificationName:@"tachesUploaded" object:nil userInfo:dico];
         }
         

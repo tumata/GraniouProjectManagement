@@ -113,8 +113,10 @@
 // This method is called when an image has been chosen from the library or taken from the camera.
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
     _image = image;
+    
     
     // On enleve le viewController prise de photo
     [self dismissViewControllerAnimated:YES completion:NULL];
@@ -142,28 +144,28 @@
 #pragma mark - Persistant store save
 
 - (void)savePictureToPersistantStore:(NSManagedObject *)source {
-    NSData *imageData = UIImageJPEGRepresentation(_image, 0.7);
-    _image = nil;
+ 
+        NSData *imageData = UIImageJPEGRepresentation(_image, 0.7);
     
-    if (![source valueForKeyPath:@"images.imageCommentaire"]) {
-        Images *image = [Images MR_createEntity];
-        image.imageCommentaire = imageData;
+    
+        _image = nil;
         
-        [source setValue:image forKey:@"images"];
-    }
-    else {
-        [source setValue:imageData forKeyPath:@"images.imageCommentaire"];
-    }
-    
-    imageData = nil;
-    
-    // Tache modified
-    [source setValue:[NSNumber numberWithBool:true] forKey:@"modified"];
-    
-    [[source managedObjectContext] MR_saveToPersistentStoreAndWait];
-    
-    
-    
+        if (![source valueForKeyPath:@"images.imageCommentaire"]) {
+            Images *image = [Images MR_createEntity];
+            image.imageCommentaire = imageData;
+            
+            [source setValue:image forKey:@"images"];
+        }
+        else {
+            [source setValue:imageData forKeyPath:@"images.imageCommentaire"];
+        }
+        
+        imageData = nil;
+        
+        // Tache modified
+        [source setValue:[NSNumber numberWithBool:true] forKey:@"modified"];
+        
+        [[source managedObjectContext] MR_saveToPersistentStoreAndWait];
 }
 
 

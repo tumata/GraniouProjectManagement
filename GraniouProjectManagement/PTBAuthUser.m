@@ -88,7 +88,13 @@ void(^tryLoginUserCallback)(BOOL success, NSError *error);
         //NSLog(@"%@", fullLoginRequest);
         
         NSError *error = [[NSError alloc] init];
-        NSData *jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:fullLoginRequest] options:NSDataReadingMappedIfSafe error:&error];
+        NSData *jsonData;
+        @try {
+            jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:fullLoginRequest] options:NSDataReadingMappedIfSafe error:&error];
+        }
+        @catch (NSException *exception) {
+            error = [NSError errorWithDomain:@"Erreur identifiants" code:0 userInfo:nil];
+        }
         
         NSMutableDictionary *dicoDataAndError = [NSMutableDictionary dictionaryWithObject:error forKey:@"error"];
         if (jsonData) [dicoDataAndError setObject:jsonData forKey:@"data"];

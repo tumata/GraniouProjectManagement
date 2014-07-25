@@ -304,7 +304,8 @@
     
     // listeInfosTachesTotalChantier ne contient plus que les taches non presentes ici
     for (IdentifiantsTaches *identifiant in listeInfosTachesTotalChantier) {
-        
+        @autoreleasepool {
+            
         if ([self downloadTacheWithIdentifiant:identifiant]) {
             NSLog(@"Tache %@ downloaded", identifiant.identifiant);
         }
@@ -313,6 +314,7 @@
             countTachesNonRecuperees++;
         }
         [self addDeltaToProgress:delta];
+        }
     }
     
     // Rempli le dictionnaire infos notDownloadedCount

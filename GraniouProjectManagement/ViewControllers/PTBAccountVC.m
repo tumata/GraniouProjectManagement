@@ -194,8 +194,6 @@
     NSString *key = [[dico allKeys]objectAtIndex:0];
     NSString *value = [dico objectForKey:[[dico allKeys]objectAtIndex:0]];
     
-    NSLog(@"attribute %@ = %@", key, value);
-    
     cell.textLabel.text = key;
     cell.detailTextLabel.text = value;
     

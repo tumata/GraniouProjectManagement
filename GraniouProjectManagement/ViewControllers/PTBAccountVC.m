@@ -31,7 +31,7 @@
 
 
 - (IBAction)actionLogout:(id)sender;
-- (IBAction)actionLogin:(id)sender;
+- (IBAction)actionAccesChantier:(id)sender;
 - (IBAction)actionSync:(id)sender;
 
 @end
@@ -61,7 +61,7 @@
 
 #pragma mark - Actions
 
-- (IBAction)actionLogin:(id)sender {
+- (IBAction)actionAccesChantier:(id)sender {
     MCIntent* intent = [MCIntent intentWithSectionName:SECTION_MONTEUR andViewName:VIEW_TOPMENU];
     [intent setAnimationStyle:UIViewAnimationOptionTransitionCrossDissolve];
     [[MCViewModel sharedModel] setCurrentSection:intent];
@@ -98,9 +98,6 @@
     }];
 }
 
-
-#pragma mark - Synchronisation
-
 - (IBAction)actionSync:(id)sender {
     [_viewLoading setHidden:false];
     [self rotateView];
@@ -109,6 +106,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotificationSynchro:) name:@"tachesUploaded" object:nil];
     [[PTBGetChantier sharedInstance] uploadNeededTaches];
 }
+
+#pragma mark - Synchronisation
 
 - (void)receivedNotificationSynchro:(NSNotification *)notification {
     [UIView animateWithDuration:2.0 animations:^{

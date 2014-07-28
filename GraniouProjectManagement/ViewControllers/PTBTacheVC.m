@@ -7,6 +7,7 @@
 //
 
 #define MAX_HEIGHT 2000
+#define DEVICE_HEIGHT [[UIScreen mainScreen] bounds].size.height
 
 #import "UIImage+ResizeMagick.h"
 #import "PTBAppDelegate.h"
@@ -16,7 +17,7 @@
 #import "Tache.h"
 #import "Images.h"
 
-@interface PTBTacheVC () <PTBWriteCommentDelegate, PTBTakePictureVCDelegate, PTBNavigationViewDelegate>
+@interface PTBTacheVC () <PTBWriteCommentDelegate, PTBTakePictureVCDelegate, PTBNavigationViewDelegate, UIScrollViewDelegate>
 
 @property (strong, nonatomic) NSManagedObject *source;
 
@@ -38,6 +39,12 @@
 @property (strong, nonatomic) NSString *commentaire;
 @property (strong, nonatomic) UIImage *imageDescription;
 @property (strong, nonatomic) UIImage *imageCommentaire;
+
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollViewShowPicture;
+@property (strong, nonatomic) UITapGestureRecognizer *tap;
+@property (nonatomic) BOOL isFullScreen;
+@property (nonatomic) CGRect prevFrame;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraintDescription;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraintCommentaire;
@@ -62,6 +69,16 @@
     
     _scrollViewGlobal.scrollsToTop = YES;
     _navigationView.delegate = self;
+    _scrollViewShowPicture.delegate = self;
+    _scrollViewShowPicture.minimumZoomScale=0.1;
+    _scrollViewShowPicture.maximumZoomScale=1.0;
+    
+    UITapGestureRecognizer *singleTapDescription = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapDescription:)];
+    UITapGestureRecognizer *singleTapCommentaire = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapCommentaire:)];
+    UITapGestureRecognizer *singleTapHide = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapHide:)];
+    [_scrollViewImageCommentaire addGestureRecognizer:singleTapCommentaire];
+    [_scrollViewImageDescription addGestureRecognizer:singleTapDescription];
+    [_scrollViewShowPicture addGestureRecognizer:singleTapHide];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -230,7 +247,7 @@
 -(void)createAndSetImage:(UIImage *)theImage andScrollView:(UIScrollView *)scrollView constraint:(NSLayoutConstraint *)constraint{
     
     if (theImage) {
-        UIImage *image = [theImage resizedImageWithMaximumSize:CGSizeMake(1000, 600)];
+        UIImage *image = [theImage resizedImageWithMaximumSize:CGSizeMake(300, DEVICE_HEIGHT - _navigationView.bounds.size.height)];
         
         if (scrollView.subviews.count > 0) {
             [scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -238,12 +255,9 @@
     
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         [scrollView addSubview:imageView];
-        
         [scrollView setContentSize:imageView.image.size];
         
-        if (scrollView.contentSize.height > 390) {
-            [constraint setConstant:390];
-        } else constraint.constant = scrollView.contentSize.height;
+        constraint.constant = scrollView.contentSize.height;
     }
     else {
         [constraint setConstant:0];
@@ -281,6 +295,57 @@
         }
         else NSLog(@"Error saving comment : %@", error.localizedDescription);
     }];
+}
+
+#pragma mark - touch events
+
+- (void)singleTapDescription:(UITapGestureRecognizer *)gesture
+{
+    [self imgToFullScreen:_imageDescription];
+}
+
+- (void)singleTapCommentaire:(UITapGestureRecognizer *)gesture
+{
+    [self imgToFullScreen:_imageCommentaire];
+}
+
+- (void)singleTapHide:(UITapGestureRecognizer *)gesture
+{
+    [_scrollViewShowPicture setHidden:true];
+    [_navigationView setHidden:false];
+    [_scrollViewGlobal setHidden:false];
+    
+    [_scrollViewShowPicture.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+}
+
+-(void)imgToFullScreen:(UIImage *)image {
+    [_scrollViewShowPicture setHidden:false];
+    [_navigationView setHidden:true];
+    [_scrollViewGlobal setHidden:true];
+    
+    _scrollViewShowPicture.zoomScale = 0.2;
+    
+    //[_scrollViewShowPicture setMinimumZoomScale:XXXXXX];
+    
+    if (_scrollViewShowPicture.subviews.count > 0) {
+        [_scrollViewShowPicture.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    }
+    @autoreleasepool {
+        UIImage *newImage = image;
+        
+        if ([image size].height*[image size].width > 1500000) {
+            newImage = [newImage resizedImageWithMaximumSize:CGSizeMake(1000, 1000)];
+        }
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:newImage];
+        [_scrollViewShowPicture addSubview:imageView];
+        [_scrollViewShowPicture setContentSize:imageView.image.size];
+    }
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+
+{
+    return [_scrollViewShowPicture subviews][0];
 }
 
 @end

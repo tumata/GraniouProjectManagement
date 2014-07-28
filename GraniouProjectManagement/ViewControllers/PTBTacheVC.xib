@@ -15,6 +15,7 @@
                 <outlet property="scrollViewGlobal" destination="74j-0J-ufz" id="k60-Lm-RDs"/>
                 <outlet property="scrollViewImageCommentaire" destination="8wC-aN-eRs" id="lvQ-9y-DBG"/>
                 <outlet property="scrollViewImageDescription" destination="AJ5-vO-3Rn" id="xVH-0h-GrT"/>
+                <outlet property="scrollViewShowPicture" destination="kN0-UF-B1o" id="fEf-Q8-r1R"/>
                 <outlet property="textViewCommentaire" destination="Qsg-8r-dsd" id="vNm-LJ-Rut"/>
                 <outlet property="textViewDescription" destination="Des-VK-PfN" id="Mre-tz-SUM"/>
                 <outlet property="view" destination="8Vk-EE-XIY" id="BGj-ZT-awh"/>
@@ -94,7 +95,7 @@
                             </connections>
                         </button>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8wC-aN-eRs" userLabel="ScrollViewImage2">
-                            <rect key="frame" x="0.0" y="254" width="320" height="0.0"/>
+                            <rect key="frame" x="10" y="254" width="300" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" priority="250" id="7Op-UY-J8u"/>
@@ -139,12 +140,16 @@
                         <constraint firstItem="Rk8-0R-DNn" firstAttribute="top" secondItem="Qsg-8r-dsd" secondAttribute="bottom" id="kJo-RA-fBg"/>
                         <constraint firstAttribute="centerX" secondItem="Qsg-8r-dsd" secondAttribute="centerX" id="lAj-i9-pY9"/>
                         <constraint firstItem="Rk8-0R-DNn" firstAttribute="leading" secondItem="74j-0J-ufz" secondAttribute="leading" id="lLI-Zv-wwZ"/>
-                        <constraint firstItem="8wC-aN-eRs" firstAttribute="leading" secondItem="74j-0J-ufz" secondAttribute="leading" id="n8U-8N-nRo"/>
+                        <constraint firstItem="8wC-aN-eRs" firstAttribute="leading" secondItem="74j-0J-ufz" secondAttribute="leading" constant="10" id="n8U-8N-nRo"/>
                         <constraint firstAttribute="trailing" secondItem="Rk8-0R-DNn" secondAttribute="trailing" id="q1O-zk-c4D"/>
                         <constraint firstAttribute="centerX" secondItem="Des-VK-PfN" secondAttribute="centerX" id="qSN-qf-phm"/>
-                        <constraint firstAttribute="trailing" secondItem="8wC-aN-eRs" secondAttribute="trailing" id="spb-hf-ho3"/>
+                        <constraint firstAttribute="trailing" secondItem="8wC-aN-eRs" secondAttribute="trailing" constant="10" id="spb-hf-ho3"/>
                         <constraint firstItem="AJ5-vO-3Rn" firstAttribute="top" secondItem="Des-VK-PfN" secondAttribute="bottom" id="z5v-VV-i4S"/>
                     </constraints>
+                </scrollView>
+                <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kN0-UF-B1o" userLabel="ScrollShowPicture">
+                    <rect key="frame" x="0.0" y="20" width="320" height="476"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -152,10 +157,14 @@
                 <constraint firstAttribute="centerX" secondItem="74j-0J-ufz" secondAttribute="centerX" id="DRm-Xk-PUF"/>
                 <constraint firstAttribute="centerX" secondItem="wkH-WL-un5" secondAttribute="centerX" id="Obp-ZX-rwg"/>
                 <constraint firstAttribute="trailing" secondItem="wkH-WL-un5" secondAttribute="trailing" id="RHi-GW-PIr"/>
+                <constraint firstItem="kN0-UF-B1o" firstAttribute="top" secondItem="8Vk-EE-XIY" secondAttribute="top" constant="20" id="Scc-kL-7nW"/>
+                <constraint firstItem="kN0-UF-B1o" firstAttribute="leading" secondItem="8Vk-EE-XIY" secondAttribute="leading" id="WC2-18-wYm"/>
                 <constraint firstItem="74j-0J-ufz" firstAttribute="top" secondItem="wkH-WL-un5" secondAttribute="bottom" id="Zez-XQ-9Kv"/>
+                <constraint firstAttribute="bottom" secondItem="kN0-UF-B1o" secondAttribute="bottom" id="bpC-h8-oZB"/>
                 <constraint firstItem="wkH-WL-un5" firstAttribute="top" secondItem="8Vk-EE-XIY" secondAttribute="top" id="idR-Mt-s5q"/>
                 <constraint firstItem="wkH-WL-un5" firstAttribute="leading" secondItem="8Vk-EE-XIY" secondAttribute="leading" id="lHo-5J-64V"/>
                 <constraint firstItem="74j-0J-ufz" firstAttribute="leading" secondItem="8Vk-EE-XIY" secondAttribute="leading" id="mzA-dh-D1w"/>
+                <constraint firstAttribute="trailing" secondItem="kN0-UF-B1o" secondAttribute="trailing" id="p6u-GA-GeG"/>
                 <constraint firstAttribute="bottom" secondItem="74j-0J-ufz" secondAttribute="bottom" id="qRf-xk-BoN"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

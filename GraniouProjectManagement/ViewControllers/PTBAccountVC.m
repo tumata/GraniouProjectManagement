@@ -54,6 +54,9 @@
 
 -(void)onResume:(MCIntent *)intent {
     [super onResume:intent];
+    
+    [[MCViewModel sharedModel] clearViewCache];
+    
     if (!_data)[self setDataFromCore];
 }
 

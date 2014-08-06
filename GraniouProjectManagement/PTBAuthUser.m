@@ -181,6 +181,7 @@ void(^tryLogoutUserCallback)(NSDictionary *infos);
         [[chantier managedObjectContext] MR_saveToPersistentStoreAndWait];
         
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:kIdChantier];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
     tryLogoutUserCallback([notification userInfo]);

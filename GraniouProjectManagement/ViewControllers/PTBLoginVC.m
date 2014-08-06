@@ -56,6 +56,8 @@
     // Ne plus recevoir les notifications de keyBoard
     [self registerForKeyboardNotifications];
     [super onResume:intent];
+    [[MCViewModel sharedModel] clearHistoryStack];
+    [[MCViewModel sharedModel] clearViewCache];
 }
 
 -(void)onPause:(MCIntent *)intent {

@@ -81,9 +81,15 @@
     [_scrollViewShowPicture addGestureRecognizer:singleTapHide];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    [self setNeedsStatusBarAppearanceUpdate];
     [self reloadView];
 }
 
@@ -323,9 +329,6 @@
     [_navigationView setHidden:true];
     [_scrollViewGlobal setHidden:true];
     
-    _scrollViewShowPicture.zoomScale = 0.2;
-    
-    //[_scrollViewShowPicture setMinimumZoomScale:XXXXXX];
     
     if (_scrollViewShowPicture.subviews.count > 0) {
         [_scrollViewShowPicture.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -334,12 +337,42 @@
         UIImage *newImage = image;
         
         if ([image size].height*[image size].width > 1500000) {
-            newImage = [newImage resizedImageWithMaximumSize:CGSizeMake(1000, 1000)];
+            newImage = [newImage resizedImageWithMaximumSize:CGSizeMake(1400, 1400)];
         }
+        
         UIImageView *imageView = [[UIImageView alloc] initWithImage:newImage];
         [_scrollViewShowPicture addSubview:imageView];
         [_scrollViewShowPicture setContentSize:imageView.image.size];
+        
+        // Zoom scale related
+        CGFloat minScale = [self minimumZoomForFullScreenSizePicture:newImage.size];
+        [_scrollViewShowPicture setMinimumZoomScale:minScale];
+        _scrollViewShowPicture.zoomScale = minScale;
+        [_scrollViewShowPicture setMaximumZoomScale:minScale + 1];
+
     }
+}
+
+-(CGFloat)minimumZoomForFullScreenSizePicture: (CGSize)sizePicture
+{
+    CGSize sizeScreen = [[UIScreen mainScreen] bounds].size;
+    
+    CGFloat hScreen = sizeScreen.height;
+    CGFloat wScreen = sizeScreen.width;
+    CGFloat hPicture = sizePicture.height;
+    CGFloat wPicture = sizePicture.width;
+    
+    CGFloat goodRatio;
+    
+    if (hPicture >= wPicture)
+    {
+        goodRatio = wScreen / wPicture;
+    }
+    else
+    {
+        goodRatio = hScreen / hPicture;
+    }
+    return goodRatio;
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
